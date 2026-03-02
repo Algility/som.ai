@@ -274,11 +274,7 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
     });
 
     setFiles((prev) => [...prev, ...newFiles]);
-    setMessage((prev) => {
-      if (prev) return prev;
-      if (newFiles.length === 1) return newFiles[0].type.startsWith("image/") ? "Analyzed image..." : "Analyzed document...";
-      return `Analyzed ${newFiles.length} files...`;
-    });
+    setMessage((prev) => prev);
 
     newFiles.forEach((f) => {
       setTimeout(() => {
@@ -409,7 +405,7 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
                 onClick={handleSend}
                 disabled={!hasContent}
                 className={`inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95
-                  ${hasContent ? "bg-accent text-bg-0 hover:bg-accent-hover shadow-md" : "bg-accent/30 text-bg-0/60 cursor-default"}`}
+                  ${hasContent ? "bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer" : "bg-[#890B0D]/30 text-white/60 cursor-default"}`}
                 type="button"
                 aria-label="Send message"
               >

@@ -1,0 +1,5878 @@
+yeah yeah so uh
+00:30 
+
+00:30 yeah like you mentioned immersed is the
+00:32 
+
+00:32 most used app on the planet in arvr
+00:34 
+
+00:34 mainly because it's virtual reality
+00:36 
+
+00:36 offices people are working with the
+00:38 
+
+00:38 headset on 40 50 hours a week every week
+00:40 
+
+00:40 it's not like a game where you put it on
+00:41 
+
+00:41 for 30 minutes and you put it down and
+00:42 
+
+00:42 then your headset collects dust it's
+00:44 
+
+00:44 actually part of your it's an extension
+00:45 
+
+00:45 of your laptop right so you take like a
+00:47 
+
+00:47 quest Pro or a Quest 2 or whatever
+00:48 
+
+00:48 headset and it wirelessly connects to
+00:50 
+
+00:50 your laptop it spawns five virtual
+00:52 
+
+00:52 screens you have your whiteboards in
+00:54 
+
+00:54 there you have your co-workers in there
+00:55 
+
+00:55 you're quite literally in the Virtual
+00:57 
+
+00:57 Office as if you were in person with
+00:58 
+
+00:58 your remote team but yeah you're all
+01:00 
+
+01:00 just working from home uh we also have a
+01:02 
+
+01:02 lot of users who work solo who are
+01:04 
+
+01:04 working in Virtual cafes so instead of
+01:07 
+
+01:07 like in the real world taking your
+01:08 
+
+01:08 MacBook to um a a coffee shop having to
+01:11 
+
+01:11 find Wi-Fi find parking found find an
+01:12 
+
+01:12 outlet pay for coffee uh and have to do
+01:15 
+
+01:15 that multiple different times if you
+01:16 
+
+01:16 want to change a scenery instead just
+01:17 
+
+01:17 put a headset on you have virtual cafes
+01:19 
+
+01:19 you're not paying for coffee or anything
+01:20 
+
+01:20 like that but you're around other people
+01:22 
+
+01:22 the whole reason why people do this in
+01:23 
+
+01:23 the real world is because they just you
+01:24 
+
+01:24 know they feel isolated at home and it
+01:26 
+
+01:26 allows you to just be around real world
+01:28 
+
+01:28 people but someone might be the this
+01:30 
+
+01:30 person might be in France this person
+01:31 
+
+01:31 might be in I don't know like India or
+01:33 
+
+01:33 something like just random places around
+01:35 
+
+01:35 the world and people are just sitting
+01:36 
+
+01:36 there getting their work done so you're
+01:37 
+
+01:37 not necessarily collaborating you're
+01:38 
+
+01:38 just around other people and you don't
+01:39 
+
+01:39 feel home alone right just from a from a
+01:42 
+
+01:42 background standpoint like I it's funny
+01:43 
+
+01:43 because I'm actually not a VR person
+01:46 
+
+01:46 which it's usually surprising a lot of
+01:47 
+
+01:47 people I don't play any VR games I just
+01:50 
+
+01:50 use it for work um and when I got into
+01:52 
+
+01:52 the VR space it was because I wanted to
+01:54 
+
+01:54 build this specific product so when I
+01:56 
+
+01:56 got into the VR space it was uh before I
+01:59 
+
+01:59 ever even tried VR I just I bought a
+02:02 
+
+02:02 Google cardboard because I heard about
+02:03 
+
+02:03 it and I was trying to build almost like
+02:05 
+
+02:05 a virtual computer screen type app I
+02:08 
+
+02:08 wanted to have my laptop I wanted to
+02:10 
+
+02:10 have multiple virtual screens and that
+02:12 
+
+02:12 was my particular solo use case I just
+02:14 
+
+02:14 wanted a a way to bring my laptop with
+02:16 
+
+02:16 me anywhere that I went and still have
+02:18 
+
+02:18 five screens somehow um because you know
+02:19 
+
+02:19 background encoding right so maybe I
+02:21 
+
+02:21 could talk about that a little bit so um
+02:23 
+
+02:23 I actually was preed in undergrad I
+02:24 
+
+02:24 don't know if you guys knew that I was
+02:25 
+
+02:25 Premed in undergrad but then I did math
+02:27 
+
+02:27 and computer science for myself so
+02:29 
+
+02:29 Premed for my parents math CS for myself
+02:31 
+
+02:31 um and I took my mcats I did pretty well
+02:34 
+
+02:34 got into med schools uh I the thing is
+02:36 
+
+02:36 though I knew that if I were going to go
+02:37 
+
+02:37 to med school I just wouldn't be happy
+02:40 
+
+02:40 and so I ended up taking it sounds
+02:42 
+
+02:42 messed up I know a lot of people wish
+02:43 
+
+02:43 they got into med schools but I took my
+02:44 
+
+02:44 med school acceptance letterers and thre
+02:46 
+
+02:46 in the trash I was just like I'm not
+02:47 
+
+02:47 going and my parents were super upset um
+02:50 
+
+02:50 and I mean if you think about
+02:52 
+
+02:52 stereotypically stereotypical Indian
+02:53 
+
+02:53 parents they you know they want their
+02:55 
+
+02:55 kids to go be a doctor or a lawyer or
+02:57 
+
+02:57 whatever and to say you're going to be
+02:58 
+
+02:58 an it it's like it just they think it
+03:00 
+
+03:00 means like customer support or something
+03:02 
+
+03:02 and for me I like no I'm not like going
+03:04 
+
+03:04 to support the iPhone I want to like
+03:05 
+
+03:05 build the iPhone that's what I want to
+03:06 
+
+03:06 do and they still didn't understand it
+03:08 
+
+03:08 but um so I was like okay whatever I'm
+03:10 
+
+03:10 just going to do what I want to do and I
+03:12 
+
+03:12 ended up then uh very quickly once I got
+03:14 
+
+03:14 my first job as a coder I didn't realize
+03:17 
+
+03:17 that by God's grace my brain was wired
+03:19 
+
+03:19 for coding meaning like my I guess I
+03:22 
+
+03:22 guess I could see traces of it in my
+03:24 
+
+03:24 childhood I played Halo when I was 12 I
+03:26 
+
+03:26 was a Halo Pro Gamer so like I'd go to
+03:28 
+
+03:28 like local tournaments and it was so
+03:30 
+
+03:30 funny in every uh Halo tournament that I
+03:33 
+
+03:33 was in the final score of every finals I
+03:35 
+
+03:35 was in was 25-0 so like second place
+03:38 
+
+03:38 always got just like like blown out so I
+03:40 
+
+03:40 stopped doing local tournaments and
+03:41 
+
+03:41 started uh doing like online and uh like
+03:44 
+
+03:44 like uh Nationals and things like that
+03:46 
+
+03:46 and uh you know I place like 30th but
+03:49 
+
+03:49 still like 30 out of like 50,000 right
+03:50 
+
+03:50 so uh when I was uh 12 I could see okay
+03:53 
+
+03:53 I liked technology I liked being very
+03:55 
+
+03:55 strategic uh and then kind of as time
+03:57 
+
+03:57 had progressed I didn't really know what
+03:58 
+
+03:58 I would be passionate about I did like
+03:60 
+
+03:60 wrestling in high school I did um
+04:02 
+
+04:02 bodybuilding in high school things like
+04:03 
+
+04:03 that and I just I didn't really know
+04:05 
+
+04:05 what I wanted to do I just whatever I
+04:06 
+
+04:06 was doing I wanted to be very very good
+04:07 
+
+04:07 at it um and I picked up basketball and
+04:09 
+
+04:09 undergradu for fun and uh yeah I still
+04:12 
+
+04:12 play basketball now and I I noticed that
+04:14 
+
+04:14 everything I ever did I really wanted to
+04:16 
+
+04:16 be very very good at it when I started
+04:19 
+
+04:19 my first job as a software engineer I
+04:21 
+
+04:21 started realizing that dang like all
+04:23 
+
+04:23 these Concepts that my teammates maybe
+04:25 
+
+04:25 took two or three or four years to uh
+04:27 
+
+04:27 learn before I got here I'm picking it
+04:29 
+
+04:29 up within a matter of a mon month two
+04:30 
+
+04:30 months three months and for me as time
+04:32 
+
+04:32 had progressed I didn't want more money
+04:34 
+
+04:34 I just wanted a promotion so I could do
+04:36 
+
+04:36 do more work have more responsibility
+04:38 
+
+04:38 lead a team all of that and every job
+04:40 
+
+04:40 job I've ever had every manager would
+04:41 
+
+04:41 tell me hey like we hired you for this
+04:44 
+
+04:44 particular small role and I'm like well
+04:46 
+
+04:46 okay well that's boring and so back then
+04:47 
+
+04:47 recruiters would just Spam your LinkedIn
+04:49 
+
+04:49 inbox and they still do that today but
+04:50 
+
+04:50 back then now they rate limit it back
+04:52 
+
+04:52 then it was just like flooded with
+04:53 
+
+04:53 random recruiters saying I can get you a
+04:55 
+
+04:55 mid-level here or senior level here Etc
+04:57 
+
+04:57 so sounds terrible but I had seven
+04:59 
+
+04:59 different jobs in two years years just
+05:00 
+
+05:00 promotion promotion but like different
+05:01 
+
+05:01 companies and by the time I was 23 I was
+05:04 
+
+05:04 a lead software architect um for CNN for
+05:07 
+
+05:07 one of their sort of projects called
+05:09 
+
+05:09 great big story.com and uh I mean dude I
+05:12 
+
+05:12 was 23 getting paid like I think it was
+05:13 
+
+05:13 like 360k a year um I was a lead AR
+05:16 
+
+05:16 architect and I felt like I hit somewhat
+05:17 
+
+05:17 of a ceiling in my career um I felt very
+05:20 
+
+05:20 unsatisfied and I was like man all right
+05:22 
+
+05:22 if this is all there is in the web World
+05:24 
+
+05:24 well I'm going to now move into AI stuff
+05:26 
+
+05:26 so then I quit that job focused on a PhD
+05:29 
+
+05:29 in computer vision learning so
+05:30 
+
+05:30 self-driving cars autonomous drones
+05:32 
+
+05:32 things like that and uh I did that at
+05:34 
+
+05:34 Georgia Tech for about two and a half
+05:35 
+
+05:35 years by the time I realized this crap
+05:37 
+
+05:37 is going to take eight years I don't
+05:39 
+
+05:39 want to spend eight years on this thing
+05:41 
+
+05:41 and so uh about two and a half years in
+05:43 
+
+05:43 I just I was like all right I think I'm
+05:45 
+
+05:45 done uh I settled for the Master's
+05:46 
+
+05:46 Degree graduated from that and decided
+05:48 
+
+05:48 to not continue on with the PHD uh and
+05:50 
+
+05:50 then that's when I started immersed so
+05:53 
+
+05:53 um we applied to Y combinator and Tech
+05:56 
+
+05:56 Stars which are some of the world's top
+05:57 
+
+05:57 accelerator programs we are finalists at
+05:58 
+
+05:58 both um but why combinator is very
+06:01 
+
+06:01 product focused Tech Stars is very um
+06:03 
+
+06:03 business focused and I only had a coding
+06:06 
+
+06:06 background I knew about building
+06:07 
+
+06:07 products but I didn't know anything
+06:08 
+
+06:08 about legal hiring Finance fundraising
+06:10 
+
+06:10 marketing Etc and I was like man I think
+06:12 
+
+06:12 I just need to become a more
+06:13 
+
+06:13 well-rounded CEO and so um Tech stars
+06:15 
+
+06:15 that was kind of there pitched to me and
+06:16 
+
+06:16 so I ended up you know packing my bags
+06:18 
+
+06:18 and moving to Chicago uh went to that
+06:20 
+
+06:20 particular program they have some in
+06:21 
+
+06:21 like Austin and Seattle and New York and
+06:23 
+
+06:23 everywhere else but um the Chicago
+06:25 
+
+06:25 program is one I got accepted to and it
+06:27 
+
+06:27 was really cool because about 10,000
+06:28 
+
+06:28 companies applied to that world wide
+06:30 
+
+06:30 only 10 got in so we were you know one
+06:32 
+
+06:32 of the 10 so I guess what 0.1% of
+06:35 
+
+06:35 companies that applied that got in and
+06:37 
+
+06:37 what funny was uh the other people in
+06:39 
+
+06:39 the program were beasts like they were
+06:43 
+
+06:43 like either already uh exited Founders
+06:46 
+
+06:46 and or or they went to like Harvard
+06:48 
+
+06:48 Stanford Princeton Yale whatever so I
+06:50 
+
+06:50 was non IV league non-millionaire and
+06:53 
+
+06:53 like I was in this program as just sort
+06:55 
+
+06:55 of this kid who like loved coding and
+06:58 
+
+06:58 one thing that was unique was number one
+06:60 
+
+06:60 I was actually the only solo founder in
+07:01 
+
+07:01 that program and they generally don't
+07:03 
+
+07:03 hire solo Founders um and for me it was
+07:06 
+
+07:06 I did have a co-founder previously but
+07:07 
+
+07:07 by the time we got accepted into Tech
+07:09 
+
+07:09 starts he was like dude I don't know if
+07:09 
+
+07:09 I could leave Atlanta for us to that's
+07:11 
+
+07:11 where I went to grad school I don't know
+07:12 
+
+07:12 if I could leave Atlanta leave my wife
+07:14 
+
+07:14 and kids and and come to the program and
+07:16 
+
+07:16 I can't even I can't move all of them
+07:17 
+
+07:17 uproot them and bring them to uh Tech
+07:19 
+
+07:19 Stars and honestly maybe I shouldn't
+07:20 
+
+07:20 even be in a startup because I don't
+07:22 
+
+07:22 want to miss out on the more form of
+07:23 
+
+07:23 years my kids lives and I was like all
+07:24 
+
+07:24 right well I can't blame that I can't
+07:25 
+
+07:25 blame you for that um so I went through
+07:27 
+
+07:27 the tech Stars program solo and it funny
+07:29 
+
+07:29 because all the different uh Founders
+07:31 
+
+07:31 would come to me and be like man lightly
+07:32 
+
+07:32 Pat me on the back like man I have no
+07:34 
+
+07:34 idea how the crap you're doing this solo
+07:35 
+
+07:35 I would kill myself if I of you I was
+07:36 
+
+07:36 like thanks dude I know it's already
+07:38 
+
+07:38 hard you're just rubbing it in uh so so
+07:41 
+
+07:41 what I will say though is Tech Stars was
+07:42 
+
+07:42 an insanely especially that Chicago
+07:44 
+
+07:44 program every program's different but
+07:46 
+
+07:46 the Chicago program was like an insane
+07:48 
+
+07:48 boot camp and I would never do it again
+07:49 
+
+07:49 it was amazing for what it was but I
+07:50 
+
+07:50 would never do it again um because we
+07:52 
+
+07:52 were there from like 5 a.m. till um
+07:55 
+
+07:55 probably 11: p.m. maybe midnight every
+07:57 
+
+07:57 single day uh for them to Indo indate us
+07:60 
+
+08:00 indoctrinate us with their um sort of
+08:03 
+
+08:03 way of building companies and we had to
+08:05 
+
+08:05 figure out a way to run our company
+08:07 
+
+08:07 outside at that time which is like I got
+08:08 
+
+08:08 to sleep at least five hours and you
+08:10 
+
+08:10 could run your company on the weekends
+08:11 
+
+08:11 and things like that and so it was just
+08:12 
+
+08:12 very difficult for us to run our
+08:14 
+
+08:14 companies but that was very it was by
+08:15 
+
+08:15 design it was only three months and
+08:16 
+
+08:16 they're like hey for these three months
+08:18 
+
+08:18 before the program started they were
+08:19 
+
+08:19 like uh text all your family family your
+08:21 
+
+08:21 friends that you apologize but you won't
+08:23 
+
+08:23 be speaking to them for 12 weeks I was
+08:24 
+
+08:24 like what the crap did I sign up for and
+08:26 
+
+08:26 so but it was extremely helpful because
+08:28 
+
+08:28 when I came out of it it really did
+08:30 
+
+08:30 transform my ability to not just be a
+08:33 
+
+08:33 coder but like really execute on the
+08:35 
+
+08:35 right product features that need to be
+08:36 
+
+08:36 built um learn how to communicate what
+08:38 
+
+08:38 I'm working on uh learn how to hire the
+08:40 
+
+08:40 right type of Team learn how to get
+08:42 
+
+08:42 funding all those types of things you
+08:44 
+
+08:44 learned in those three months and the
+08:45 
+
+08:45 part that's rough is not every
+08:46 
+
+08:46 accelerator program is like that but
+08:48 
+
+08:48 that particular one is run by a guy
+08:49 
+
+08:49 named Logan laive he was the founder of
+08:51 
+
+08:51 a company called belly card um it's like
+08:53 
+
+08:53 a loyalty program for Mom and Pop shops
+08:54 
+
+08:54 and you could use credits at the
+08:55 
+
+08:55 different stores regardless which one
+08:57 
+
+08:57 you went to and you still get credit um
+08:59 
+
+08:59 and uh he got 40 million in funding from
+09:01 
+
+09:01 INRI and Horwitz the top VC in the world
+09:03 
+
+09:03 and so he when he exited that he was
+09:05 
+
+09:05 running this Tech arts program and I
+09:06 
+
+09:06 lucked out that was like the best
+09:08 
+
+09:08 managing director I could have had uh he
+09:10 
+
+09:10 was very hard on us but today he's a
+09:11 
+
+09:11 great friend and back then uh I mean all
+09:14 
+
+09:14 of us all the the 10 companies uh and
+09:16 
+
+09:16 the founders of those companies uh are
+09:18 
+
+09:18 super thankful for his sort of
+09:20 
+
+09:20 leadership and guidance in that process
+09:21 
+
+09:21 but yeah I mean fast forward to um yeah
+09:24 
+
+09:24 the past six years is when we started in
+09:26 
+
+09:26 M right so six years ago went through
+09:27 
+
+09:27 Tech Stars um the first three years were
+09:29 
+
+09:29 very rough it was very um focused on
+09:33 
+
+09:33 just heads down build a product like
+09:36 
+
+09:36 like initially was a prototype when I
+09:37 
+
+09:37 was demoing it to VCS but I needed to
+09:40 
+
+09:40 now start getting users I can't just
+09:41 
+
+09:41 keep demoing to VCS and hope that that's
+09:43 
+
+09:43 going to give us millions in funding it
+09:45 
+
+09:45 would gave us like 300K 350k something
+09:48 
+
+09:48 like that and when we started getting
+09:50 
+
+09:50 our first users okay well once we get to
+09:52 
+
+09:52 you know 20 daily active users or 100
+09:54 
+
+09:54 daily active users like those were legit
+09:56 
+
+09:56 milestones we had to hit because we
+09:57 
+
+09:57 weren't on the Oculus store and back
+09:59 
+
+09:59 then the Oculus store only allowed games
+10:02 
+
+10:02 so they didn't allow us to be on on the
+10:04 
+
+10:04 Oculus store we were the first
+10:05 
+
+10:05 non-gaming app on the Oculus store but
+10:07 
+
+10:07 they only unlocked that for us in uh
+10:09 
+
+10:09 August 2020 so three years into building
+10:13 
+
+10:13 this company so I had to go three years
+10:14 
+
+10:14 scraping the corners of the internet to
+10:16 
+
+10:16 find people who want to Sid load this
+10:18 
+
+10:18 APK file to their headset who the crap
+10:20 
+
+10:20 knows how to do that and uh eventually
+10:23 
+
+10:23 once it was very clear that out of all
+10:24 
+
+10:24 the different um Virtual Office apps out
+10:27 
+
+10:27 there especially when Co had hit ours
+10:28 
+
+10:28 had the best user experience uh just the
+10:31 
+
+10:31 most amount of user usage and just the
+10:32 
+
+10:32 easiest onboarding experience and it
+10:34 
+
+10:34 just the most polished uh and the and
+10:36 
+
+10:36 the best feature set and so that's where
+10:38 
+
+10:38 uh Facebook back then is what they were
+10:39 
+
+10:39 called uh before you young is you know
+10:41 
+
+10:41 I'm just kidding um they they really uh
+10:45 
+
+10:45 they they it was really cool because
+10:46 
+
+10:46 they brought gave us a team of quality
+10:48 
+
+10:48 assurance Engineers to like help us go
+10:49 
+
+10:49 through all the bugs make sure it's
+10:50 
+
+10:50 polished before we get onto the store
+10:52 
+
+10:52 and then once we got on to the store it
+10:54 
+
+10:54 exploded um and you there's a whole
+10:56 
+
+10:56 other side story about the fundraising
+10:57 
+
+10:57 thing but you know we could talk about
+10:58 
+
+10:58 that as well if you'd like like wow
+10:60 
+
+10:60 that's incredible yeah what a what a
+11:02 
+
+11:02 journey going through Tech Stars and
+11:03 
+
+11:03 everything uh I have to ask like with
+11:06 
+
+11:06 you know you're the most used arvr app
+11:09 
+
+11:09 in the world pretty much where do you
+11:12 
+
+11:12 see the trend of adoption for just the
+11:17 
+
+11:17 everyday user to be able to use
+11:19 
+
+11:19 technology like yours yeah yeah the part
+11:21 
+
+11:21 that sucks is a lot of these headsets
+11:23 
+
+11:23 that are available today people just
+11:24 
+
+11:24 perceive it as some sort of gaming toy
+11:26 
+
+11:26 thing um which is unfortunate for us for
+11:28 
+
+11:28 sure so uh for the past I would say
+11:32 
+
+11:32 three years since we've been on the
+11:33 
+
+11:33 Oculus store um we've had to really
+11:35 
+
+11:35 position ourselves as a company that out
+11:38 
+
+11:38 of the I don't know I'll make it up 20
+11:40 
+
+11:40 million daily active users that exist in
+11:42 
+
+11:42 all the different Oculus headsets HTC
+11:44 
+
+11:44 headsets whatever um out of the 20 20
+11:47 
+
+11:47 million around the world that exist
+11:49 
+
+11:49 let's get as many of those as possible
+11:51 
+
+11:51 who have office jobs or desk jobs to use
+11:53 
+
+11:53 our app and so we've had to sort of just
+11:55 
+
+11:55 look at that 20 million daily active
+11:57 
+
+11:57 user sort of number as our total
+11:59 
+
+11:59 addressable market and even if only 10%
+12:02 
+
+12:02 of them use our product well that's
+12:03 
+
+12:03 still 2 million daily active users right
+12:05 
+
+12:05 um which is still pretty impressive for
+12:07 
+
+12:07 this thing on your head or this brick on
+12:09 
+
+12:09 your head and we know that all of the
+12:11 
+
+12:11 tech Giants are pouring billions of
+12:13 
+
+12:13 dollars doz like dozens of billions of
+12:15 
+
+12:15 dollars into this next generation of
+12:17 
+
+12:17 computing spatial Computing right um
+12:19 
+
+12:19 Microsoft Apple Facebook uh Google all
+12:22 
+
+12:22 these sort of tech gies whether or not
+12:23 
+
+12:23 they announce it or not yet we do get to
+12:25 
+
+12:25 see a lot of the behind the scenes so we
+12:26 
+
+12:26 know who is actually uh working on
+12:28 
+
+12:28 Hardware but for us we know there's a
+12:30 
+
+12:30 lot that's coming out that's going to
+12:31 
+
+12:31 make it more mainstream uh the question
+12:34 
+
+12:34 is though how long will that take right
+12:36 
+
+12:36 will it be a year or five years candidly
+12:39 
+
+12:39 I think that uh if we can't do anything
+12:41 
+
+12:41 about it it'll be um probably closer to
+12:44 
+
+12:44 four or five years before everyone has
+12:46 
+
+12:46 something like that um but you know
+12:47 
+
+12:47 we're having some conversations behind
+12:48 
+
+12:48 the scenes to see if there's a way to
+12:49 
+
+12:49 push that earlier to like a year from
+12:51 
+
+12:51 now so you started building this company
+12:54 
+
+12:54 six years ago and back then you know or
+12:58 
+
+12:58 since that time Oculus and all these
+12:60 
+
+13:00 headsets have become a lot more
+13:01 
+
+13:01 mainstream but back then it was not
+13:02 
+
+13:02 nearly as popular how did you get the
+13:05 
+
+13:05 idea to create immersed and where did
+13:06 
+
+13:06 this idea really originate yeah I mean
+13:08 
+
+13:08 it really came down to me trying to
+13:10 
+
+13:10 solve a problem for myself so I will say
+13:13 
+
+13:13 I didn't look at VR as something I
+13:15 
+
+13:15 wanted to be part of I looked at my
+13:17 
+
+13:17 problem of well I guess I'll start from
+13:19 
+
+13:19 the root so back in 2017 when I first
+13:22 
+
+13:22 started this I was just literally
+13:23 
+
+13:23 sitting down and brainstorming okay what
+13:25 
+
+13:25 sort of problems can I solve and I
+13:26 
+
+13:26 remember listening to a like a a y
+13:28 
+
+13:28 combinated talk on YouTube or something
+13:30 
+
+13:30 talking about how if you're able to
+13:31 
+
+13:31 solve a problem for yourself you're not
+13:33 
+
+13:33 going to have the problem of trying to
+13:37 
+
+13:37 guess what your users want right so say
+13:39 
+
+13:39 for example um if you were you know you
+13:42 
+
+13:42 as a you know 25-year-old or 22y old
+13:44 
+
+13:44 were building some sort of insurance
+13:46 
+
+13:46 compliance something product well you're
+13:48 
+
+13:48 gonna have to interview a ton of people
+13:49 
+
+13:49 in that world to know how to provide
+13:50 
+
+13:50 them a solution they want to pay for but
+13:52 
+
+13:52 if you're building just a product that
+13:54 
+
+13:54 you want yourself oh you don't have to
+13:55 
+
+13:55 ask any question you're just you're
+13:56 
+
+13:56 building the thing and so for me I knew
+13:58 
+
+13:58 that every software development team had
+13:60 
+
+13:60 ever been on or had led in the past more
+14:02 
+
+14:02 and more people were starting to work
+14:03 
+
+14:03 from home even though this is you know
+14:05 
+
+14:05 three years before Co um but especially
+14:07 
+
+14:07 in the coding world I remember I had
+14:08 
+
+14:08 like a an aunt and uncle who like they
+14:10 
+
+14:10 both had work from home jobs and like my
+14:12 
+
+14:12 extended family was like oh that's so
+14:13 
+
+14:13 cool how the heck can they do that
+14:14 
+
+14:14 because it was not it was it was unheard
+14:16 
+
+14:16 of for uh one person to even work from
+14:18 
+
+14:18 home let alone two of them in the same
+14:20 
+
+14:20 household and so the fact that in the
+14:23 
+
+14:23 technology world as as a coder as a
+14:25 
+
+14:25 system admin or whatever it is you could
+14:27 
+
+14:27 start doing that kind of from home
+14:29 
+
+14:29 because of things like GitHub and slack
+14:31 
+
+14:31 and whatever else and and you know back
+14:32 
+
+14:32 then Skype um there were ways that I
+14:35 
+
+14:35 could real I could see that more and
+14:37 
+
+14:37 more people would start adopting this so
+14:38 
+
+14:38 you know say maybe in 2014 I had like
+14:40 
+
+14:40 one cooworker who uh would work from
+14:43 
+
+14:43 home and then 2015 I had like two
+14:45 
+
+14:45 co-workers and then and then the next
+14:46 
+
+14:46 year like three so it it showed me
+14:49 
+
+14:49 though was like a slow ramp up it's
+14:50 
+
+14:50 eventually going to be a bigger and
+14:51 
+
+14:51 bigger problem in the future if I can
+14:53 
+
+14:53 get ahead of this now I'll be ready for
+14:55 
+
+14:55 when that thing hits and little did I
+14:57 
+
+14:57 know Co would hit and the whole world
+14:60 
+
+15:00 would work from home which was crazy so
+15:02 
+
+15:02 I will say that like that was beyond my
+15:03 
+
+15:03 control but I knew that this was an
+15:05 
+
+15:05 inevitable problem and so when I was
+15:07 
+
+15:07 thinking about okay well if everyone's
+15:09 
+
+15:09 gonna be working from home the
+15:10 
+
+15:10 state-ofthe-art cannnot be this is me
+15:12 
+
+15:12 saying this in 2017 and this is true
+15:13 
+
+15:13 even back then the state-ofthe-art of
+15:15 
+
+15:15 remote work cannot be video conferencing
+15:17 
+
+15:17 in chat like back like today that's kind
+15:19 
+
+15:19 of what we still do and in 2017 it it
+15:22 
+
+15:22 felt like dude we've been doing this for
+15:23 
+
+15:23 20 years fast forward to tell you okay
+15:25 
+
+15:25 we've been doing for 26 years now or
+15:27 
+
+15:27 whatever it is right and so I knew that
+15:29 
+
+15:29 like I've heard about this thing called
+15:30 
+
+15:30 virtual reality you can put on a headset
+15:32 
+
+15:32 and you feel like you're in another
+15:32 
+
+15:32 place maybe there's a world in which we
+15:34 
+
+15:34 can kind of like connect people who are
+15:36 
+
+15:36 remote into the same space I never even
+15:39 
+
+15:39 tried it so I just literally went to the
+15:40 
+
+15:40 internet and I googled a Google
+15:41 
+
+15:41 cardboard like I was like how do I
+15:43 
+
+15:43 what's the cheapest heads I can get like
+15:44 
+
+15:44 $20 piece of cardboard with two plastic
+15:45 
+
+15:45 lenses in it you put your phone in it
+15:47 
+
+15:47 and now you're in VR obviously it's not
+15:48 
+
+15:48 very ergonomic it's a very crappy
+15:50 
+
+15:50 experience but it helps me build the
+15:52 
+
+15:52 proof of concept and when I put this
+15:53 
+
+15:53 blurry thing on I was like okay I I can
+15:54 
+
+15:54 Envision this being a lot better and
+15:57 
+
+15:57 then I heard about how Google has this
+15:58 
+
+15:58 thing called Daydream which they wound
+15:60 
+
+15:60 down and then Facebook acquired this
+16:02 
+
+16:02 company called Oculus which I was
+16:03 
+
+16:03 already three years late to um this so
+16:05 
+
+16:05 the story of that is in 2012 Palmer
+16:07 
+
+16:07 Lucky found it Oculus two years later he
+16:09 
+
+16:09 sold it to Facebook for two or three
+16:11 
+
+16:11 billion dollars and then 2014 15 and 16
+16:15 
+
+16:15 everyone and their mom wanted to create
+16:16 
+
+16:16 a VR app that can then ride that wave
+16:18 
+
+16:18 and little did I know I would enter the
+16:20 
+
+16:20 VR space 2017 after all these Tech
+16:23 
+
+16:23 startups in the VR space failed and so
+16:25 
+
+16:25 there's no VC money left for me because
+16:27 
+
+16:27 I came way too late I I came in the sort
+16:29 
+
+16:29 of trough of dis disillusionment and so
+16:33 
+
+16:33 I knew though at some point this is
+16:35 
+
+16:35 going to be a big problem let me just
+16:36 
+
+16:36 start working on this thing now um and
+16:39 
+
+16:39 the more you focus on building a product
+16:41 
+
+16:41 for yourself the easier it is to
+16:43 
+
+16:43 actually want to stay motivated and the
+16:45 
+
+16:45 easier it is to build a good product
+16:46 
+
+16:46 that other people who hopefully you're
+16:47 
+
+16:47 not too like Edge case of a person
+16:49 
+
+16:49 hopefully you're like semi-normal is but
+16:52 
+
+16:52 you can't go wrong in thinking that uh
+16:54 
+
+16:54 there might be at least one or two other
+16:55 
+
+16:55 people on the planet who are similar to
+16:56 
+
+16:56 you and have the same type of needs yeah
+16:59 
+
+16:59 so so a major problem that a lot of
+17:01 
+
+17:01 entrepreneurs face in today's world is
+17:03 
+
+17:03 finding that access to efficient funding
+17:05 
+
+17:05 right A lot of people talk about you
+17:06 
+
+17:06 don't want Banks to lend you money
+17:08 
+
+17:08 because there's a big risk behind that
+17:09 
+
+17:09 but what is your best advice to
+17:11 
+
+17:11 entrepreneurs who are trying to get
+17:13 
+
+17:13 access to the capital that can really
+17:14 
+
+17:14 fund their ideas and to create really
+17:16 
+
+17:16 big companies yeah I mean I think that
+17:18 
+
+17:18 historically people would kind of just
+17:20 
+
+17:20 sort of Point entrepreneurs towards
+17:22 
+
+17:22 Venture capitalists or Angel Investors
+17:25 
+
+17:25 the downside to that is a lot of angels
+17:27 
+
+17:27 and VCS they or not all a lot of all of
+17:30 
+
+17:30 them are financially incentivized to
+17:32 
+
+17:32 take as big of a piece of the pie as
+17:34 
+
+17:34 possible and the downside to that is
+17:37 
+
+17:37 like like you as a ENT entrepreneur have
+17:38 
+
+17:38 little to no leverage you have no way to
+17:41 
+
+17:41 say oh well no I want you to have less
+17:44 
+
+17:44 of the company and me to have a little
+17:45 
+
+17:45 bit more okay well then I'm not
+17:46 
+
+17:46 investing peace I'm out and it's like
+17:48 
+
+17:48 then you're screwed right so like one
+17:50 
+
+17:50 thing that has been invented that uh has
+17:54 
+
+17:54 really unlocked a way to level the
+17:56 
+
+17:56 playing field for entrepreneurs is crowd
+17:58 
+
+17:58 funding you probably heard of that
+17:59 
+
+17:59 before right um not like Kickstarter
+18:01 
+
+18:01 that's more of like uh paying for the
+18:03 
+
+18:03 like like pre-orders for the products
+18:05 
+
+18:05 I'm talking about like an equity
+18:07 
+
+18:07 crowdfunding raise or like a community
+18:09 
+
+18:09 round is what they call it so you can
+18:10 
+
+18:10 kind of get like not only your friends
+18:11 
+
+18:11 and family but their friends and family
+18:13 
+
+18:13 and their friends and family and their
+18:14 
+
+18:14 friends and family in a scalable way
+18:16 
+
+18:16 where you're not having to like talk to
+18:17 
+
+18:17 each individual to pitch them and then
+18:18 
+
+18:18 hopefully they give you a check right so
+18:20 
+
+18:20 a lot a lot of entrepreneurs
+18:21 
+
+18:21 historically used to do kind of just
+18:22 
+
+18:22 like a close friends and family round
+18:24 
+
+18:24 because um if they had if their family
+18:26 
+
+18:26 even had the money which most families
+18:27 
+
+18:27 don't but with crowdfunding if you had a
+18:30 
+
+18:30 th000 people put in only 1,000 bucks
+18:33 
+
+18:33 it's a million dollars right um whereas
+18:35 
+
+18:35 historically people would have their
+18:37 
+
+18:37 friends and family put in like 50 or
+18:38 
+
+18:38 100K each and like dude there that's a
+18:41 
+
+18:41 lot of risk for them if you lose it I
+18:43 
+
+18:43 mean your family is going to be super
+18:44 
+
+18:44 upset um but if you go the crowdfunding
+18:46 
+
+18:46 round okay maybe they lost a thousand
+18:48 
+
+18:48 bucks but you know they they'll live but
+18:50 
+
+18:50 you do that with a thousand people and
+18:51 
+
+18:51 now you have access to a million dollars
+18:53 
+
+18:53 and then you also call these VCS and
+18:55 
+
+18:55 Angels say hey look I just raised a
+18:56 
+
+18:56 million bucks in a day uh I just post on
+18:58 
+
+18:58 social media ton of people joined it and
+19:00 
+
+19:00 do you want to be part of this thing and
+19:02 
+
+19:02 they have a ton of fomo too because they
+19:03 
+
+19:03 might think oh crap this person growth
+19:04 
+
+19:04 hacked the heck out of their round
+19:06 
+
+19:06 they're going to be successful someday I
+19:07 
+
+19:07 want to be part of this Vision so I
+19:09 
+
+19:09 would say like especially in the preed
+19:11 
+
+19:11 and Seed stages definitely look into
+19:13 
+
+19:13 crowdfunding we went through we funder
+19:15 
+
+19:15 um and it was extremely helpful because
+19:18 
+
+19:18 like for us so uh at the time you know
+19:19 
+
+19:19 by God's grace we actually set the
+19:21 
+
+19:21 crowdfunding records back then so in
+19:23 
+
+19:23 summer 2020 we raised two million bucks
+19:25 
+
+19:25 in two days and then eight months well I
+19:28 
+
+19:28 guess four months after I was part of
+19:29 
+
+19:29 Forbes 30 under 30 and that brought more
+19:31 
+
+19:31 angel investor eyeballs onto our stuff
+19:33 
+
+19:33 people would look on look us up online
+19:35 
+
+19:35 and say oh you did a crowdfunding
+19:36 
+
+19:36 campaign or you can do another one and I
+19:38 
+
+19:38 said at the time like I don't really
+19:39 
+
+19:39 know but maybe I'll take your email and
+19:41 
+
+19:41 put you on the list just in case we do
+19:42 
+
+19:42 and then that list hit like 300 people
+19:44 
+
+19:44 within like two or three days and so a
+19:46 
+
+19:46 couple of months later was like March
+19:48 
+
+19:48 2021 I decided to open up a second
+19:50 
+
+19:50 crowdfunding campaign and that raised 8
+19:52 
+
+19:52 million bucks in two weeks and so I mean
+19:55 
+
+19:55 if you've ever done any VC or Angel Crow
+19:58 
+
+19:58 uh normal fundraising that usually that
+20:00 
+
+20:00 usually takes 3 to six months and you
+20:02 
+
+20:02 maybe get a million bucks out of it but
+20:04 
+
+20:04 if you're able to to almost like learn
+20:05 
+
+20:05 how to growth hack your crowdfunding
+20:07 
+
+20:07 campaigns you could raise millions of
+20:08 
+
+20:08 dollars very very quickly it's not easy
+20:10 
+
+20:10 it's not like a silver bullet but if
+20:11 
+
+20:11 you're if you have an eye for growth
+20:13 
+
+20:13 hacking which you know people like you
+20:14 
+
+20:14 guys do um that's something that you can
+20:16 
+
+20:16 actually pull off fairly easily because
+20:17 
+
+20:17 it's your gifting or your talent um so
+20:19 
+
+20:19 all that to say a lot of accelerator
+20:22 
+
+20:22 programs will kind of push you towards
+20:25 
+
+20:25 um yeah going the typical VC Angel route
+20:29 
+
+20:29 but again the downside is you have no
+20:30 
+
+20:30 leverage so when you were raising right
+20:32 
+
+20:32 you said $8 million you raised $8
+20:34 
+
+20:34 million in two weeks yeah did that
+20:36 
+
+20:36 changed the framework for immerse VR
+20:39 
+
+20:39 like when you were seeing that money
+20:40 
+
+20:40 come in what was the process like and
+20:42 
+
+20:42 and how did that ultimately change your
+20:43 
+
+20:43 vision for the company it was funny
+20:45 
+
+20:45 because on day one we were trying to
+20:46 
+
+20:46 like close like seven and a half million
+20:48 
+
+20:48 in the first day and like we we only hit
+20:50 
+
+20:50 like 2.9 Million in the first day and
+20:52 
+
+20:52 like there people on our team were like
+20:53 
+
+20:53 panding like oh crap what are we going
+20:54 
+
+20:54 to do and I was like all right well
+20:55 
+
+20:55 chill out like we have other things I've
+20:57 
+
+20:57 already scenario planned like like you
+20:58 
+
+20:58 know for me I I kind of operate like
+20:60 
+
+20:60 Doctor Strange where you kind of like do
+21:01 
+
+21:01 like a million different sort of
+21:02 
+
+21:02 scenarios and like or I guess him is is
+21:04 
+
+21:04 parallel universes for me like I think
+21:06 
+
+21:06 about different sort of scenarios we
+21:07 
+
+21:07 might be in and I already thought about
+21:08 
+
+21:08 the case where hey we only raise 500k in
+21:10 
+
+21:10 a day it's like we got to try to hit
+21:12 
+
+21:12 seven and a half million and so what we
+21:14 
+
+21:14 ended up doing was um in day one so we
+21:17 
+
+21:17 just kind of took the same approach as
+21:18 
+
+21:18 before um which was for me to get sort
+21:21 
+
+21:21 of this group of people that I used to
+21:24 
+
+21:24 call the growth Squad back you know in
+21:26 
+
+21:26 the in the $2 million round was like 40
+21:27 
+
+21:27 people and these 40 people they made up
+21:29 
+
+21:29 of about maybe like 200k so like 5K on
+21:32 
+
+21:32 average each and the morning the next
+21:34 
+
+21:34 morning when I post the crowdfunding
+21:36 
+
+21:36 campaign on social media um I'd have a
+21:38 
+
+21:38 video that would say things like um you
+21:39 
+
+21:39 know hopefully by the time you watch
+21:40 
+
+21:40 this video it's not too late for you to
+21:41 
+
+21:41 join and you had 40 people comment
+21:43 
+
+21:43 saying thanks so much I'm in I'm in I'm
+21:44 
+
+21:44 in and you see all these people who are
+21:45 
+
+21:45 part of their own Echo chambers of their
+21:47 
+
+21:47 friends and then their friends are like
+21:48 
+
+21:48 what the crap is that what all of our
+21:49 
+
+21:49 friends that we know are like invested
+21:51 
+
+21:51 in this thing what the heck is this they
+21:52 
+
+21:52 look at it and they tell people about
+21:53 
+
+21:53 and they invest and then they they tell
+21:54 
+
+21:54 people they invest and it just has this
+21:56 
+
+21:56 like chain reaction and so we did that
+21:59 
+
+21:59 not only the first time we did the
+22:00 
+
+22:00 second time but the second time uh the
+22:02 
+
+22:02 reach was only like 2x as effective
+22:05 
+
+22:05 because we didn't have just 40 people in
+22:07 
+
+22:07 our gross Squad we now had like 700
+22:09 
+
+22:09 people in our gross Squad from the first
+22:10 
+
+22:10 campaign anyways after that first day
+22:12 
+
+22:12 we're like okay well it's going to slow
+22:13 
+
+22:13 down the next day we might only hit like
+22:15 
+
+22:15 four million the next day we had to then
+22:17 
+
+22:17 the follow like kind of throughout the
+22:18 
+
+22:18 week do things like giveaways um just
+22:21 
+
+22:21 create a lot of hype on social media
+22:23 
+
+22:23 allow like you know we're on the phones
+22:25 
+
+22:25 constantly just like helping people
+22:26 
+
+22:26 figure out how to get their money in
+22:28 
+
+22:28 because people like issues with their
+22:29 
+
+22:29 Banks and crypto and they needed to sell
+22:31 
+
+22:31 and they didn't know how to use their
+22:32 
+
+22:32 wallet and random crap like that we
+22:34 
+
+22:34 ultimately had to figure out ways to um
+22:36 
+
+22:36 honestly we had to be creative on the
+22:37 
+
+22:37 spot that was honestly a very uh
+22:39 
+
+22:39 difficult season uh or just difficult
+22:42 
+
+22:42 two weeks it like I knew that it would
+22:43 
+
+22:43 be transformative for our company which
+22:45 
+
+22:45 is why we put so much time and effort
+22:46 
+
+22:46 towards it um and if we didn't do it
+22:49 
+
+22:49 then I mean what we have to go back to
+22:51 
+
+22:51 the traditional VC fundraising thing
+22:52 
+
+22:52 which you know historically was just not
+22:53 
+
+22:53 effective for us because we weren't like
+22:55 
+
+22:55 some sort of like web or mobile app that
+22:57 
+
+22:57 you could like spin up very very quickly
+22:59 
+
+22:59 within a week like a day or two and then
+23:00 
+
+23:00 you have like a million users because
+23:01 
+
+23:01 you created a good version of that which
+23:03 
+
+23:03 now we're 20 years into the web world or
+23:05 
+
+23:05 30 years into that and the fact the Chan
+23:07 
+
+23:07 that you're going to create the next
+23:08 
+
+23:08 Facebook web app it's probably not as
+23:11 
+
+23:11 high as uh you think it would be in
+23:13 
+
+23:13 today's world so for us we knew we need
+23:15 
+
+23:15 to be Innovative the downside to that is
+23:17 
+
+23:17 it doesn't have nearly as many users as
+23:19 
+
+23:19 people on web and mobile and so you know
+23:22 
+
+23:22 I don't know if you remember like three
+23:23 
+
+23:23 or four or five years people would say
+23:24 
+
+23:24 oh I have a cool app idea maybe people
+23:25 
+
+23:25 people still say it today but the phone
+23:28 
+
+23:28 is be is sort of just the last
+23:30 
+
+23:30 generation of technology and as we move
+23:33 
+
+23:33 forward people have to get creative of
+23:35 
+
+23:35 okay what should I build for the future
+23:37 
+
+23:37 and who the crap is going to believe in
+23:39 
+
+23:39 that because by virtue of this being
+23:41 
+
+23:41 something that's going to be effective
+23:42 
+
+23:42 in the future it's not effective today
+23:44 
+
+23:44 and so like it's just hard to find
+23:45 
+
+23:45 people who especially VCS and Angels who
+23:48 
+
+23:48 will place their bets on you but I will
+23:50 
+
+23:50 say that plenty of random people
+23:52 
+
+23:52 internet will place a $100 bet or a $500
+23:55 
+
+23:55 bet because it doesn't hurt them that
+23:56 
+
+23:56 much but then you do that at scale and
+23:58 
+
+23:58 then eventually that gets you the
+23:59 
+
+23:59 funding you need to transform your
+24:00 
+
+24:00 company yeah so at the stage of where
+24:03 
+
+24:03 you all are now what what a funding
+24:05 
+
+24:05 ground of 8 million or or larger do for
+24:09 
+
+24:09 you all right now yeah like where would
+24:11 
+
+24:11 you kind of if you're able to talk about
+24:13 
+
+24:13 it where would you kind of allocate
+24:15 
+
+24:15 those funds to yeah so for us especially
+24:17 
+
+24:17 because we're a very um high tech
+24:19 
+
+24:19 company we've had to really focus funds
+24:21 
+
+24:21 towards um just hiring strong Engineers
+24:24 
+
+24:24 right so not necessarily just like you
+24:27 
+
+24:27 know paying out the you on freaking
+24:29 
+
+24:29 salaries but ra so we definitely do
+24:31 
+
+24:31 weigh people heavily their compensation
+24:33 
+
+24:33 on Equity not salary because otherwise
+24:35 
+
+24:35 you're inviting or or bringing in the
+24:38 
+
+24:38 wrong types of people who you know if
+24:40 
+
+24:40 you pay them 300K today well if meta
+24:42 
+
+24:42 pays them 400k well they're gone but if
+24:44 
+
+24:44 they believe in your vision and they
+24:45 
+
+24:45 care more about having equity in your
+24:47 
+
+24:47 company that could be worth millions of
+24:48 
+
+24:48 dollars someday and they want to build
+24:49 
+
+24:49 the next meta or Facebook um and you
+24:51 
+
+24:51 know their salary is less than what they
+24:52 
+
+24:52 could have gotten elsewhere we know you
+24:54 
+
+24:54 attracted the right person so a lot of
+24:56 
+
+24:56 the the 8 million was allocated towards
+24:57 
+
+24:57 just growing the team um and and
+25:00 
+
+25:00 honestly I don't think there's any any
+25:02 
+
+25:02 bigger line item uh on our books than
+25:05 
+
+25:05 people's salaries like even the fact
+25:07 
+
+25:07 that we're extremely lean as a company
+25:10 
+
+25:10 uh you know it's been two and a half
+25:11 
+
+25:11 years since that raise um and so we have
+25:14 
+
+25:14 something else that we're going to
+25:15 
+
+25:15 announce later that uh kind of um is
+25:17 
+
+25:17 going to take our company even to the
+25:19 
+
+25:19 next level but one thing that was cool
+25:20 
+
+25:20 was before we raised the $2 million
+25:22 
+
+25:22 round we were like seven people we
+25:24 
+
+25:24 raised a $2 million Round We doubled the
+25:26 
+
+25:26 team size then we we raised the 8
+25:28 
+
+25:28 million round just a few months later uh
+25:30 
+
+25:30 we then doubled again or actually I
+25:32 
+
+25:32 think we kind of tripled is um and so we
+25:35 
+
+25:35 kind of been or maybe two and a half
+25:36 
+
+25:36 xish and so we've been kind of sitting
+25:38 
+
+25:38 there for a little while we know that if
+25:40 
+
+25:40 we want to continue growing um we do
+25:42 
+
+25:42 have to grow the team if we want to
+25:44 
+
+25:44 essentially remove roadblocks that are
+25:45 
+
+25:45 preventing us from getting the millions
+25:47 
+
+25:47 of daily active users that we want we we
+25:49 
+
+25:49 we we don't want to wait for the tech
+25:50 
+
+25:50 Giants to build the iPhone of glasses or
+25:53 
+
+25:53 whatever right like we it's going to be
+25:55 
+
+25:55 another four or five years until then
+25:56 
+
+25:56 and so there are other ways that we can
+25:57 
+
+25:57 kind of
+25:58 
+
+25:58 accelerate that is what we're working on
+25:60 
+
+25:60 so yeah and and I was going to ask you
+26:02 
+
+26:02 you have some of the biggest tech
+26:03 
+
+26:03 companies in the world that use your
+26:04 
+
+26:04 products right like Tik Tok meta what
+26:07 
+
+26:07 was the process like of coming in
+26:08 
+
+26:08 contact with those major Tech Giants and
+26:10 
+
+26:10 how were you able to close those deals
+26:11 
+
+26:11 with some of the biggest tech companies
+26:12 
+
+26:12 in the world uh you're probably gonna
+26:15 
+
+26:15 hate this answer but it was just
+26:16 
+
+26:16 building the best product and they came
+26:18 
+
+26:18 to us W so like it wasn't any sort of
+26:21 
+
+26:21 level of hustle or networking we we do
+26:23 
+
+26:23 have uh direct and indirect competitors
+26:26 
+
+26:26 in the space who have tried to to hustle
+26:28 
+
+26:28 their way towards those relationships
+26:30 
+
+26:30 but the part that sucks is what I've
+26:31 
+
+26:31 come to find out behind the scenes is a
+26:33 
+
+26:33 lot of those key decision makers at
+26:35 
+
+26:35 those companies like they just they hate
+26:37 
+
+26:37 that individual who just like pestes
+26:39 
+
+26:39 them all the time doesn't leave them
+26:40 
+
+26:40 alone um as opposed to if you have the
+26:42 
+
+26:42 alternative of oh there's this app that
+26:44 
+
+26:44 you just genuinely love like forget the
+26:46 
+
+26:46 found forget me forget renji they just
+26:47 
+
+26:47 love our product it just makes it easier
+26:50 
+
+26:50 to build a relationship there um and so
+26:52 
+
+26:52 I'm not going to say that you need to
+26:54 
+
+26:54 just build a great product and they will
+26:55 
+
+26:55 come like you do need to make sure that
+26:58 
+
+26:58 you do a great job of like growth
+26:59 
+
+26:59 hacking on social so they hear about you
+27:01 
+
+27:01 um and then like it spreads By Word of
+27:04 
+
+27:04 Mouth but I will say that um even if you
+27:06 
+
+27:06 get all the other things right in your
+27:07 
+
+27:07 company whether it be your books or your
+27:09 
+
+27:09 team or funding or your Partnerships or
+27:12 
+
+27:12 whatever if you don't get the product
+27:14 
+
+27:14 right none of those other things will
+27:16 
+
+27:16 save you and so it's just so important
+27:18 
+
+27:18 to make sure that when building
+27:19 
+
+27:19 Partnerships you have a strong product
+27:21 
+
+27:21 to back you up is that what you would
+27:22 
+
+27:22 say is probably the biggest challenge
+27:24 
+
+27:24 that startup Founders face today or is
+27:26 
+
+27:26 just building a good product yeah I mean
+27:28 
+
+27:28 you've probably heard this term of
+27:29 
+
+27:29 product Market fit right so like you
+27:30 
+
+27:30 probably heard this analogy a million
+27:32 
+
+27:32 times where uh building a product or
+27:34 
+
+27:34 build finding product Market fit um is
+27:37 
+
+27:37 like pushing a boulder up a hill and
+27:38 
+
+27:38 once you Crest the peak you're like
+27:39 
+
+27:39 chasing it down the other side that's
+27:40 
+
+27:40 how you know you have product Market fit
+27:42 
+
+27:42 um meaning like you're just like your
+27:44 
+
+27:44 users H like they're using your product
+27:46 
+
+27:46 so much and money is pouring into your
+27:48 
+
+27:48 bank so fast to the point where like you
+27:50 
+
+27:50 just can't support all those users and
+27:52 
+
+27:52 you need to now go get another influx of
+27:54 
+
+27:54 capital from a VC to be able to then
+27:55 
+
+27:55 support that growth that's how you know
+27:57 
+
+27:57 you have product Market fit and even
+27:58 
+
+27:58 today we don't have that we have a good
+27:60 
+
+27:60 product we don't have product Market fit
+28:01 
+
+28:01 because I think our biggest blocker is
+28:02 
+
+28:02 the hardware right until everyone here
+28:04 
+
+28:04 has a pair of glasses or a headset or
+28:05 
+
+28:05 something um we just are not going to
+28:07 
+
+28:07 have that insane insane growth so what
+28:10 
+
+28:10 do you think it's going to take for that
+28:12 
+
+28:12 to become mainstream and everyone to
+28:14 
+
+28:14 have that you know the product
+28:15 
+
+28:15 everyone's wearing the glasses something
+28:17 
+
+28:17 the Oculus stuff like that yeah I
+28:19 
+
+28:19 mean I think that the tech Giants have
+28:21 
+
+28:21 to prioritize common use cases gaming is
+28:25 
+
+28:25 great for most kids sure but
+28:28 
+
+28:28 I mean if the vast majority of people
+28:30 
+
+28:30 who have money are not kids and they're
+28:31 
+
+28:31 adults who have jobs you probably need
+28:33 
+
+28:33 to create use cases for them if you want
+28:35 
+
+28:35 to sell more units uh more headsets and
+28:37 
+
+28:37 so something like the iPhone like like
+28:39 
+
+28:39 let's make the comparison of like uh
+28:41 
+
+28:41 these two devices that both fit in your
+28:43 
+
+28:43 hand right you have a Game Boy and you
+28:44 
+
+28:44 have an iPhone game boys are great for
+28:46 
+
+28:46 kids but iPhones are practical for
+28:48 
+
+28:48 adults and kids what do you think is
+28:49 
+
+28:49 gonna make way more sales the iPhone
+28:51 
+
+28:51 clearly right but the game form the Game
+28:53 
+
+28:53 Boy was a great form factor it's a great
+28:55 
+
+28:55 test bed for technological innovation
+28:57 
+
+28:57 they had a high user account sure but
+28:59 
+
+28:59 was it ubiquitous like the iPhone no now
+29:02 
+
+29:02 the iPhone the iPhone set the Precedence
+29:03 
+
+29:03 for a device that can hit billions of
+29:06 
+
+29:06 users um I think they have two billion
+29:08 
+
+29:08 iPhones out there now I think like three
+29:10 
+
+29:10 billion Android devices out there which
+29:12 
+
+29:12 is insane uh so all that to say like I
+29:14 
+
+29:14 think that for us to make sure that um
+29:17 
+
+29:17 we're going to be a ubiquitous
+29:18 
+
+29:18 application we have to do what we can
+29:20 
+
+29:20 behind the scenes to work alongside
+29:21 
+
+29:21 these Tech Giants to get them to
+29:23 
+
+29:23 prioritize the applications that are the
+29:25 
+
+29:25 most compelling um so for example you
+29:27 
+
+29:27 probably saw the Apple Vision Pro get
+29:28 
+
+29:28 announced right which is not really a VR
+29:32 
+
+29:32 headset it's more what they call a
+29:33 
+
+29:33 spatial computer it's more of like a
+29:34 
+
+29:34 Macbook on your face that kind of does
+29:36 
+
+29:36 uh 3D spatial Computing um that we
+29:40 
+
+29:40 really believe is what's going to and
+29:41 
+
+29:41 Apple's smart they they they do a great
+29:43 
+
+29:43 job of creating the right products that
+29:45 
+
+29:45 people want for the future long term
+29:47 
+
+29:47 right um and so this spatial computer
+29:50 
+
+29:50 that they created is their next Mac OS
+29:53 
+
+29:53 whereas with Facebook they're more so
+29:55 
+
+29:55 just creating kind of like a more of
+29:57 
+
+29:57 like a PlayStation 5 or an Xbox on your
+29:59 
+
+29:59 face and so the total addressable market
+30:02 
+
+30:02 for PlayStation versus MacBooks and PCs
+30:04 
+
+30:04 and Linux computers I mean it's not even
+30:06 
+
+30:06 close I'm curious
+30:09 
+
+30:09 like right recently you've seen all like
+30:12 
+
+30:12 the major Office Buildings like downtown
+30:15 
+
+30:15 losing a ton of members and just
+30:17 
+
+30:17 employees do you feel like arvr is going
+30:19 
+
+30:19 to replace the common company like
+30:22 
+
+30:22 workspace and just workplace in general
+30:24 
+
+30:24 yeah I mean I think that that's
+30:26 
+
+30:26 um think it gives people optionality
+30:29 
+
+30:29 I'll say that some people like if you
+30:31 
+
+30:31 remember when coid hit and there was
+30:34 
+
+30:34 this sort of shelter in place rule where
+30:36 
+
+30:36 everyone had to stay at home like you
+30:37 
+
+30:37 couldn't even go to the grocery store
+30:39 
+
+30:39 for example like people started missing
+30:42 
+
+30:42 going back to classes going back to the
+30:45 
+
+30:45 office like people started missing being
+30:46 
+
+30:46 around people and yeah I think at the
+30:49 
+
+30:49 end of the day some people enjoy being
+30:51 
+
+30:51 in the office because you could be more
+30:52 
+
+30:52 productive uh and leaving home at home
+30:54 
+
+30:54 and leaving work at work other people
+30:56 
+
+30:56 just like the convenience of of just
+30:57 
+
+30:57 kind of being able to work here and
+30:59 
+
+30:59 there throughout the day so at least
+31:01 
+
+31:01 arvr gives you optionality and so that's
+31:03 
+
+31:03 why it's important for arvr apps
+31:05 
+
+31:05 specifically hours for example for
+31:07 
+
+31:07 virtual offices to not just be
+31:09 
+
+31:09 overfitted to solving the at home
+31:11 
+
+31:11 problem but also okay well what if you
+31:12 
+
+31:12 and I have a pair of glasses and but
+31:14 
+
+31:14 we're both in person what does that look
+31:15 
+
+31:15 like and what if he's at home so how do
+31:17 
+
+31:17 we all three have the same experience
+31:18 
+
+31:18 and we call that Paradigm collocation
+31:21 
+
+31:21 right so it's going to be a freaking
+31:23 
+
+31:23 exciting world that we're going to be
+31:24 
+
+31:24 living in in the future but eventually
+31:25 
+
+31:25 we might have someone else sitting right
+31:26 
+
+31:26 here who's not actually here but the
+31:28 
+
+31:28 rest of us are and just feels like the
+31:30 
+
+31:30 same uniform experience yeah so being
+31:32 
+
+31:32 being a startup founder especially in a
+31:34 
+
+31:34 place like Austin Texas you probably uh
+31:36 
+
+31:36 run running with some pretty big CEOs
+31:38 
+
+31:38 people that run large tech companies who
+31:41 
+
+31:41 would you say are some mentors that have
+31:43 
+
+31:43 helped you along your journey as a tech
+31:44 
+
+31:44 founder that you're currently working
+31:46 
+
+31:46 with or and they're just helping you gu
+31:48 
+
+31:48 along your journey to grow your company
+31:49 
+
+31:49 yeah the most recent one I would say is
+31:51 
+
+31:51 the the Intel CEO Pat gilinger he's been
+31:54 
+
+31:54 um extremely generous with this time uh
+31:57 
+
+31:57 he's running a $200 billion company um
+32:01 
+
+32:01 our company is worth I mean like a
+32:03 
+
+32:03 thousandth of that and so like the fact
+32:06 
+
+32:06 that he's willing to give me the time of
+32:07 
+
+32:07 day it's actually quite literally not
+32:09 
+
+32:09 worth his time uh like not even a couple
+32:11 
+
+32:11 of seconds um and the fact that he cares
+32:14 
+
+32:14 to be responsive to to help us I think
+32:17 
+
+32:17 the only incentive uh he has from a just
+32:20 
+
+32:20 pure material standpoint is uh the fact
+32:22 
+
+32:22 that yes we're working on the next
+32:24 
+
+32:24 generation of computing and Intel makes
+32:26 
+
+32:26 chips for computers so there is a little
+32:27 
+
+32:27 bit of relevance um but at the same time
+32:29 
+
+32:29 there are other CEOs of other Tech
+32:31 
+
+32:31 giants that are even more directly
+32:32 
+
+32:32 relevant that won't even give me the
+32:34 
+
+32:34 time of the day at all and so I will say
+32:36 
+
+32:36 that uh the CEO of Intel Pat gilinger um
+32:40 
+
+32:40 is a very high character person and
+32:41 
+
+32:41 that's very rare to find um and I truly
+32:43 
+
+32:43 believe that people like that are the
+32:45 
+
+32:45 ones who win in the end because at the
+32:46 
+
+32:46 end of the day like if your
+32:48 
+
+32:48 relationships on average are very
+32:51 
+
+32:51 consumeristic and very selfish uh where
+32:54 
+
+32:54 you are a person who's selfish yourself
+32:56 
+
+32:56 and the friends you make are selfish
+32:57 
+
+32:57 people only care about themselves I just
+32:59 
+
+32:59 don't think that great outcomes are
+33:00 
+
+33:00 built by individuals who care about
+33:01 
+
+33:01 themselves but rather teams that um
+33:03 
+
+33:03 Elevate each other and so with Intel
+33:06 
+
+33:06 though in today's world you know you
+33:08 
+
+33:08 have other companies like Nvidia and
+33:09 
+
+33:09 Qualcomm and AMD and others who are
+33:11 
+
+33:11 doing very very well those companies
+33:13 
+
+33:13 Outsource all of their like like very
+33:16 
+
+33:16 very foundational Technologies to places
+33:18 
+
+33:18 in Taiwan and China Etc but they don't
+33:20 
+
+33:20 realize that they're shooting themselves
+33:22 
+
+33:22 in the foot over the course of time
+33:23 
+
+33:23 because eventually those companies can
+33:24 
+
+33:24 can manipulate them saying hey we just
+33:27 
+
+33:27 feel like increasing our prices what's
+33:29 
+
+33:29 Nvidia going to do they can't really do
+33:30 
+
+33:30 anything whereas Intel they build their
+33:33 
+
+33:33 product from the ground up they are the
+33:35 
+
+33:35 chip manufacturer they are the
+33:36 
+
+33:36 fabrication facility um whereas these
+33:39 
+
+33:39 others they just because it's cheaper to
+33:41 
+
+33:41 make it in China they'll just make it
+33:42 
+
+33:42 there and it's there core IP their
+33:44 
+
+33:44 software but Intel they do everything
+33:45 
+
+33:45 from the ground up based in the US Etc
+33:48 
+
+33:48 so I'm really excited about Intel as a
+33:49 
+
+33:49 company that's awesome yeah I saw that
+33:51 
+
+33:51 Intel not this past year but for like
+33:53 
+
+33:53 the past like decade or so is like the
+33:55 
+
+33:55 number one patents for any company in
+33:57 
+
+33:57 the US which I thought was pretty yeah
+33:60 
+
+33:60 and like they they are doing a ton to
+34:02 
+
+34:02 try to help the US economy which I
+34:03 
+
+34:03 really appreciate meaning no offense but
+34:06 
+
+34:06 to Nvidia or quac and the others but
+34:07 
+
+34:07 like they kind of just care about their
+34:08 
+
+34:08 bottom line for their own company today
+34:10 
+
+34:10 like how much does it cost to make our
+34:11 
+
+34:11 product and how much uh margin do we
+34:13 
+
+34:13 make on it that's all they really care
+34:15 
+
+34:15 about because yes they're public
+34:16 
+
+34:16 companies and they have to like answer
+34:17 
+
+34:17 to their uh investors and they every
+34:19 
+
+34:19 quarter they have to um you know beat
+34:21 
+
+34:21 their earnings of the previous quarter
+34:22 
+
+34:22 or previous year's quarter and with
+34:25 
+
+34:25 Intel they're like hey our mission and
+34:26 
+
+34:26 our vision
+34:27 
+
+34:27 is to help the US economy and so sure we
+34:30 
+
+34:30 might take some short-term L's but we do
+34:33 
+
+34:33 want to make sure that we're setting
+34:34 
+
+34:34 ourselves up for success for decades to
+34:36 
+
+34:36 come not just this quarter uh and that's
+34:38 
+
+34:38 where you have guys like Elon as well
+34:40 
+
+34:40 Elon does the same thing and Elon and
+34:43 
+
+34:43 Pat gelsinger the Intel CEO are both
+34:45 
+
+34:45 very similar in that way where they want
+34:46 
+
+34:46 to own the whole process and it is
+34:49 
+
+34:49 generally us-based and the main reason
+34:50 
+
+34:50 why they go to other countries and work
+34:51 
+
+34:51 with other countries is to win those
+34:53 
+
+34:53 markets over as well not to just fix
+34:56 
+
+34:56 their bottom line and what would you say
+34:57 
+
+34:57 is the best piece of advice that you
+34:59 
+
+34:59 receive from the Intel CEO like if
+35:01 
+
+35:01 there's one lesson that he taught you
+35:02 
+
+35:02 that is kind of stuck with you ever
+35:03 
+
+35:03 since you met him what's the best advice
+35:05 
+
+35:05 that you received from Pat Uh my biggest
+35:08 
+
+35:08 job is going to be to surround myself
+35:10 
+
+35:10 with impressive leaders so I'm no longer
+35:13 
+
+35:13 just building the product I'm building
+35:15 
+
+35:15 the leadership team that's going to
+35:16 
+
+35:16 build the product um and so I mean
+35:18 
+
+35:18 that's that's a hard thing I think I've
+35:20 
+
+35:20 done a good job with who I have thus far
+35:22 
+
+35:22 um we still have gaps as a company and
+35:24 
+
+35:24 so uh a lot of my time is going to be
+35:26 
+
+35:26 spent towards it's be spent towards uh
+35:29 
+
+35:29 like like most people who are really
+35:31 
+
+35:31 really good at what they do they're not
+35:33 
+
+35:33 searching for a job right now so you
+35:34 
+
+35:34 have to kind of poach them and so like
+35:36 
+
+35:36 I'm G to be spending probably about 40%
+35:38 
+
+35:38 of my time just wooing other like
+35:41 
+
+35:41 department head of growth from here or
+35:43 
+
+35:43 um the the head of sales here or
+35:45 
+
+35:45 whatever it is and really try to pursue
+35:47 
+
+35:47 these people to help build our team how
+35:49 
+
+35:49 do you see artificial intelligence
+35:51 
+
+35:51 merging into the into the arvr world and
+35:54 
+
+35:54 it's probably there's already
+35:55 
+
+35:55 developments there I would love to
+35:57 
+
+35:57 find out like where's that space at
+35:59 
+
+35:59 currently and where do you see that kind
+36:01 
+
+36:01 of collaboration in the future yeah I
+36:03 
+
+36:03 mean I think a very easy way to think uh
+36:06 
+
+36:06 through this sort of step by step is in
+36:09 
+
+36:09 today's world a lot of the AI tools that
+36:11 
+
+36:11 we see and hear about that have actual
+36:14 
+
+36:14 practical uses are things like chat gbt
+36:17 
+
+36:17 right where you just like you type in
+36:18 
+
+36:18 something could answer kind of anything
+36:19 
+
+36:19 because it's trained on the internet
+36:21 
+
+36:21 right it says trained on human language
+36:22 
+
+36:22 and just the way that all these words on
+36:24 
+
+36:24 the internet flow together and now it
+36:25 
+
+36:25 has sort of like a a mental map of how
+36:27 
+
+36:27 humans coexist and interact and the
+36:30 
+
+36:30 downside to chat gbt is it's only text
+36:32 
+
+36:32 based so you're not like it doesn't see
+36:34 
+
+36:34 anything it doesn't like it doesn't go
+36:36 
+
+36:36 and do anything it's just like all it
+36:38 
+
+36:38 can really do is just like listen and
+36:40 
+
+36:40 then respond and so I think that's kind
+36:42 
+
+36:42 of where arvr is very very important
+36:44 
+
+36:44 because it's not just things that um you
+36:47 
+
+36:47 can read and write but now it's also
+36:49 
+
+36:49 things that you can see hear and and I
+36:52 
+
+36:52 mean interpret there's just a lot of
+36:54 
+
+36:54 different things that you can do with
+36:55 
+
+36:55 arvr that you can then feed into
+36:57 
+
+36:57 something like a chat gbt um so chat gbt
+36:60 
+
+36:60 is what they call a an llm or a large
+37:02 
+
+37:02 language model but what I'm talking
+37:04 
+
+37:04 about is almost like a multimodal large
+37:06 
+
+37:06 language model which means not just text
+37:08 
+
+37:08 but also video and audio uh and so if
+37:11 
+
+37:11 you have almost like a headset on and
+37:13 
+
+37:13 you have an AI that sees everything that
+37:15 
+
+37:15 you see it hears everything that you
+37:17 
+
+37:17 hear it interacts it it knows everything
+37:19 
+
+37:19 you interact with and it's able to
+37:21 
+
+37:21 interpret all that with the English
+37:22 
+
+37:22 language like chat gbt well now you just
+37:24 
+
+37:24 have essentially just like an angel on
+37:27 
+
+37:27 your shoulder that just like you know
+37:28 
+
+37:28 like it's almost like Jarvis from exctly
+37:32 
+
+37:32 yeah and so that's kind of what you'll
+37:33 
+
+37:33 start seeing a lot more of the hard part
+37:34 
+
+37:34 is who's going to figure out how to get
+37:35 
+
+37:35 people to wear that device all the time
+37:38 
+
+37:38 I think that's kind of what Google Glass
+37:39 
+
+37:39 was trying to do but terrible terrible
+37:41 
+
+37:41 execution um and AI wasn't nearly as
+37:44 
+
+37:44 advanced back then as it is now but the
+37:46 
+
+37:46 the the convergence of a lot of these
+37:48 
+
+37:48 things people are starting to realize a
+37:50 
+
+37:50 lot of this and um a third
+37:54 
+
+37:54 category that is actually pretty uh
+37:57 
+
+37:57 funny because we've only seen this in
+37:58 
+
+37:58 movies but a third category that's
+37:60 
+
+37:60 starting to emerge is uh humanoid
+38:02 
+
+38:02 bipedal robots human-shaped robots um
+38:05 
+
+38:05 like the Tesla bot if you ever heard of
+38:07 
+
+38:07 that or another company called the
+38:09 
+
+38:09 figure uh who just raised 70 million
+38:11 
+
+38:11 bucks um and so they're create they're
+38:13 
+
+38:13 legit creating robots that are like us
+38:15 
+
+38:15 but not like because it looks cool but
+38:17 
+
+38:17 rather because they can um replace human
+38:20 
+
+38:20 labor which is insane and the way that
+38:23 
+
+38:23 that Bridges with arvr and AI is well
+38:25 
+
+38:25 number one the way that this robot's
+38:26 
+
+38:26 going operate it needs AI to be able to
+38:28 
+
+38:28 operate but number two the way in which
+38:31 
+
+38:31 these humanoid robots are going to be
+38:33 
+
+38:33 able to know how to interact with the
+38:34 
+
+38:34 world is to simulate what humans do and
+38:36 
+
+38:36 the way that you can do that is with
+38:38 
+
+38:38 arvr right you can see everything the
+38:40 
+
+38:40 person sees you see everything their
+38:41 
+
+38:41 hands are interacting with and So
+38:43 
+
+38:43 eventually you take all that data you
+38:44 
+
+38:44 feed it into a Neal Network you put
+38:45 
+
+38:45 those normal networks in these robots
+38:47 
+
+38:47 now you have a freaking Terminator so
+38:50 
+
+38:50 yeah do you feel like there's a certain
+38:52 
+
+38:52 aspect like Google class or maybe it was
+38:54 
+
+38:54 too ahead of its time like I used to
+38:56 
+
+38:56 growing up I by you know a lot of games
+38:59 
+
+38:59 and uh there was the Sony PSP and I
+39:01 
+
+39:01 thought that was like revolutionary you
+39:03 
+
+39:03 know it could surf the Internet it it
+39:04 
+
+39:04 was really good it was really good the
+39:06 
+
+39:06 display was amazing too it was crystal
+39:08 
+
+39:08 clear it was fantastic you know and I
+39:10 
+
+39:10 feel like it never got the love it
+39:12 
+
+39:12 deserved but and I feel like now that's
+39:13 
+
+39:13 kind of just turned into like the modern
+39:15 
+
+39:15 day you know do you remember the price
+39:16 
+
+39:16 of it I don't it was 600 bucks ah that I
+39:20 
+
+39:20 think I think that was the biggest
+39:21 
+
+39:21 problem the Game Boy I think was like 99
+39:23 
+
+39:23 when it was selling like crazy I think
+39:25 
+
+39:25 you can get one for like $129 149 and
+39:27 
+
+39:27 199 but I think the most um I think like
+39:30 
+
+39:30 the Game Boy Color and like the ones
+39:31 
+
+39:31 that pretty much everyone got I think it
+39:33 
+
+39:33 was $99 I might be wrong I have to
+39:34 
+
+39:34 Google this um yeah maybe Tim could F
+39:37 
+
+39:37 fact check me but uh I remember the PSP
+39:40 
+
+39:40 when it first came out was
+39:43 
+
+39:43 $600 and then because it sold out like
+39:45 
+
+39:45 crazy uh eBay you can get it on eBay for
+39:48 
+
+39:48 $800 or $1,200 I remember just like
+39:51 
+
+39:51 weeping to my dad dad I need this thing
+39:53 
+
+39:53 we're sold out and my dad's like the
+39:55 
+
+39:55 most out pay is 800 I was like oh thank
+39:56 
+
+39:56 God he said he well actually you know
+39:58 
+
+39:58 what he didn't even pay 800 I sold my
+39:59 
+
+39:59 Xbox or sorry my GameCube to get the PSP
+40:02 
+
+40:02 and so that maybe I got like 250 bucks
+40:05 
+
+40:05 out of it and my Dad paid the other 550
+40:06 
+
+40:06 so like I mean I think that was the
+40:09 
+
+40:09 biggest issue with the the reason why I
+40:11 
+
+40:11 didn't get as much love is because
+40:12 
+
+40:12 people can get into their hands and man
+40:14 
+
+40:14 when you do you remember feeling the
+40:16 
+
+40:16 feel of it it felt so great the analog
+40:19 
+
+40:19 stick it was lightweight it felt firm
+40:22 
+
+40:22 and it was crystal clear it was such a
+40:24 
+
+40:24 good device so I'm wondering like like
+40:26 
+
+40:26 that that product in my opinion died way
+40:28 
+
+40:28 too early obviously they has his own
+40:29 
+
+40:29 problems that maybe we don't truly
+40:31 
+
+40:31 understand like the behind the scenes of
+40:33 
+
+40:33 it but in terms of like Google Glass in
+40:35 
+
+40:35 the PSP like do you feel like there's
+40:37 
+
+40:37 certain aspects of just Tech and
+40:39 
+
+40:39 innovation in general Where It's just
+40:41 
+
+40:41 sometimes you launch your product and
+40:42 
+
+40:42 it's just it's too ahead of its time
+40:44 
+
+40:44 right now yeah um I think so I think the
+40:46 
+
+40:46 I think Google Glass and PSP they had
+40:50 
+
+40:50 two different problems so with Google
+40:51 
+
+40:51 Glass I don't even think it was a bit
+40:53 
+
+40:53 ahead of his time I just think it just
+40:54 
+
+40:54 wasn't function it wasn't useful right
+40:55 
+
+40:55 like you had it wasn't even like a
+40:57 
+
+40:57 display that you had it was like a a a
+40:59 
+
+40:59 small little square prism maybe like 128
+41:02 
+
+41:02 pixels by 128 pixels or something maybe
+41:04 
+
+41:04 maybe it's 300 something I don't know
+41:06 
+
+41:06 but it was relatively useless
+41:07 
+
+41:07 unfortunately and it had a camera on it
+41:10 
+
+41:10 that made especially back then where
+41:11 
+
+41:11 people weren't filming all the time with
+41:12 
+
+41:12 their phones using Tik Tok for in
+41:14 
+
+41:14 Instagram reals or YouTube shorts
+41:15 
+
+41:15 whatever um back then I mean it was kind
+41:17 
+
+41:17 of embarrassing if someone like held
+41:18 
+
+41:18 their phone up and was recording
+41:19 
+
+41:19 something if you remember that so with
+41:21 
+
+41:21 the Google Glass the fact that it had a
+41:22 
+
+41:22 camera it just wasn't socially
+41:23 
+
+41:23 acceptable it was useless it was just a
+41:25 
+
+41:25 flop no offense Google if you're
+41:27 
+
+41:27 watching this um but when it comes to
+41:29 
+
+41:29 the
+41:30 
+
+41:30 PSP I don't think it was too ahead of
+41:33 
+
+41:33 his time except for you're right on the
+41:35 
+
+41:35 back end in regards to manufacturing
+41:37 
+
+41:37 supply chain like to build a product
+41:39 
+
+41:39 that nice and that high quality it
+41:42 
+
+41:42 costed so much more back then today
+41:43 
+
+41:43 something like the PSP like I don't know
+41:45 
+
+41:45 what the different like the latest like
+41:46 
+
+41:46 Nintendo DS's or whatever look like now
+41:48 
+
+41:48 uh Nintendo switch or whatever it is I
+41:49 
+
+41:49 said DS U Nintendo switch or whatever is
+41:51 
+
+41:51 available today like I'm sure that
+41:54 
+
+41:54 technology is like insanely Advanced
+41:56 
+
+41:56 compared to the the PSP but uh also
+41:59 
+
+41:59 another important factor is the cost to
+42:01 
+
+42:01 develop that thing has been brought down
+42:03 
+
+42:03 tremendously so if you can get one of
+42:04 
+
+42:04 those things for 99 bucks now versus a
+42:06 
+
+42:06 $600 thing like when people think $600
+42:09 
+
+42:09 they think okay iPhone SE or they think
+42:11 
+
+42:11 that like a really important product
+42:12 
+
+42:12 when it comes to gaming though you have
+42:14 
+
+42:14 to be a gamer to really want to spend
+42:15 
+
+42:15 that type of money so I think that when
+42:17 
+
+42:17 it comes to
+42:18 
+
+42:18 technology man there's so many things
+42:20 
+
+42:20 that you have to get right um the market
+42:23 
+
+42:23 doesn't owe you a win the market doesn't
+42:26 
+
+42:26 owe you to for you to become a
+42:27 
+
+42:27 billionaire um it doesn't yeah it's just
+42:31 
+
+42:31 not U Building Products is not something
+42:33 
+
+42:33 that is supposed to be easy like like
+42:36 
+
+42:36 out of all the people on planet Earth
+42:37 
+
+42:37 how many Elon Musk Mark Zuckerberg and
+42:39 
+
+42:39 Steve Jobs do we have like three three
+42:41 
+
+42:41 right when it comes to the fact that you
+42:43 
+
+42:43 have so many startups out there well 96%
+42:46 
+
+42:46 of them fail three of them barely
+42:48 
+
+42:48 survive 1% or like 9% does like okay and
+42:53 
+
+42:53 then like 0.1% is like Elon Musk Mark
+42:56 
+
+42:56 Zucker ber or whatever hopefully that
+42:57 
+
+42:57 answers your question but yeah yeah
+42:59 
+
+42:59 absolutely I think like on that topic of
+43:01 
+
+43:01 product Market fit I think uh when meta
+43:04 
+
+43:04 decided to make the change from Facebook
+43:05 
+
+43:05 to meta and a lot of their user base uh
+43:08 
+
+43:08 you know they're not adopting into VR
+43:10 
+
+43:10 right away uh you know if you're able to
+43:13 
+
+43:13 talk about it like what do you see where
+43:15 
+
+43:15 come some of the challenges with their
+43:16 
+
+43:16 transition to meta and just maybe their
+43:18 
+
+43:18 initial testing trying to get people
+43:21 
+
+43:21 using their stuff like what was that
+43:23 
+
+43:23 kind of initial switch for them CU I
+43:25 
+
+43:25 work closely with with yeah I think the
+43:27 
+
+43:27 the hard part for them was figuring out
+43:29 
+
+43:29 a way to make the metaverse a compelling
+43:30 
+
+43:30 Vision um I mean you probably saw the
+43:33 
+
+43:33 viral image of like Mark Zuckerberg as
+43:36 
+
+43:36 like an avatar that looks like kind of
+43:37 
+
+43:37 creepy with like the Eiffel Tower behind
+43:39 
+
+43:39 him oh and it's like oh like
+43:43 
+
+43:43 like this sucks but like that was the
+43:47 
+
+43:47 moment that and by the way at the time
+43:49 
+
+43:49 we didn't realize it was this big of a
+43:51 
+
+43:51 deal but that was the moment that ruined
+43:53 
+
+43:53 this concept of the met the metaverse um
+43:57 
+
+43:57 at the time we didn't realize we were oh
+43:58 
+
+43:58 it's a funny meme whatever and like you
+43:59 
+
+43:59 know all of our friends made fun
+44:00 
+
+44:00 whatever but now when we think metaverse
+44:02 
+
+44:02 we think that it's like all right dude
+44:04 
+
+44:04 like that man that it's crazy because if
+44:06 
+
+44:06 you think about the material uh damage
+44:08 
+
+44:08 that that did we're literally talking
+44:11 
+
+44:11 hundreds of billions of dollars worth of
+44:13 
+
+44:13 money lost because of that one post that
+44:16 
+
+44:16 one moment which is crazy to think about
+44:18 
+
+44:18 how one little thing it's insane and how
+44:20 
+
+44:20 that can ruin everything and so even
+44:22 
+
+44:22 companies like apple have to take that
+44:24 
+
+44:24 in consideration when they're releasing
+44:25 
+
+44:25 their Vision Pro they're like okay for
+44:26 
+
+44:26 this keynote what what do we want this
+44:28 
+
+44:28 thing to look like and they needed so I
+44:30 
+
+44:30 don't know if you realize this not once
+44:32 
+
+44:32 did they use the word metaverse or
+44:34 
+
+44:34 virtual reality in that entire uh 2hour
+44:37 
+
+44:37 keynote or I'm sure they didn't me uh
+44:39 
+
+44:39 mention at all in any of the developer
+44:41 
+
+44:41 um videos after that and so because they
+44:44 
+
+44:44 want to shift your mind away from this
+44:47 
+
+44:47 3D immersive metaverse internet thing to
+44:51 
+
+44:51 hey no let's just like take people one
+44:52 
+
+44:52 step further into AR VR which is just
+44:55 
+
+44:55 your computer but spatial that's it and
+44:57 
+
+44:57 so with meta I mean I think that that
+44:60 
+
+44:60 was what went wrong um and the thing is
+45:03 
+
+45:03 like Facebook and the founders of that
+45:06 
+
+45:06 company not only Zuck but everyone else
+45:08 
+
+45:08 around him have done a great job in
+45:09 
+
+45:09 creating a social network which is why
+45:12 
+
+45:12 their vision of arvr is more social and
+45:14 
+
+45:14 and more relational whereas Apple has
+45:17 
+
+45:17 always taken a products tools type or
+45:19 
+
+45:19 utility type mentality to everything
+45:22 
+
+45:22 this is something that you would use and
+45:24 
+
+45:24 so when it comes to their arvr headset
+45:25 
+
+45:25 they're more so what tools can we give
+45:27 
+
+45:27 you so you can be productive so very
+45:29 
+
+45:29 different approaches to begin with um so
+45:31 
+
+45:31 when it comes to arvr it's it's a
+45:33 
+
+45:33 general category but that's kind of like
+45:35 
+
+45:35 a arvr is more equivalent to saying oh
+45:38 
+
+45:38 like my phone has a computer in it my
+45:40 
+
+45:40 computer has a computer in it like these
+45:41 
+
+45:41 cameras have computers in them okay well
+45:43 
+
+45:43 arvr is kind of just saying 3D spatial
+45:46 
+
+45:46 anything and so to think about okay what
+45:48 
+
+45:48 does the future of arvr look like it
+45:50 
+
+45:50 just depends on your use case with meta
+45:52 
+
+45:52 it's more relational with apple it's
+45:54 
+
+45:54 more tools based
+45:56 
+
+45:56 and you had brought up earlier um a big
+45:59 
+
+45:59 part in scaling your company has to do
+46:01 
+
+46:01 with expanding your team but I wanted to
+46:02 
+
+46:02 get your thoughts for a young kid who's
+46:05 
+
+46:05 he's a hustler he's really looking to
+46:06 
+
+46:06 break into the tech industry what would
+46:08 
+
+46:08 you say are the top two or three skills
+46:09 
+
+46:09 it could be soft skills or hard skills
+46:11 
+
+46:11 that are really needed to succeed in the
+46:13 
+
+46:13 industry you know as someone you're
+46:14 
+
+46:14 focusing a lot on recruiting now what
+46:16 
+
+46:16 are those things that you look for in
+46:17 
+
+46:17 someone that tells you I need to bring
+46:18 
+
+46:18 them on to my team yeah I mean this is
+46:20 
+
+46:20 this is tough because um part of it is
+46:23 
+
+46:23 is like it's almost like a systemic
+46:24 
+
+46:24 issue for our society like I wish that
+46:28 
+
+46:28 everyone in the US not only learned how
+46:30 
+
+46:30 to read and write and do math but also
+46:32 
+
+46:32 learn how to code and you don't have to
+46:34 
+
+46:34 be the best coder in the world it's just
+46:36 
+
+46:36 if it's like a staple like a tool that
+46:37 
+
+46:37 like just like how you can at least do
+46:39 
+
+46:39 multiplication that you at least know
+46:41 
+
+46:41 how to like write simple programs to
+46:43 
+
+46:43 automate the boring parts of your life
+46:45 
+
+46:45 the the monotonous little tasks so that
+46:47 
+
+46:47 you can then be freed up to go do the
+46:49 
+
+46:49 stuff you actually enjoy and this is
+46:51 
+
+46:51 funny like I was actually on a ranch
+46:52 
+
+46:52 with some um uh like Tim TBO and like
+46:55 
+
+46:55 like like you know some uh politicians
+46:58 
+
+46:58 and stuff and they were talking about
+46:59 
+
+46:59 how uh in China they graduate every year
+47:04 
+
+47:04 the same number or more than the number
+47:06 
+
+47:06 of Engineers uh that exist in the US so
+47:09 
+
+47:09 in general if you have say five million
+47:12 
+
+47:12 engineers in the US well CH China
+47:13 
+
+47:13 graduates that many per year and so it
+47:17 
+
+47:17 crushes us and you know they're talking
+47:19 
+
+47:19 about how China is not uh you know
+47:21 
+
+47:21 they're not far behind on the Space Race
+47:23 
+
+47:23 really just Elon Musk is the reason why
+47:24 
+
+47:24 us is doing so well there um but when it
+47:26 
+
+47:26 comes to some of these other areas
+47:27 
+
+47:27 they're just crushing us of
+47:28 
+
+47:28 manufacturing and everything else and
+47:31 
+
+47:31 they were saying I mean at the end of
+47:32 
+
+47:32 the day it's the core fundamental issue
+47:34 
+
+47:34 here is they have such an emphasis on
+47:36 
+
+47:36 those things like not just China but
+47:38 
+
+47:38 also you know like Romania and Ukraine
+47:40 
+
+47:40 and Russia and those places before all
+47:41 
+
+47:41 the war stuff like they just had a very
+47:44 
+
+47:44 hard focus on the hard Sciences as
+47:46 
+
+47:46 opposed to like the liberal arts or the
+47:48 
+
+47:48 social sciences right and so um I think
+47:50 
+
+47:50 something that I really look for in a
+47:53 
+
+47:53 lot of hirers is some level of capacity
+47:55 
+
+47:55 to comprehend and um technological
+47:59 
+
+47:59 process or discrete logical thinking if
+48:02 
+
+48:02 that makes sense right so meaning um
+48:05 
+
+48:05 when you follow a very discret way of
+48:07 
+
+48:07 going through logic it's almost as if
+48:10 
+
+48:10 wherever you start the end goal is
+48:11 
+
+48:11 always the same the fact that people
+48:13 
+
+48:13 have arguments is just a result of
+48:14 
+
+48:14 miscommunication right and it's because
+48:16 
+
+48:16 one person has a certain way of thinking
+48:19 
+
+48:19 that actually is like not discreetly
+48:21 
+
+48:21 mathematically logical and so they just
+48:23 
+
+48:23 have arguments and miscommunication or
+48:25 
+
+48:25 whatever I I think that if our our
+48:30 
+
+48:30 country cared more about the hard
+48:32 
+
+48:32 sciences and specifically also one
+48:34 
+
+48:34 practical thing is just add more coding
+48:36 
+
+48:36 to curriculum which I'm starting to see
+48:38 
+
+48:38 more of which I'm super excited about
+48:40 
+
+48:40 but it's going to take a generation to
+48:41 
+
+48:41 find out what that even looks like um if
+48:43 
+
+48:43 you're an entrepreneur today who hasn't
+48:45 
+
+48:45 had that type of training or or
+48:47 
+
+48:47 education in elementary school middle
+48:50 
+
+48:50 school high school whatever um go online
+48:52 
+
+48:52 and start learning some of this stuff
+48:54 
+
+48:54 just to get familiar with it and even if
+48:56 
+
+48:56 you don't become a beastly Elon Musk
+48:59 
+
+48:59 coder um at least you'll have an
+49:01 
+
+49:01 understanding of how to communicate with
+49:02 
+
+49:02 other people who are so you can then
+49:04 
+
+49:04 build the team to go do whatever because
+49:06 
+
+49:06 you might be the salesperson of your
+49:07 
+
+49:07 team or the marketer of your team but
+49:09 
+
+49:09 you're not the code of your team and
+49:10 
+
+49:10 that's fine it's just if they're
+49:12 
+
+49:12 speaking a different language from you I
+49:14 
+
+49:14 mean you're just not going to head in
+49:15 
+
+49:15 the same direction and likely you'll
+49:17 
+
+49:17 part ways which is actually the number
+49:19 
+
+49:19 one reason why startups fail is founder
+49:21 
+
+49:21 breakups so wow I'm sure like your
+49:24 
+
+49:24 coding background has been able to help
+49:25 
+
+49:25 with that being able to communicate with
+49:27 
+
+49:27 developers and stuff it's interesting
+49:28 
+
+49:28 you brought up the China thing because
+49:30 
+
+49:30 with the recent uh hearing with congress
+49:32 
+
+49:32 with the Tik Tok CEO going before the
+49:34 
+
+49:34 board one of the biggest problems with
+49:35 
+
+49:35 they were saying is that China shows
+49:37 
+
+49:37 their kids a different feed on Tik Tok
+49:40 
+
+49:40 than what we get stem so they actually
+49:41 
+
+49:41 recently just added the stem feed to Tik
+49:44 
+
+49:44 Tok I don't know if anybody uses it yeah
+49:45 
+
+49:45 well I I I got it like like literally
+49:48 
+
+49:48 the week after that Congressional
+49:49 
+
+49:49 hearing I got the stem Channel and then
+49:51 
+
+49:51 no one else in my office got it so the
+49:53 
+
+49:53 thing is that week the week after the
+49:54 
+
+49:54 Congressional hearing I was actually at
+49:56 
+
+49:56 Tik Tok USA their HQ so I was like was I
+49:59 
+
+49:59 on their Wi-Fi or something I got down
+50:00 
+
+50:00 to my my phone but like I had it before
+50:02 
+
+50:02 everyone else and I was looking at this
+50:04 
+
+50:04 I was like this is freaking awesome I'm
+50:05 
+
+50:05 learning so much is actually such a good
+50:07 
+
+50:07 tool it's such a good tool and so man I
+50:10 
+
+50:10 just I I wish that um yeah like that had
+50:14 
+
+50:14 been something that they it makes sense
+50:15 
+
+50:15 that it's a positioning thing right like
+50:17 
+
+50:17 Tik Tok obviously they're the founders
+50:19 
+
+50:19 are Chinese and like the vast majority
+50:21 
+
+50:21 of the company like when I was at Tik
+50:22 
+
+50:22 Tok USA like the HQ here like pretty
+50:25 
+
+50:25 much everyone on Camp was Chinese and
+50:27 
+
+50:27 like I was like I did not expect that I
+50:29 
+
+50:29 expected oh it's like maybe they hired a
+50:31 
+
+50:31 bunch of American people I don't know I
+50:32 
+
+50:32 guess to maybe Market to more of the US
+50:34 
+
+50:34 demographic but like no everyone like
+50:37 
+
+50:37 like 90% of people there were Chinese I
+50:38 
+
+50:38 was like oh wow it's like little China
+50:39 
+
+50:39 here which is really crazy um I think
+50:42 
+
+50:42 that uh man had the US been more
+50:44 
+
+50:44 proactive about that like at the
+50:47 
+
+50:47 beginning of coid for example our world
+50:49 
+
+50:49 could probably look and probably would
+50:50 
+
+50:50 look very different today in the US man
+50:52 
+
+50:52 it's crazy yeah if you were to start
+50:54 
+
+50:54 your company immersed back on day one
+50:57 
+
+50:57 again with what you know now what's the
+50:60 
+
+50:60 number one thing you would do
+51:02 
+
+51:02 differently I would be more careful
+51:04 
+
+51:04 about who I allowed to invest in the
+51:05 
+
+51:05 company because I definitely had a lot
+51:08 
+
+51:08 of um I guess
+51:11 
+
+51:11 um landmines that I I just didn't know
+51:14 
+
+51:14 were there in the angel VC side of
+51:17 
+
+51:17 things uh but then sort of the the
+51:19 
+
+51:19 Silver Lining was in during that process
+51:21 
+
+51:21 I did meet one VC called sovereign's
+51:23 
+
+51:23 Capital it's actually a Christian VC
+51:24 
+
+51:24 firm they're freaking awesome and I love
+51:26 
+
+51:26 them to date they're the only VC in the
+51:28 
+
+51:28 world that like I will go seek out to
+51:30 
+
+51:30 make sure any company I build I want
+51:31 
+
+51:31 them to be on my cap table um so I will
+51:34 
+
+51:34 say just make sure that um
+51:37 
+
+51:37 you not only need the money when you're
+51:40 
+
+51:40 fundraising but also the money that
+51:42 
+
+51:42 you're uh getting is coming from people
+51:44 
+
+51:44 who you really do uh trust and people
+51:47 
+
+51:47 you could at least um people you know
+51:50 
+
+51:50 that are going to lift you up rather
+51:51 
+
+51:51 than sort of tear you down um so I would
+51:54 
+
+51:54 do that that definitely very very
+51:56 
+
+51:56 differently um and then also I would um
+51:60 
+
+51:60 require more proof from people who pitch
+52:02 
+
+52:02 stuff to me if that makes sense meaning
+52:04 
+
+52:04 I didn't realize I was as trusting as a
+52:07 
+
+52:07 of a person especially back then as I am
+52:09 
+
+52:09 now or I'm not as much trust as trusting
+52:12 
+
+52:12 now like meaning so back then if you
+52:15 
+
+52:15 pitched me the idea of like oh hey dude
+52:16 
+
+52:16 like I want to be this SE level person
+52:19 
+
+52:19 at your company and I'm going to do XYZ
+52:20 
+
+52:20 whatever for me like I'd be like I
+52:22 
+
+52:22 should be cautiously cautiously
+52:24 
+
+52:24 optimistic like oh yeah that that'd be
+52:25 
+
+52:25 great if you did that but instead back
+52:27 
+
+52:27 then I used to be like oh you're going
+52:27 
+
+52:27 to do that holy crap okay cool here's
+52:29 
+
+52:29 this much Equity or if you're going to
+52:30 
+
+52:30 do that okay here here's this much money
+52:32 
+
+52:32 if they're like an external partner or
+52:33 
+
+52:33 something um but rather like looking at
+52:36 
+
+52:36 the track record resume wise or looking
+52:38 
+
+52:38 at the portfolio if they're an external
+52:39 
+
+52:39 partner wise right um or just really
+52:42 
+
+52:42 doing more due diligence on who we work
+52:43 
+
+52:43 with um because if we if you have if
+52:45 
+
+52:45 there's such a high bar to hit product
+52:47 
+
+52:47 Market fit well obviously your partners
+52:49 
+
+52:49 and the people that you work with they
+52:50 
+
+52:50 need to meet that high bar too so wow
+52:53 
+
+52:53 yeah yeah you had mentioned Christian V
+52:55 
+
+52:55 from when we first met it was at South
+52:58 
+
+52:58 by Southwest Sunday SVC uh could you
+53:01 
+
+53:01 just talk about how your faith has
+53:02 
+
+53:02 played a role in you as a startup
+53:04 
+
+53:04 founder you know in the in the tech
+53:05 
+
+53:05 world as well as just an entrepreneur
+53:07 
+
+53:07 what that's done for you yeah I will say
+53:09 
+
+53:09 that um I think
+53:11 
+
+53:11 that Christians in the tech world who
+53:14 
+
+53:14 aren't who don't get ahead of the
+53:16 
+
+53:16 problem of being a Christian in the tech
+53:17 
+
+53:17 world meaning the tech World in general
+53:21 
+
+53:21 they're not fans of they're not
+53:22 
+
+53:22 naturally fans of Christians just
+53:24 
+
+53:24 because of the way that Christians don't
+53:26 
+
+53:26 represent God the way that they should
+53:28 
+
+53:28 um because Christians are fallible too
+53:30 
+
+53:30 and then now the world points at you as
+53:31 
+
+53:31 a hypocrite but if you're not repentant
+53:33 
+
+53:33 and if you're not um you know remorseful
+53:36 
+
+53:36 for the mistakes that you make well then
+53:38 
+
+53:38 now we're just having arguments or
+53:39 
+
+53:39 fighting back and forth and pointing
+53:40 
+
+53:40 fingers at each other and thus now you
+53:41 
+
+53:41 have all this drama between the tech
+53:42 
+
+53:42 world and the Christian world for me the
+53:44 
+
+53:44 fact that from the very beginning I was
+53:46 
+
+53:46 very open about my faith actually just
+53:48 
+
+53:48 makes it very easy for me to operate in
+53:50 
+
+53:50 every context now meaning I have other
+53:53 
+
+53:53 friends who are Christians that I know
+53:55 
+
+53:55 that they're Christians behind doors but
+53:57 
+
+53:57 then in public no one knows that they're
+53:58 
+
+53:58 a Christian and it's hard for the first
+54:00 
+
+54:00 time for them to even like let people
+54:02 
+
+54:02 know because then people be so surprised
+54:04 
+
+54:04 because now they kind of just see you
+54:06 
+
+54:06 differently whereas for me they already
+54:07 
+
+54:07 had that sort of lens on me to begin
+54:08 
+
+54:08 with anyway and if anything they're just
+54:11 
+
+54:11 they already had a low bar for what they
+54:12 
+
+54:12 thought of me to begin with and
+54:14 
+
+54:14 everything that I do in regards to High
+54:16 
+
+54:16 character whatever I'm only getting
+54:18 
+
+54:18 points whereas for you if you were a
+54:20 
+
+54:20 person who hit it the whole time and
+54:22 
+
+54:22 they had this High bar for you of like
+54:23 
+
+54:23 oh you're not a Christian you're great
+54:24 
+
+54:24 or whatever it is right and you become
+54:25 
+
+54:25 Christ and you tell them you're a
+54:26 
+
+54:26 Christian like wait then why did you do
+54:28 
+
+54:28 this and this and this and this and this
+54:30 
+
+54:30 and all that to say like it just causes
+54:33 
+
+54:33 so many problems if you hide your faith
+54:35 
+
+54:35 in the tech world uh and oftentimes this
+54:38 
+
+54:38 almost seems counterintuitive and this
+54:40 
+
+54:40 is why most Christians don't share
+54:42 
+
+54:42 openly in the tech world is they don't
+54:44 
+
+54:44 realize it's counterintuitive they don't
+54:46 
+
+54:46 realize that um oh actually hiding it is
+54:48 
+
+54:48 going to cause more problems for you
+54:50 
+
+54:50 than if you were to just be open about
+54:51 
+
+54:51 it meaning um if you hire the wrong
+54:54 
+
+54:54 people who if they found out you a
+54:56 
+
+54:56 Christian they'd be super upset that
+54:58 
+
+54:58 their their CEO or founder is a
+54:59 
+
+54:59 Christian and they would end up quitting
+55:01 
+
+55:01 or causing drama or whatever had they
+55:03 
+
+55:03 just known that on the front end they
+55:04 
+
+55:04 probably wouldn't have applied in the
+55:05 
+
+55:05 first place and then you don't have you
+55:06 
+
+55:06 don't have the problem right um or um
+55:09 
+
+55:09 when it comes to the types of VCS or uh
+55:11 
+
+55:11 the types of things that you say and do
+55:13 
+
+55:13 later on for me it's on like my LinkedIn
+55:15 
+
+55:15 profile right and so like you could just
+55:17 
+
+55:17 find it very quickly um and what I will
+55:20 
+
+55:20 say is some people they have an agenda
+55:21 
+
+55:21 no matter what and they still want to
+55:22 
+
+55:22 work with me no matter what and so at
+55:24 
+
+55:24 least they have that caveat oh Randy's a
+55:26 
+
+55:26 Christian that's why he operates this
+55:27 
+
+55:27 sort of way and they end up already
+55:29 
+
+55:29 getting ahead of being okay with it
+55:31 
+
+55:31 rather than us having to have some sort
+55:32 
+
+55:32 of hard heart-to-heart later as to why I
+55:35 
+
+55:35 should be a Christian to begin with
+55:37 
+
+55:37 right because I didn't share about it
+55:38 
+
+55:38 previously so um I will say that like
+55:41 
+
+55:41 honestly just logistically like if
+55:42 
+
+55:42 you're a Christian you should just be
+55:44 
+
+55:44 very open and honest about it from the
+55:45 
+
+55:45 very beginning don't just like hide it
+55:47 
+
+55:47 and because it's only going to cause
+55:48 
+
+55:48 problems for you um like from a
+55:51 
+
+55:51 practical standpoint and then from a
+55:52 
+
+55:52 faith standpoint I mean infinitely worse
+55:54 
+
+55:54 between you and the Lord because he's
+55:55 
+
+55:55 like If you deny me around people you
+55:57 
+
+55:57 know like I'm going to deny you before
+55:58 
+
+55:58 my father right so um well that's
+56:00 
+
+56:00 between you and God I'll let you figure
+56:02 
+
+56:02 that out uh when it comes to like the
+56:04 
+
+56:04 advantages of being a Christian I mean
+56:06 
+
+56:06 it's it's crazy dude like like the Lord
+56:10 
+
+56:10 wrote this this game called life like
+56:13 
+
+56:13 he's the one who created it and if you
+56:15 
+
+56:15 want to know how to win the game I mean
+56:17 
+
+56:17 you probably want to go to the person
+56:18 
+
+56:18 who created it and like learn you
+56:20 
+
+56:20 probably heard this analogy a million
+56:21 
+
+56:21 times but like the manual like he has
+56:23 
+
+56:23 the manual for that right um and like I
+56:26 
+
+56:26 think that when uh
+56:29 
+
+56:29 people try to operate as Founders
+56:32 
+
+56:32 without having any sort of whether it be
+56:33 
+
+56:33 moral compass or or um a dee rooted
+56:36 
+
+56:36 faith I mean they as well as anyone else
+56:39 
+
+56:39 have no idea what the crap they're doing
+56:40 
+
+56:40 and neither do I but at least I have
+56:42 
+
+56:42 something that I'm rooted in and the
+56:45 
+
+56:45 Lord created um essentially faith in us
+56:49 
+
+56:49 to begin with for the sake of us being
+56:51 
+
+56:51 able to operate life effectively and be
+56:53 
+
+56:53 in relationship with him forever and
+56:55 
+
+56:55 eternity right and so when you think
+56:57 
+
+56:57 about okay what does that mean for me on
+56:58 
+
+56:58 a day-to-day basis well for me
+56:60 
+
+56:60 personally my personal conviction is I
+57:02 
+
+57:02 just don't use profanity and the way
+57:03 
+
+57:03 that that manifested in the tech world
+57:05 
+
+57:05 is pretty much every VC uh meeting I've
+57:08 
+
+57:08 been in they will use whatever profane
+57:11 
+
+57:11 language they want to whatever but for
+57:13 
+
+57:13 me when I started mer I was 24 and had
+57:15 
+
+57:15 they known that I was 24 they probably
+57:17 
+
+57:17 wouldn't have given me money and because
+57:19 
+
+57:19 you know they don't want candidly
+57:20 
+
+57:20 they're like okay well if I give my my
+57:21 
+
+57:21 millions of dollars to this kid will
+57:23 
+
+57:23 they do the right thing with that money
+57:25 
+
+57:25 they just assumed I was like 35 because
+57:26 
+
+57:26 I didn't curse so I wouldn't tell them I
+57:29 
+
+57:29 was 24 but they just assumed because I
+57:31 
+
+57:31 was more mature or I was more uh I I was
+57:34 
+
+57:34 more in control of my tongue or or more
+57:36 
+
+57:36 in control of my character and the way I
+57:37 
+
+57:37 carried myself they just assumed I was
+57:39 
+
+57:39 in my mid-30s but I was 24 at the time
+57:41 
+
+57:41 so that wasn't the point of me not
+57:43 
+
+57:43 cursing it it was my own personal
+57:44 
+
+57:44 conviction little did I know that that
+57:46 
+
+57:46 would be the result of that another
+57:48 
+
+57:48 example would be um building trust and
+57:50 
+
+57:50 rapport with your team for example right
+57:52 
+
+57:52 people who I had interviewed in the past
+57:55 
+
+57:55 um
+57:55 
+
+57:55 candidates who want to potentially join
+57:57 
+
+57:57 the company multiple times people would
+57:59 
+
+57:59 say dude I don't know what it is but
+58:01 
+
+58:01 like between you and this other startup
+58:03 
+
+58:03 that I'm interviewing with like I trust
+58:04 
+
+58:04 you way more like this person they're
+58:06 
+
+58:06 just going to do whatever is best for
+58:07 
+
+58:07 them like survival of the fittest
+58:09 
+
+58:09 whatever they're going to be selfish but
+58:10 
+
+58:10 you like I know that you care about
+58:11 
+
+58:11 people and I just trust you even if I
+58:13 
+
+58:13 even if I don't believe in whatever you
+58:14 
+
+58:14 believe in I just trust you and so what
+58:16 
+
+58:16 that does is it builds stronger bonds
+58:18 
+
+58:18 between you and your team and people
+58:20 
+
+58:20 don't just assume the worst about you
+58:21 
+
+58:21 they give you the benefit to doubt more
+58:23 
+
+58:23 it honestly it just I think it's easier
+58:25 
+
+58:25 to operate in life as a Christian more
+58:27 
+
+58:27 than it is to be an unbeliever and
+58:28 
+
+58:28 simultaneously because stups are so
+58:30 
+
+58:30 freaking hard like I just don't know how
+58:34 
+
+58:34 people build companies without God
+58:36 
+
+58:36 because it sucks it's difficult like
+58:39 
+
+58:39 Elon Musk says it's like chewing glass
+58:41 
+
+58:41 and steering into the abyss you've heard
+58:42 
+
+58:42 that a million times yeah for sure 100%
+58:45 
+
+58:45 I agree with that like it's he's not
+58:47 
+
+58:47 lying when he says that but when roll
+58:49 
+
+58:49 the clip roll we have that one on
+58:53 
+
+58:53 standby but but seriously though like as
+58:55 
+
+58:55 as a Founder you have no one to to look
+58:57 
+
+58:57 up to besides mentors for instruction or
+58:60 
+
+58:60 guidance so who like it's on you at the
+59:02 
+
+59:02 end of the day you know and no no one's
+59:04 
+
+59:04 going to do the work for you exactly no
+59:06 
+
+59:06 one's going to tell you how to do it or
+59:07 
+
+59:07 what to do it's it's all on you as the
+59:09 
+
+59:09 founder which I feel is yeah and I think
+59:11 
+
+59:11 that's why it's important to be a
+59:12 
+
+59:12 believer at least for me right like
+59:13 
+
+59:13 meaning um because no matter what you're
+59:17 
+
+59:17 not going to get everything right
+59:18 
+
+59:18 there's no question about that but I
+59:19 
+
+59:19 think that if you were a person who
+59:21 
+
+59:21 follows God in this process um he's the
+59:24 
+
+59:24 one who takes care of you no matter what
+59:25 
+
+59:25 it actually allows you to take bigger
+59:27 
+
+59:27 leaps off the edge of this uh Canyon and
+59:30 
+
+59:30 you know he's going to catch you so it
+59:32 
+
+59:32 actually allows you to be a little bit
+59:33 
+
+59:33 more YOLO than if you didn't know if
+59:34 
+
+59:34 you're going to hit the bottom or not
+59:35 
+
+59:35 right so if you're an unbeliever who
+59:37 
+
+59:37 just like doesn't believe in God and
+59:38 
+
+59:38 like when we die we're in the ground
+59:39 
+
+59:39 you're not going to take nearly as many
+59:41 
+
+59:41 risks you're not GNA be nearly as re
+59:42 
+
+59:42 Reckless as I'm call it Reckless but
+59:44 
+
+59:44 like for me I call it faith I can jump
+59:47 
+
+59:47 further de deep into this Canyon because
+59:50 
+
+59:50 I know I'm going to be caught like it's
+59:52 
+
+59:52 literally like in the the lowest of lows
+59:55 
+
+59:55 uh I just need to like not cry right now
+59:57 
+
+59:57 in the lowest of lows of building
+59:60 
+
+59:60 companies there are times in my mind
+60:02 
+
+60:02 where the Holy Spirit reminds me what
+60:05 
+
+60:05 are you worried about like in the end
+60:07 
+
+60:07 you're going to be with the Lord forever
+60:09 
+
+60:09 who gives a rip what happens here right
+60:11 
+
+60:11 now facts and bro that gives me insane
+60:14 
+
+60:14 uh like power encouragement um the
+60:18 
+
+60:18 ability to execute like for me it's like
+60:21 
+
+60:21 hey man if this like funny doesn't come
+60:22 
+
+60:22 through or if this if this uh partner
+60:25 
+
+60:25 ship doesn't happen like who gives a
+60:28 
+
+60:28 crap we're going to be in eternity
+60:30 
+
+60:30 forever for trillions of years with
+60:33 
+
+60:33 fullness of joy and all this stuff like
+60:36 
+
+60:36 yeah it's just not important in light of
+60:38 
+
+60:38 Eternity and so it actually in enables
+60:41 
+
+60:41 me empowers me to do way more now
+60:44 
+
+60:44 because of that reality and the fact
+60:46 
+
+60:46 that unbelievers don't have that to tap
+60:48 
+
+60:48 into I'm like Dam that sucks sucks for
+60:50 
+
+60:50 y'all you're just you're just staring
+60:52 
+
+60:52 the abys and chewing glass man so
+60:54 
+
+60:54 anyways W yeah you were 23 years old
+60:56 
+
+60:56 making nearly $400,000 but you timately
+60:59 
+
+60:59 took the leap because you said that you
+61:00 
+
+61:00 kind of had hit like ailing but for
+61:02 
+
+61:02 someone who's in that position now right
+61:04 
+
+61:04 you know maybe they got a little
+61:05 
+
+61:05 comfortable but they ultimately know
+61:07 
+
+61:07 that they want to eventually go all in
+61:08 
+
+61:08 and invest in themselves what's your
+61:09 
+
+61:09 advice to someone who's in that position
+61:11 
+
+61:11 and how were you really able to make it
+61:12 
+
+61:12 happen yeah so so the blessing in
+61:15 
+
+61:15 disguise was that was a ton of money for
+61:17 
+
+61:17 me to be able to store up and be the
+61:19 
+
+61:19 first two years of my salary when
+61:20 
+
+61:20 building a mer so I was able to build up
+61:23 
+
+61:23 that Nest Egg and I think that's good um
+61:25 
+
+61:25 um and fortunately at the same time I
+61:26 
+
+61:26 was dude I was paying 170 bucks a month
+61:28 
+
+61:28 on rent because I was in a house with 10
+61:29 
+
+61:29 dudes know $1,700 a month for the house
+61:31 
+
+61:31 and so like saved a ton of I was just
+61:33 
+
+61:33 like just saving I didn't know what I
+61:35 
+
+61:35 was saving it for but when I then had to
+61:38 
+
+61:38 uh and and wanted to take the leap to
+61:39 
+
+61:39 start my company I'm like all right well
+61:40 
+
+61:40 I have like a decade's worth of what
+61:42 
+
+61:42 like I'm a kid who eats like nothing and
+61:44 
+
+61:44 like I I rent is like nothing this could
+61:46 
+
+61:46 last me like 10 years if I needed to um
+61:48 
+
+61:48 so it was enough to allow me to um
+61:51 
+
+61:51 responsibly take the leap you know even
+61:53 
+
+61:53 if I had uh you know wife and kids and
+61:55 
+
+61:55 whatever else at the time like we would
+61:57 
+
+61:57 have been fine for a few years and so
+61:59 
+
+61:59 what I will say is the season of time
+62:01 
+
+62:01 that you're in right now is not useless
+62:04 
+
+62:04 like there's a reason why you're there
+62:06 
+
+62:06 so be grateful for it um but then it's
+62:08 
+
+62:08 also important to be clever about the
+62:10 
+
+62:10 ways in which you can leverage that for
+62:12 
+
+62:12 the next season right so uh if someone's
+62:15 
+
+62:15 working at McDonald's it's like they can
+62:16 
+
+62:16 complain oh man I'm making 8 an hour
+62:18 
+
+62:18 it's like at least you have the 8 and or
+62:21 
+
+62:21 someone who works at like a computer lab
+62:23 
+
+62:23 like oh man I'm so bored here I'm just
+62:24 
+
+62:24 so sitting here waiting for people to
+62:25 
+
+62:25 come up to me and ask me questions uh
+62:27 
+
+62:27 because they need help with text support
+62:28 
+
+62:28 or something but like no one ever comes
+62:30 
+
+62:30 up I'm just bored of my job staring at
+62:31 
+
+62:31 the wall well why don't you use that
+62:32 
+
+62:32 time staring at the wall to invest and
+62:34 
+
+62:34 do something else while you're doing
+62:35 
+
+62:35 that and you're getting paid 16 bucks an
+62:37 
+
+62:37 hour to just sit at the front desk at
+62:38 
+
+62:38 your college campus or whatever it is
+62:39 
+
+62:39 for 10 bucks an hour and so all these
+62:41 
+
+62:41 little things there are ways to align
+62:43 
+
+62:43 incentives and align all these things to
+62:45 
+
+62:45 point towards your goal um and I just
+62:47 
+
+62:47 think it's important for people to try a
+62:50 
+
+62:50 lot of different things uh to see what
+62:51 
+
+62:51 you're most passionate about because
+62:53 
+
+62:53 most things that are worth pursuing are
+62:55 
+
+62:55 not easy to pursue and if you're not
+62:57 
+
+62:57 passionate about that thing nothing else
+62:59 
+
+62:59 is going to carry you through that if
+63:00 
+
+63:00 you're not passionate about it I mean
+63:02 
+
+63:02 same thing with immerse like for me the
+63:03 
+
+63:03 core thing that I really really enjoy is
+63:06 
+
+63:06 building something that makes lives
+63:07 
+
+63:07 easier using technology and had I not
+63:09 
+
+63:09 had that passion this thing was way too
+63:11 
+
+63:11 rough to to build this to date uh and I
+63:13 
+
+63:13 would probably not be here had I not
+63:14 
+
+63:14 been passionate about this to begin with
+63:16 
+
+63:16 wow yeah cool awesome great awesome well
+63:21 
+
+63:21 guys that wraps up today's episode be
+63:23 
+
+63:23 sure to leave a like And subscribe for
+63:24 
+
+63:24 some amazing content coming soon we
+63:26 
+
+63:26 could not have asked for a better first
+63:28 
+
+63:28 guest to join us on our first episode of
+63:29 
+
+63:29 our official podcast but renji where can
+63:31 
+
+63:31 everybody find out more about you and
+63:33 
+
+63:33 your company yeah just Google renji bjoy
+63:35 
+
+63:35 renji may put it here at the bottom
+63:36 
+
+63:36 whatever renji with it's like Benji with
+63:38 
+
+63:38 an R um I'm on Instagram Tik Tok Twitter
+63:41 
+
+63:41 LinkedIn pretty much all the different
+63:43 
+
+63:43 social media platforms and YouTube there
+63:45 
+
+63:45 we go guys stay tuned episode two coming
+63:48 
+
+63:48 soon we got content dropping every
+63:49 
+
+63:49 single week let's
+63:53 
+
+63:53 go
