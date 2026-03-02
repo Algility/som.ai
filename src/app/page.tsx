@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { marked } from "marked";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import ClaudeChatInput from "@/components/ui/claude-style-chat-input";
 
 const SidebarToggleIcon = () => (
@@ -112,6 +113,15 @@ function parsePodcast(title: string): { speaker: string | null; topic: string; i
   return { speaker: null, topic: title, initials };
 }
 
+// Extract a short title from the first user message in a conversation
+function getChatTitle(msgs: Array<{ role: string; parts: unknown[] }>): string {
+  const firstUser = msgs.find((m) => m.role === "user");
+  if (!firstUser) return "New chat";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const text = (firstUser.parts as any[]).filter((p: any) => p.type === "text").map((p: any) => p.text as string).join("");
+  return text.length > 46 ? text.slice(0, 45) + "…" : text;
+}
+
 // Shared empty-state placeholder used by recordings + sessions views
 function EmptyState({ icon, title, subtitle }: { icon: React.ReactNode; title: string; subtitle: string }) {
   return (
@@ -124,6 +134,47 @@ function EmptyState({ icon, title, subtitle }: { icon: React.ReactNode; title: s
     </div>
   );
 }
+
+// Memoised markdown renderer — only re-renders when content string changes.
+// This means completed messages stay frozen while the streaming one updates.
+const MarkdownContent = React.memo(function MarkdownContent({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+        h1: ({ children }) => <h1 className="text-base font-semibold mt-4 mb-1.5 text-[#f0f0f0]">{children}</h1>,
+        h2: ({ children }) => <h2 className="text-[0.95rem] font-semibold mt-3 mb-1 text-[#f0f0f0]">{children}</h2>,
+        h3: ({ children }) => <h3 className="text-sm font-semibold mt-2.5 mb-0.5 text-[#f0f0f0]">{children}</h3>,
+        ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-0.5">{children}</ul>,
+        ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-0.5">{children}</ol>,
+        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        code: ({ className, children }: any) => className
+          ? <code className={`${className} text-[#e8c8a0] font-mono text-[0.82em]`}>{children}</code>
+          : <code className="bg-[#272727] text-[#e8c8a0] px-1.5 py-[2px] rounded text-[0.83em] font-mono">{children}</code>,
+        pre: ({ children }) => (
+          <pre className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 my-2 overflow-x-auto leading-relaxed text-[0.82em]">
+            {children}
+          </pre>
+        ),
+        strong: ({ children }) => <strong className="font-semibold text-[#f0f0f0]">{children}</strong>,
+        em: ({ children }) => <em className="italic text-[#ccc]">{children}</em>,
+        a: ({ href, children }) => (
+          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#c8a870] underline underline-offset-2 hover:text-[#d4b880]">
+            {children}
+          </a>
+        ),
+        blockquote: ({ children }) => (
+          <blockquote className="border-l-2 border-[#3a3a3a] pl-3 my-2 text-[#888] italic">{children}</blockquote>
+        ),
+        hr: () => <hr className="border-t border-[#2a2a2a] my-3" />,
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
+});
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -139,15 +190,29 @@ export default function Home() {
     summary?: string;
   } | null>(null);
   const [expandedPodcast, setExpandedPodcast] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const profileRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [showScrollBottom, setShowScrollBottom] = useState(false);
+  const [chatHistory, setChatHistory] = useState<Array<{
+    id: string;
+    title: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    messages: any[];
+    transcript: string | null;
+    timestamp: number;
+  }>>([]);
 
   const currentHour = new Date().getHours();
   const greeting =
     currentHour < 12 ? "Good morning" : currentHour < 18 ? "Good afternoon" : "Good evening";
   const userName = "Joel";
 
-  const { messages, sendMessage, status, setMessages } = useChat({
+  const { messages, sendMessage, status, setMessages, stop } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
   });
   const isLoading = status === "streaming" || status === "submitted";
@@ -156,6 +221,44 @@ export default function Home() {
   useEffect(() => {
     if (window.innerWidth >= 1024) setSidebarOpen(true);
   }, []);
+
+  // Lock body scroll when mobile sidebar is open
+  useEffect(() => {
+    const isMobile = window.innerWidth < 1024;
+    if (sidebarOpen && isMobile) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [sidebarOpen]);
+
+  // Focus search input when opened
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
+
+  // Load chat history from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("som_chat_history");
+      if (saved) setChatHistory(JSON.parse(saved));
+    } catch {}
+  }, []);
+
+  // Save current conversation to history whenever messages change
+  useEffect(() => {
+    if (messages.length === 0) return;
+    const chatId = messages[0].id;
+    const title = getChatTitle(messages);
+    const item = { id: chatId, title, messages, transcript: selectedTranscript, timestamp: Date.now() };
+    setChatHistory((prev) => {
+      const filtered = prev.filter((h) => h.id !== chatId);
+      const next = [item, ...filtered].slice(0, 20);
+      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      return next;
+    });
+  }, [messages, selectedTranscript]);
 
   useEffect(() => {
     fetch("/api/transcripts")
@@ -175,8 +278,28 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (!showScrollBottom) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, showScrollBottom]);
+
+  const handleScroll = useCallback(() => {
+    if (!messagesContainerRef.current) return;
+    const { scrollHeight, scrollTop, clientHeight } = messagesContainerRef.current;
+    setShowScrollBottom(scrollHeight - scrollTop - clientHeight > 120);
+  }, []);
+
+  const copyMessage = useCallback((id: string, text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    }).catch(() => {});
+  }, []);
+
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    setShowScrollBottom(false);
+  }, []);
 
   const handleSendMessage = (data: { message: string; model: string }, transcript?: string | null) => {
     if (!data.message.trim()) return;
@@ -204,8 +327,16 @@ export default function Home() {
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
+  const handleRestoreChat = (item: { id: string; messages: unknown[]; transcript: string | null }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setMessages(item.messages as any);
+    setSelectedTranscript(item.transcript);
+    setView("chat");
+    if (window.innerWidth < 1024) setSidebarOpen(false);
+  };
+
   return (
-    <div className="h-screen w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
+    <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
 
       {/* ── Mobile backdrop ── */}
       {sidebarOpen && (
@@ -217,9 +348,9 @@ export default function Home() {
 
       {/* ── Sidebar ── */}
       <aside className={`
-        h-screen flex flex-col overflow-hidden
+        h-[100dvh] flex flex-col overflow-hidden
         bg-[#181818] border-r border-[#403F3D]
-        transition-all duration-300 ease-in-out
+        transition-[transform,width] duration-300 ease-in-out will-change-transform
         fixed inset-y-0 left-0 z-50 w-[260px]
         lg:sticky lg:top-0 lg:relative lg:z-auto lg:flex-shrink-0
         ${sidebarOpen
@@ -230,7 +361,7 @@ export default function Home() {
         <div className="flex flex-col h-full w-[260px] overflow-hidden">
 
           {/* Header */}
-          <div className="flex items-center justify-between px-4 pt-4 pb-1">
+          <div className="flex items-center justify-between px-4 pb-1 pt-safe-area-lg lg:pt-4">
             <span className="text-sm font-semibold text-[#ececec] tracking-tight">School of Mentors</span>
             <button
               onClick={() => setSidebarOpen(false)}
@@ -254,11 +385,38 @@ export default function Home() {
               </span>
               <span className="flex-1 text-left">New chat</span>
             </button>
-            <NavItem label="Search" icon={
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-            } />
+            {searchOpen ? (
+              <div className="px-0 py-0.5">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#242424] border border-[#383838]">
+                  <svg className="w-4 h-4 text-[#555] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                  </svg>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => { if (e.key === "Escape") { setSearchOpen(false); setSearchQuery(""); } }}
+                    placeholder="Search conversations…"
+                    className="flex-1 bg-transparent text-sm text-[#ececec] placeholder-[#444] outline-none"
+                  />
+                  <button
+                    onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                    className="text-[#444] hover:text-[#888] transition-colors cursor-pointer"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 6 6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <NavItem label="Search" onClick={() => setSearchOpen(true)} icon={
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                </svg>
+              } />
+            )}
           </div>
 
           {/* Nav items */}
@@ -315,20 +473,28 @@ export default function Home() {
           <div className="flex-1 overflow-y-auto px-3 mt-2">
             <p className="text-xs text-[#555] px-2 py-1.5 font-medium uppercase tracking-wider">Recents</p>
             <div className="space-y-0.5">
-              {transcriptList.slice(0, 5).map(({ title }) => {
-                const { speaker, topic } = parsePodcast(title);
-                const label = speaker ? `${speaker} — ${topic}` : title;
-                return (
+              {(() => {
+                const filtered = searchQuery.trim()
+                  ? chatHistory.filter((h) => h.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                  : chatHistory;
+                if (filtered.length === 0) {
+                  return (
+                    <p className="text-xs text-[#3a3a3a] px-3 py-2">
+                      {searchQuery.trim() ? `No results for "${searchQuery}"` : "No conversations yet"}
+                    </p>
+                  );
+                }
+                return filtered.slice(0, 10).map((item) => (
                   <button
-                    key={title}
-                    onClick={() => { handleSelectPodcast(title); if (window.innerWidth < 1024) setSidebarOpen(false); }}
+                    key={item.id}
+                    onClick={() => handleRestoreChat(item)}
                     className="w-full text-left px-3 py-2 rounded-lg text-sm text-[#8a8a8a] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors truncate cursor-pointer"
-                    title={title}
+                    title={item.title}
                   >
-                    {label}
+                    {item.title}
                   </button>
-                );
-              })}
+                ));
+              })()}
             </div>
           </div>
 
@@ -382,11 +548,11 @@ export default function Home() {
       </aside>
 
       {/* ── Main ── */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden bg-[#fcfcf9] dark:bg-[#1a1a1a] transition-colors duration-200 relative">
+      <div className="flex-1 flex flex-col h-[100dvh] overflow-hidden bg-[#1a1a1a] relative">
 
         {/* ── Mobile top bar (shown when sidebar is closed, hidden on home view) ── */}
         {!sidebarOpen && view !== "home" && (
-          <div className="relative flex items-center px-2 py-3 lg:hidden flex-shrink-0">
+          <div className="relative flex items-center px-2 pb-3 lg:hidden flex-shrink-0 pt-safe-area">
             {/* Left: sidebar toggle */}
             <button
               onClick={() => setSidebarOpen(true)}
@@ -417,14 +583,23 @@ export default function Home() {
               )}
             </div>
 
-            {/* Right: spacer to balance the toggle on the left */}
-            <div className="ml-auto w-9" />
+            {/* Right: new chat button */}
+            <button
+              onClick={handleNewChat}
+              className="ml-auto p-1.5 rounded-lg text-[#666] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer flex-shrink-0"
+              aria-label="New chat"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>
+              </svg>
+            </button>
           </div>
         )}
 
         {/* ── Home view: floating sidebar toggle (absolute, top-left) ── */}
         {!sidebarOpen && view === "home" && (
-          <div className="absolute top-3 left-3 z-10 lg:hidden">
+          <div className="absolute top-safe-area left-3 z-10 lg:hidden">
             <button
               onClick={() => setSidebarOpen(true)}
               className="p-1.5 rounded-lg text-[#555] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
@@ -450,7 +625,7 @@ export default function Home() {
 
         {/* ── Home ── */}
         {view === "home" ? (
-          <main className="flex-1 flex flex-col items-center justify-center px-4 pb-6 lg:pb-16">
+          <main className="flex-1 flex flex-col items-center justify-center px-4 pb-safe lg:pb-16">
             <div className="w-full max-w-3xl mb-6 text-center">
               <div className="w-fit mx-auto mb-4 animate-fade-up">
                 <img
@@ -477,7 +652,7 @@ export default function Home() {
               </h1>
             </div>
 
-            <ClaudeChatInput onSendMessage={handleSendMessage} />
+            <ClaudeChatInput onSendMessage={handleSendMessage} isLoading={isLoading} onStop={stop} />
 
             <div className="flex flex-wrap justify-center gap-2 mt-4 max-w-2xl mx-auto px-4">
               {(["Call Recordings", "Mentor Sessions", "Podcasts", "Resources"] as const).map((label) => (
@@ -495,6 +670,7 @@ export default function Home() {
                 </button>
               ))}
             </div>
+
           </main>
 
         /* ── Podcasts ── */
@@ -658,10 +834,25 @@ export default function Home() {
 
         /* ── Chat ── */
         ) : (
-          <main className="flex-1 flex flex-col overflow-hidden">
+          <main className="flex-1 flex flex-col overflow-hidden relative">
+            {/* Scroll-to-bottom button */}
+            {showScrollBottom && (
+              <button
+                onClick={scrollToBottom}
+                className="absolute bottom-28 right-4 z-10 p-2.5 rounded-full bg-[#2a2a2a] border border-[#404040] text-[#ececec] shadow-xl hover:bg-[#333] transition-all duration-200 cursor-pointer"
+                aria-label="Scroll to bottom"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+              </button>
+            )}
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-3 lg:px-4 py-4 lg:py-6">
-              <div className="max-w-2xl mx-auto space-y-5 lg:space-y-6">
+            <div ref={messagesContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-3 lg:px-4">
+              <div className="max-w-2xl mx-auto min-h-full flex flex-col">
+                {/* Top spacer — bottom-anchors short threads on mobile only */}
+                <div className="flex-1 min-h-4 lg:hidden" />
+              <div className="space-y-5 lg:space-y-6 py-4 lg:py-5">
                 {(() => {
                   const activeYoutube = selectedTranscript
                     ? transcriptList.find((t) => t.title === selectedTranscript)?.youtube
@@ -671,38 +862,59 @@ export default function Home() {
                   const activeTopic = activeParsed?.topic ?? selectedTranscript ?? "";
                   const activeVideoId = activeYoutube ? getYouTubeId(activeYoutube) : null;
                   const firstAssistantIdx = messages.findIndex((msg) => msg.role === "assistant");
-                  return messages.map((m, msgIdx) => (
+                  return messages.map((m, msgIdx) => {
+                    // Extract text once — reused for render + copy
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const msgText = (m.parts as any[]).filter((p) => p.type === "text").map((p) => p.text as string).join("");
+                    return (
                     <div key={m.id} className="flex flex-col gap-2">
                       {/* Message bubble */}
                       <div className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                         {m.role === "assistant" && (
-                          <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 mr-3 mt-0.5">
-                            <img src="/logo.png" alt="SOM" className="w-full h-full object-contain" />
+                          <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none bg-[#890B0F]">
+                            <span className="text-white text-[10px] font-bold tracking-tight select-none">S</span>
                           </div>
                         )}
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                           m.role === "user"
-                            ? "bg-[#2a2a2a] text-[#ececec] rounded-br-sm"
+                            ? "bg-[#3a3a3a] text-[#ececec] rounded-br-sm"
                             : "text-[#ececec]"
                         }`}>
                           {m.role === "assistant" ? (
-                            <div
-                              className="markdown-body text-sm leading-relaxed"
-                              dangerouslySetInnerHTML={{
-                                __html: marked(
-                                  m.parts.filter((p: {type: string}) => p.type === "text").map((p: {type: string; text: string}) => p.text).join("")
-                                ) as string,
-                              }}
-                            />
+                            <MarkdownContent content={msgText} />
                           ) : (
-                            m.parts.filter((p: {type: string}) => p.type === "text").map((p: {type: string; text: string}) => p.text).join("")
+                            msgText
                           )}
                         </div>
                       </div>
 
+                      {/* Copy action — shown below every assistant message */}
+                      {m.role === "assistant" && (() => {
+                        return (
+                          <div className="ml-10 flex items-center gap-1 mt-0.5">
+                            <button
+                              onClick={() => copyMessage(m.id, msgText)}
+                              className="flex items-center gap-1.5 px-2 py-1 rounded-lg text-[#4a4a4a] hover:text-[#888] hover:bg-[#252525] transition-all duration-150 cursor-pointer"
+                            >
+                              {copiedId === m.id ? (
+                                <>
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                  <span className="text-[11px] text-[#666]">Copied</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                  <span className="text-[11px]">Copy</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        );
+                      })()}
+
                       {/* Source pill — shown once only, below the first assistant response */}
                       {m.role === "assistant" && activeYoutube && msgIdx === firstAssistantIdx && (
-                        <div className="ml-14 flex items-center gap-2">
+                        <div className="ml-10 flex items-center gap-2">
                           <div className="relative inline-block group/src">
                           {/* Hover preview card — fully clickable */}
                           <a
@@ -749,27 +961,31 @@ export default function Home() {
                         </div>
                       )}
                     </div>
-                  ));
+                  );
+                  });
                 })()}
                 {isLoading && messages[messages.length - 1]?.role === "user" && (
                   <div className="flex justify-start">
-                    <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0 mr-3 mt-0.5">
-                      <img src="/logo.png" alt="SOM" className="w-full h-full object-contain" />
+                    <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none bg-[#890B0F]">
+                      <span className="text-white text-[10px] font-bold tracking-tight select-none">S</span>
                     </div>
-                    <div className="text-[#666] text-sm py-3">
-                      <span className="animate-pulse">···</span>
+                    <div className="py-3.5 flex items-center gap-[5px]">
+                      <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0s" }} />
+                      <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0.18s" }} />
+                      <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0.36s" }} />
                     </div>
                   </div>
                 )}
 
                 <div ref={messagesEndRef} />
               </div>
+              </div>
             </div>
 
             {/* Chat input */}
-            <div className="px-2 lg:px-4 pb-4 lg:pb-6 pt-2 flex-shrink-0">
+            <div className="px-2 lg:px-4 pt-2 flex-shrink-0 pb-safe lg:pb-6">
               <div className="max-w-2xl mx-auto">
-                <ClaudeChatInput onSendMessage={handleSendMessage} />
+                <ClaudeChatInput onSendMessage={handleSendMessage} isLoading={isLoading} onStop={stop} />
               </div>
             </div>
           </main>

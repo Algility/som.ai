@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Plus, ChevronDown, ArrowUp, X, FileText, Loader2, Check, Archive } from "lucide-react";
+import { Plus, ChevronDown, ArrowUp, X, FileText, Loader2, Check, Archive, Square } from "lucide-react";
 
 /* --- ICONS --- */
 export const Icons = {
@@ -235,9 +235,11 @@ interface ClaudeChatInputProps {
     model: string;
     isThinkingEnabled: boolean;
   }) => void;
+  isLoading?: boolean;
+  onStop?: () => void;
 }
 
-export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage }) => {
+export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage, isLoading = false, onStop }) => {
   const [message, setMessage] = useState("");
   const [files, setFiles] = useState<AttachedFile[]>([]);
   const [pastedContent, setPastedContent] = useState<{ id: string; content: string; timestamp: Date }[]>([]);
@@ -341,7 +343,7 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
       onDrop={onDrop}
     >
       <div className="!box-content flex flex-col mx-2 md:mx-0 items-stretch transition-all duration-200 relative z-10 rounded-2xl cursor-text border border-bg-300 dark:border-transparent shadow-[0_0_15px_rgba(0,0,0,0.08)] hover:shadow-[0_0_20px_rgba(0,0,0,0.12)] focus-within:shadow-[0_0_25px_rgba(0,0,0,0.15)] bg-white dark:bg-[#30302E] antialiased">
-        <div className="flex flex-col px-3 pt-3 pb-2 gap-2">
+        <div className="flex flex-col px-3 pt-2.5 pb-2 gap-1.5">
 
           {/* Attachments row */}
           {(files.length > 0 || pastedContent.length > 0) && (
@@ -364,8 +366,8 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
           )}
 
           {/* Textarea */}
-          <div className="relative mb-1">
-            <div className="max-h-96 w-full overflow-y-auto custom-scrollbar break-words transition-opacity duration-200 min-h-[2.5rem] pl-1">
+          <div className="relative">
+            <div className="max-h-96 w-full overflow-y-auto custom-scrollbar break-words transition-opacity duration-200 pl-1">
               <textarea
                 ref={textareaRef}
                 value={message}
@@ -375,8 +377,8 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
                 placeholder="Ask me anything..."
                 className="w-full bg-transparent border-0 outline-none text-text-100 text-[16px] placeholder:text-text-400 resize-none overflow-hidden py-0 leading-relaxed block font-normal antialiased"
                 rows={1}
-                autoFocus
-                style={{ minHeight: "1.5em" }}
+                enterKeyHint="send"
+                style={{ minHeight: "1.5em", touchAction: "auto" }}
               />
             </div>
           </div>
@@ -401,16 +403,27 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage 
               <div className="shrink-0 p-1 -m-1">
                 <ModelSelector models={models} selectedModel={selectedModel} onSelect={setSelectedModel} />
               </div>
-              <button
-                onClick={handleSend}
-                disabled={!hasContent}
-                className={`inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95
-                  ${hasContent ? "bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer" : "bg-[#890B0D]/30 text-white/60 cursor-default"}`}
-                type="button"
-                aria-label="Send message"
-              >
-                <Icons.ArrowUp className="w-4 h-4" />
-              </button>
+              {isLoading ? (
+                <button
+                  onClick={onStop}
+                  className="inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95 bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer"
+                  type="button"
+                  aria-label="Stop generating"
+                >
+                  <Square className="w-3.5 h-3.5" fill="currentColor" />
+                </button>
+              ) : (
+                <button
+                  onClick={handleSend}
+                  disabled={!hasContent}
+                  className={`inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95
+                    ${hasContent ? "bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer" : "bg-[#890B0D]/30 text-white/60 cursor-default"}`}
+                  type="button"
+                  aria-label="Send message"
+                >
+                  <Icons.ArrowUp className="w-4 h-4" />
+                </button>
+              )}
             </div>
           </div>
         </div>
