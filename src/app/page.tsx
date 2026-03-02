@@ -871,8 +871,8 @@ export default function Home() {
                       {/* Message bubble */}
                       <div className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                         {m.role === "assistant" && (
-                          <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none bg-[#890B0F]">
-                            <span className="text-white text-[10px] font-bold tracking-tight select-none">S</span>
+                          <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
+                            <img src="/logo.png" alt="SOM" className="w-7 h-7 object-contain select-none pointer-events-none" />
                           </div>
                         )}
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -966,8 +966,8 @@ export default function Home() {
                 })()}
                 {isLoading && messages[messages.length - 1]?.role === "user" && (
                   <div className="flex justify-start">
-                    <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none bg-[#890B0F]">
-                      <span className="text-white text-[10px] font-bold tracking-tight select-none">S</span>
+                    <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
+                      <img src="/logo.png" alt="SOM" className="w-7 h-7 object-contain select-none pointer-events-none" />
                     </div>
                     <div className="py-3.5 flex items-center gap-[5px]">
                       <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0s" }} />
