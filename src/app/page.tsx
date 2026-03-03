@@ -198,6 +198,7 @@ export default function Home() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showScrollBottom, setShowScrollBottom] = useState(false);
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<Array<{
     id: string;
     title: string;
@@ -277,6 +278,14 @@ export default function Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close chat context menu when clicking outside
+  useEffect(() => {
+    if (!openMenuId) return;
+    const handle = () => setOpenMenuId(null);
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, [openMenuId]);
+
   useEffect(() => {
     if (!showScrollBottom) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -334,6 +343,15 @@ export default function Home() {
     setView("chat");
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
+
+  const handleDeleteChat = useCallback((id: string) => {
+    setChatHistory((prev) => {
+      const next = prev.filter((h) => h.id !== id);
+      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      return next;
+    });
+    setOpenMenuId(null);
+  }, []);
 
   return (
     <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
@@ -485,14 +503,46 @@ export default function Home() {
                   );
                 }
                 return filtered.slice(0, 10).map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleRestoreChat(item)}
-                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-[#8a8a8a] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors truncate cursor-pointer"
-                    title={item.title}
-                  >
-                    {item.title}
-                  </button>
+                  <div key={item.id} className="relative group">
+                    <button
+                      onClick={() => handleRestoreChat(item)}
+                      className="w-full text-left px-3 py-2 pr-8 rounded-lg text-sm text-[#8a8a8a] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors truncate cursor-pointer"
+                      title={item.title}
+                    >
+                      {item.title}
+                    </button>
+                    {/* Three-dot menu trigger */}
+                    <button
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => { e.stopPropagation(); setOpenMenuId(openMenuId === item.id ? null : item.id); }}
+                      className={`absolute right-1.5 top-1/2 -translate-y-1/2 p-1 rounded-md transition-all cursor-pointer
+                        ${openMenuId === item.id
+                          ? "opacity-100 text-[#ececec] bg-[#333]"
+                          : "opacity-0 group-hover:opacity-100 text-[#666] hover:text-[#ececec] hover:bg-[#333]"}`}
+                      aria-label="Chat options"
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="5" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="12" cy="19" r="2" />
+                      </svg>
+                    </button>
+                    {/* Dropdown */}
+                    {openMenuId === item.id && (
+                      <div
+                        onMouseDown={(e) => e.stopPropagation()}
+                        className="absolute right-1 top-full mt-1 w-36 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1"
+                      >
+                        <button
+                          onClick={(e) => { e.stopPropagation(); handleDeleteChat(item.id); }}
+                          className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:bg-[#333] transition-colors cursor-pointer"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14H6L5 6" /><path d="M10 11v6" /><path d="M14 11v6" /><path d="M9 6V4h6v2" />
+                          </svg>
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 ));
               })()}
             </div>
