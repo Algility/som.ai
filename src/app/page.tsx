@@ -199,6 +199,10 @@ export default function Home() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [showScrollBottom, setShowScrollBottom] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [renameId, setRenameId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState("");
+  const renameInputRef = useRef<HTMLInputElement>(null);
   const [chatHistory, setChatHistory] = useState<Array<{
     id: string;
     title: string;
@@ -350,11 +354,90 @@ export default function Home() {
       try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
       return next;
     });
+    setDeleteConfirmId(null);
     setOpenMenuId(null);
   }, []);
 
+  const handleRenameChat = useCallback((id: string, newTitle: string) => {
+    const trimmed = newTitle.trim();
+    if (!trimmed) return;
+    setChatHistory((prev) => {
+      const next = prev.map((h) => h.id === id ? { ...h, title: trimmed } : h);
+      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      return next;
+    });
+    setRenameId(null);
+    setRenameValue("");
+  }, []);
+
+  // Focus rename input when modal opens
+  useEffect(() => {
+    if (renameId) setTimeout(() => renameInputRef.current?.focus(), 50);
+  }, [renameId]);
+
   return (
     <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
+
+      {/* ── Delete confirmation modal ── */}
+      {deleteConfirmId && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteConfirmId(null)} />
+          <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
+            <h2 className="text-base font-semibold text-[#ececec] mb-2">Delete chat</h2>
+            <p className="text-sm text-[#888] mb-6">Are you sure you want to delete this chat?</p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setDeleteConfirmId(null)}
+                className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDeleteChat(deleteConfirmId)}
+                className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-500 text-white transition-colors cursor-pointer"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Rename modal ── */}
+      {renameId && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setRenameId(null)} />
+          <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
+            <h2 className="text-base font-semibold text-[#ececec] mb-4">Rename chat</h2>
+            <input
+              ref={renameInputRef}
+              type="text"
+              value={renameValue}
+              onChange={(e) => setRenameValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleRenameChat(renameId, renameValue);
+                if (e.key === "Escape") setRenameId(null);
+              }}
+              className="w-full px-3 py-2.5 rounded-lg bg-[#2a2a2a] border border-[#484848] text-sm text-[#ececec] outline-none focus:border-[#666] transition-colors mb-5"
+              placeholder="Chat name"
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setRenameId(null)}
+                className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleRenameChat(renameId, renameValue)}
+                className="px-4 py-2 rounded-lg text-sm font-medium bg-[#ececec] hover:bg-white text-[#111] transition-colors cursor-pointer"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Mobile backdrop ── */}
       {sidebarOpen && (
@@ -529,10 +612,19 @@ export default function Home() {
                     {openMenuId === item.id && (
                       <div
                         onMouseDown={(e) => e.stopPropagation()}
-                        className="absolute right-1 top-full mt-1 w-36 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1"
+                        className="absolute right-1 top-full mt-1 w-40 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1"
                       >
                         <button
-                          onClick={(e) => { e.stopPropagation(); handleDeleteChat(item.id); }}
+                          onClick={(e) => { e.stopPropagation(); setRenameId(item.id); setRenameValue(item.title); setOpenMenuId(null); }}
+                          className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#ccc] hover:text-[#ececec] hover:bg-[#333] transition-colors cursor-pointer"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                          </svg>
+                          Rename
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(item.id); setOpenMenuId(null); }}
                           className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:bg-[#333] transition-colors cursor-pointer"
                         >
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
