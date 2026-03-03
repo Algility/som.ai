@@ -376,68 +376,8 @@ export default function Home() {
   }, [renameId]);
 
   return (
+    <>
     <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
-
-      {/* ── Delete confirmation modal ── */}
-      {deleteConfirmId && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteConfirmId(null)} />
-          <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
-            <h2 className="text-base font-semibold text-[#ececec] mb-2">Delete chat</h2>
-            <p className="text-sm text-[#888] mb-6">Are you sure you want to delete this chat?</p>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleDeleteChat(deleteConfirmId)}
-                className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-500 text-white transition-colors cursor-pointer"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── Rename modal ── */}
-      {renameId && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setRenameId(null)} />
-          <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
-            <h2 className="text-base font-semibold text-[#ececec] mb-4">Rename chat</h2>
-            <input
-              ref={renameInputRef}
-              type="text"
-              value={renameValue}
-              onChange={(e) => setRenameValue(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleRenameChat(renameId, renameValue);
-                if (e.key === "Escape") setRenameId(null);
-              }}
-              className="w-full px-3 py-2.5 rounded-lg bg-[#2a2a2a] border border-[#484848] text-sm text-[#ececec] outline-none focus:border-[#666] transition-colors mb-5"
-              placeholder="Chat name"
-            />
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setRenameId(null)}
-                className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleRenameChat(renameId, renameValue)}
-                className="px-4 py-2 rounded-lg text-sm font-medium bg-[#ececec] hover:bg-white text-[#111] transition-colors cursor-pointer"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ── Mobile backdrop ── */}
       {sidebarOpen && (
@@ -1134,5 +1074,67 @@ export default function Home() {
         )}
       </div>
     </div>
+
+    {/* ── Delete confirmation modal — outside overflow-hidden container ── */}
+    {deleteConfirmId && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteConfirmId(null)} />
+        <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
+          <h2 className="text-base font-semibold text-[#ececec] mb-2">Delete chat</h2>
+          <p className="text-sm text-[#888] mb-6">Are you sure you want to delete this chat?</p>
+          <div className="flex justify-end gap-3">
+            <button
+              onClick={() => setDeleteConfirmId(null)}
+              className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleDeleteChat(deleteConfirmId)}
+              className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-500 text-white transition-colors cursor-pointer"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* ── Rename modal — outside overflow-hidden container ── */}
+    {renameId && (
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setRenameId(null)} />
+        <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
+          <h2 className="text-base font-semibold text-[#ececec] mb-4">Rename chat</h2>
+          <input
+            ref={renameInputRef}
+            type="text"
+            value={renameValue}
+            onChange={(e) => setRenameValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleRenameChat(renameId, renameValue);
+              if (e.key === "Escape") setRenameId(null);
+            }}
+            className="w-full px-3 py-2.5 rounded-lg bg-[#2a2a2a] border border-[#484848] text-sm text-[#ececec] outline-none focus:border-[#666] transition-colors mb-5"
+            placeholder="Chat name"
+          />
+          <div className="flex justify-end gap-3">
+            <button
+              onClick={() => setRenameId(null)}
+              className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => handleRenameChat(renameId, renameValue)}
+              className="px-4 py-2 rounded-lg text-sm font-medium bg-[#ececec] hover:bg-white text-[#111] transition-colors cursor-pointer"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
