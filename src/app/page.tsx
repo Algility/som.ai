@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import ReactMarkdown from "react-markdown";
@@ -203,6 +204,7 @@ export default function Home() {
   const [renameId, setRenameId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState("");
   const renameInputRef = useRef<HTMLInputElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [chatHistory, setChatHistory] = useState<Array<{
     id: string;
     title: string;
@@ -221,6 +223,9 @@ export default function Home() {
     transport: new DefaultChatTransport({ api: "/api/chat" }),
   });
   const isLoading = status === "streaming" || status === "submitted";
+
+  // Mark as mounted so portals can render into document.body
+  useEffect(() => { setMounted(true); }, []);
 
   // Open sidebar by default on desktop only
   useEffect(() => {
@@ -1075,9 +1080,9 @@ export default function Home() {
       </div>
     </div>
 
-    {/* ── Delete confirmation modal — outside overflow-hidden container ── */}
-    {deleteConfirmId && (
-      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+    {/* ── Portals: render modals directly into document.body, bypassing all stacking/overflow constraints ── */}
+    {mounted && deleteConfirmId && createPortal(
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setDeleteConfirmId(null)} />
         <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
           <h2 className="text-base font-semibold text-[#ececec] mb-2">Delete chat</h2>
@@ -1097,12 +1102,12 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
     )}
 
-    {/* ── Rename modal — outside overflow-hidden container ── */}
-    {renameId && (
-      <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+    {mounted && renameId && createPortal(
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setRenameId(null)} />
         <div className="relative bg-[#222] border border-[#383838] rounded-2xl shadow-2xl w-full max-w-sm p-6">
           <h2 className="text-base font-semibold text-[#ececec] mb-4">Rename chat</h2>
@@ -1133,7 +1138,8 @@ export default function Home() {
             </button>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
     )}
     </>
   );
