@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -14,7 +21,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "School of Mentors AI",
-  description: "AI-powered insights from your mentors and podcast library.",
+  description: "Learn from your mentors and podcasts in one place.",
+  icons: {
+    apple: "/logo.png",
+  },
 };
 
 export const viewport = {
@@ -31,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${plusJakarta.variable} ${archivo.variable} ${geistMono.variable} font-sans antialiased`}
       >
         {children}
       </body>

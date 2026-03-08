@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ClaudeChatInput from "@/components/ui/claude-style-chat-input";
+import { useAuth } from "@/hooks/use-auth";
+import { createClient, type ChatRow } from "@/lib/supabase";
+
+type MessagePart = { type?: string; text?: string };
+
+function getMessageText(parts: unknown[]): string {
+  return (parts as MessagePart[])
+    .filter((p) => p.type === "text")
+    .map((p) => p.text ?? "")
+    .join("");
+}
 
 const SidebarToggleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,8 +36,8 @@ const NavItem = ({ icon, label, right, active, onClick }: { icon: React.ReactNod
 
 const MenuDivider = () => <div className="h-px bg-[#403F3D] my-1" />;
 
-const MenuItem = ({ icon, label, right, danger }: { icon?: React.ReactNode; label: string; right?: React.ReactNode; danger?: boolean }) => (
-  <button className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer
+const MenuItem = ({ icon, label, right, danger, onClick }: { icon?: React.ReactNode; label: string; right?: React.ReactNode; danger?: boolean; onClick?: () => void }) => (
+  <button type="button" onClick={onClick} className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer
     ${danger ? "text-red-400 hover:bg-[#333]" : "text-[#ccc] hover:text-[#ececec] hover:bg-[#333]"}`}>
     {icon && <span className="w-4 h-4 flex-shrink-0 opacity-70">{icon}</span>}
     <span className="flex-1 text-left">{label}</span>
@@ -118,8 +129,7 @@ function parsePodcast(title: string): { speaker: string | null; topic: string; i
 function getChatTitle(msgs: Array<{ role: string; parts: unknown[] }>): string {
   const firstUser = msgs.find((m) => m.role === "user");
   if (!firstUser) return "New chat";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const text = (firstUser.parts as any[]).filter((p: any) => p.type === "text").map((p: any) => p.text as string).join("");
+  const text = getMessageText(firstUser.parts);
   return text.length > 46 ? text.slice(0, 45) + "…" : text;
 }
 
@@ -136,6 +146,28 @@ function EmptyState({ icon, title, subtitle }: { icon: React.ReactNode; title: s
   );
 }
 
+// During stream: strip all * so you never see a raw asterisk. Completed messages use full text so bold/italic render.
+function streamDisplayText(text: string, isStreaming: boolean): string {
+  return isStreaming ? text.replace(/\*/g, "") : text;
+}
+
+// Show stream as it arrives (like ChatGPT/Claude). Throttle UI updates to ~60fps so we don't re-run markdown on every token — no typewriter, no artificial pacing.
+const STREAM_UPDATE_MS = 16;
+function useStreamTextLive(text: string, isStreaming: boolean): string {
+  const [display, setDisplay] = useState(text);
+  const ref = useRef(text);
+  ref.current = text;
+  useEffect(() => {
+    if (!isStreaming) {
+      setDisplay(text);
+      return;
+    }
+    const id = setInterval(() => setDisplay(ref.current), STREAM_UPDATE_MS);
+    return () => clearInterval(id);
+  }, [isStreaming, text]);
+  return isStreaming ? display : text;
+}
+
 // Memoised markdown renderer — only re-renders when content string changes.
 // This means completed messages stay frozen while the streaming one updates.
 const MarkdownContent = React.memo(function MarkdownContent({ content }: { content: string }) {
@@ -150,10 +182,9 @@ const MarkdownContent = React.memo(function MarkdownContent({ content }: { conte
         ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-0.5">{children}</ul>,
         ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-0.5">{children}</ol>,
         li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        code: ({ className, children }: any) => className
-          ? <code className={`${className} text-[#e8c8a0] font-mono text-[0.82em]`}>{children}</code>
-          : <code className="bg-[#272727] text-[#e8c8a0] px-1.5 py-[2px] rounded text-[0.83em] font-mono">{children}</code>,
+        code: ({ className, children }: { className?: string; children?: React.ReactNode }) => className
+          ? <code className={`${className} text-[#d0d0d0] font-mono text-[0.82em]`}>{children}</code>
+          : <code className="bg-[#272727] text-[#d0d0d0] px-1.5 py-[2px] rounded text-[0.83em] font-mono">{children}</code>,
         pre: ({ children }) => (
           <pre className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 my-2 overflow-x-auto leading-relaxed text-[0.82em]">
             {children}
@@ -205,11 +236,11 @@ export default function Home() {
   const [renameValue, setRenameValue] = useState("");
   const renameInputRef = useRef<HTMLInputElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [dbError, setDbError] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<Array<{
     id: string;
     title: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    messages: any[];
+    messages: unknown[];
     transcript: string | null;
     timestamp: number;
   }>>([]);
@@ -217,12 +248,52 @@ export default function Home() {
   const currentHour = new Date().getHours();
   const greeting =
     currentHour < 12 ? "Good morning" : currentHour < 18 ? "Good afternoon" : "Good evening";
-  const userName = "Joel";
+  const { user, signOut } = useAuth();
+  const rawFirstName =
+    user?.user_metadata?.full_name?.trim().split(/\s+/)[0] ??
+    user?.user_metadata?.name?.trim().split(/\s+/)[0] ??
+    user?.user_metadata?.given_name ??
+    user?.email?.split("@")[0] ??
+    "there";
+  const firstName =
+    rawFirstName === "there"
+      ? "there"
+      : (() => {
+          const lettersOnly = rawFirstName.replace(/\d+$/, "").match(/^[a-zA-Z]+/)?.[0] ?? rawFirstName;
+          return lettersOnly[0]!.toUpperCase() + lettersOnly.slice(1).toLowerCase();
+        })();
+  const fullName =
+    (user?.user_metadata?.full_name?.trim() || user?.user_metadata?.name?.trim() || "") ||
+    (firstName !== "there" ? firstName : "");
+  const profileDisplayName = fullName || firstName || "User";
+  const initials = (() => {
+    const full = user?.user_metadata?.full_name?.trim() ?? user?.user_metadata?.name?.trim();
+    if (full) {
+      const parts = full.split(/\s+/).filter(Boolean);
+      if (parts.length >= 2) return (parts[0]![0]! + parts[parts.length - 1]![0]!).toUpperCase();
+      return (parts[0]!.slice(0, 2)).toUpperCase();
+    }
+    if (firstName && firstName !== "there") return firstName.slice(0, 2).toUpperCase();
+    return user?.email?.slice(0, 2).toUpperCase() ?? "?";
+  })();
 
   const { messages, sendMessage, status, setMessages, stop } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
   });
   const isLoading = status === "streaming" || status === "submitted";
+
+  // Show stream as it arrives — same flow as ChatGPT/Claude. No typewriter; throttle only to avoid re-running markdown every token.
+  const lastMsg = messages[messages.length - 1];
+  const lastMsgText =
+    lastMsg && lastMsg.role === "assistant"
+      ? (lastMsg.parts as { type: string; text?: string }[])
+          .filter((p) => p.type === "text")
+          .map((p) => p.text ?? "")
+          .join("")
+      : "";
+  const isStreamingLast = status === "streaming" && lastMsg?.role === "assistant";
+  const streamTextLive = useStreamTextLive(lastMsgText, isStreamingLast);
+  const streamingDisplayText = streamDisplayText(streamTextLive, isStreamingLast);
 
   // Mark as mounted so portals can render into document.body
   useEffect(() => { setMounted(true); }, []);
@@ -248,15 +319,39 @@ export default function Home() {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
 
-  // Load chat history from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("som_chat_history");
-      if (saved) setChatHistory(JSON.parse(saved));
-    } catch {}
-  }, []);
+  const supabase = useMemo(() => createClient(), []);
 
-  // Save current conversation to history whenever messages change
+  // Load chat history from Supabase (or localStorage fallback when env missing)
+  useEffect(() => {
+    if (supabase && user?.id) {
+      supabase
+        .from("chats")
+        .select("id, client_chat_id, title, messages, transcript, updated_at")
+        .order("updated_at", { ascending: false })
+        .limit(20)
+        .then(({ data, error }) => {
+          if (error) {
+            setDbError(error.message);
+            return;
+          }
+          const list = ((data ?? []) as ChatRow[]).map((row) => ({
+            id: (row.client_chat_id ?? row.id) as string,
+            title: row.title,
+            messages: row.messages as Array<{ type?: string; text?: string; id?: string }>,
+            transcript: row.transcript,
+            timestamp: new Date(row.updated_at).getTime(),
+          }));
+          setChatHistory(list);
+        });
+    } else if (!supabase) {
+      try {
+        const saved = localStorage.getItem("som_chat_history");
+        if (saved) setChatHistory(JSON.parse(saved));
+      } catch {}
+    }
+  }, [supabase, user?.id]);
+
+  // Save current conversation to Supabase (or localStorage) whenever messages change
   useEffect(() => {
     if (messages.length === 0) return;
     const chatId = messages[0].id;
@@ -265,10 +360,21 @@ export default function Home() {
     setChatHistory((prev) => {
       const filtered = prev.filter((h) => h.id !== chatId);
       const next = [item, ...filtered].slice(0, 20);
-      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      if (!supabase) try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
       return next;
     });
-  }, [messages, selectedTranscript]);
+    if (supabase && user?.id) {
+      supabase
+        .from("chats")
+        .upsert(
+          { client_chat_id: chatId, title, messages, transcript: selectedTranscript, user_id: user.id },
+          { onConflict: "client_chat_id" }
+        )
+        .then(({ error }) => {
+          if (error) setDbError(error.message);
+        });
+    }
+  }, [messages, selectedTranscript, supabase, user?.id]);
 
   useEffect(() => {
     fetch("/api/transcripts")
@@ -287,13 +393,7 @@ export default function Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close chat context menu when clicking outside
-  useEffect(() => {
-    if (!openMenuId) return;
-    const handle = () => setOpenMenuId(null);
-    document.addEventListener("mousedown", handle);
-    return () => document.removeEventListener("mousedown", handle);
-  }, [openMenuId]);
+  // openMenuId is closed via a backdrop overlay rendered in the JSX — no document listener needed
 
   useEffect(() => {
     if (!showScrollBottom) {
@@ -346,42 +446,85 @@ export default function Home() {
   };
 
   const handleRestoreChat = (item: { id: string; messages: unknown[]; transcript: string | null }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setMessages(item.messages as any);
+    setMessages(item.messages as Parameters<typeof setMessages>[0]);
     setSelectedTranscript(item.transcript);
     setView("chat");
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
   const handleDeleteChat = useCallback((id: string) => {
+    if (supabase) {
+      supabase
+        .from("chats")
+        .delete()
+        .or(`client_chat_id.eq.${id},id.eq.${id}`)
+        .then(({ error }) => {
+          if (error) setDbError(error.message);
+        });
+    }
     setChatHistory((prev) => {
       const next = prev.filter((h) => h.id !== id);
-      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      if (!supabase) try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
       return next;
     });
+    if (messages.length > 0 && messages[0].id === id) {
+      setMessages([]);
+      setView("home");
+      setSelectedTranscript(null);
+    }
     setDeleteConfirmId(null);
     setOpenMenuId(null);
-  }, []);
+  }, [messages, setMessages, supabase]);
 
   const handleRenameChat = useCallback((id: string, newTitle: string) => {
     const trimmed = newTitle.trim();
     if (!trimmed) return;
+    if (supabase) {
+      supabase
+        .from("chats")
+        .update({ title: trimmed })
+        .or(`client_chat_id.eq.${id},id.eq.${id}`)
+        .then(({ error }) => {
+          if (error) setDbError(error.message);
+        });
+    }
     setChatHistory((prev) => {
-      const next = prev.map((h) => h.id === id ? { ...h, title: trimmed } : h);
-      try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
+      const next = prev.map((h) => (h.id === id ? { ...h, title: trimmed } : h));
+      if (!supabase) try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
       return next;
     });
     setRenameId(null);
     setRenameValue("");
-  }, []);
+  }, [supabase]);
 
   // Focus rename input when modal opens
   useEffect(() => {
     if (renameId) setTimeout(() => renameInputRef.current?.focus(), 50);
   }, [renameId]);
 
+  // Auto-clear DB error after 5s
+  useEffect(() => {
+    if (!dbError) return;
+    const t = setTimeout(() => setDbError(null), 5000);
+    return () => clearTimeout(t);
+  }, [dbError]);
+
   return (
     <>
+    {/* DB error toast — dismissible, auto-clears after 5s */}
+    {dbError && (
+      <div className="fixed bottom-4 left-4 right-4 z-[100] flex items-center justify-between gap-3 rounded-xl border border-red-500/30 bg-[#1a1a1a] px-4 py-3 shadow-xl sm:left-auto sm:right-4 sm:max-w-sm">
+        <p className="text-sm text-red-300">{dbError}</p>
+        <button
+          type="button"
+          onClick={() => setDbError(null)}
+          className="shrink-0 rounded-lg p-1.5 text-[#888] hover:bg-[#2a2a2a] hover:text-[#ececec] transition-colors"
+          aria-label="Dismiss"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    )}
     <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
 
       {/* ── Mobile backdrop ── */}
@@ -408,7 +551,14 @@ export default function Home() {
 
           {/* Header */}
           <div className="flex items-center justify-between px-4 pb-1 pt-safe-area-lg lg:pt-4">
-            <span className="text-sm font-semibold text-[#ececec] tracking-tight">School of Mentors</span>
+            <button
+              type="button"
+              onClick={() => setView("home")}
+              className="text-left"
+              aria-label="Go to home"
+            >
+              <span className="text-lg lg:text-xl font-brand text-[#ececec] tracking-tight select-none">School of Mentors</span>
+            </button>
             <button
               onClick={() => setSidebarOpen(false)}
               className="p-1.5 rounded-lg text-[#666] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
@@ -541,7 +691,6 @@ export default function Home() {
                     </button>
                     {/* Three-dot menu trigger */}
                     <button
-                      onMouseDown={(e) => e.stopPropagation()}
                       onClick={(e) => { e.stopPropagation(); setOpenMenuId(openMenuId === item.id ? null : item.id); }}
                       className={`absolute right-1.5 top-1/2 -translate-y-1/2 p-1 rounded-md transition-all cursor-pointer
                         ${openMenuId === item.id
@@ -553,31 +702,32 @@ export default function Home() {
                         <circle cx="12" cy="5" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="12" cy="19" r="2" />
                       </svg>
                     </button>
-                    {/* Dropdown */}
+                    {/* Dropdown + backdrop */}
                     {openMenuId === item.id && (
-                      <div
-                        onMouseDown={(e) => e.stopPropagation()}
-                        className="absolute right-1 top-full mt-1 w-40 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1"
-                      >
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setRenameId(item.id); setRenameValue(item.title); setOpenMenuId(null); }}
-                          className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#ccc] hover:text-[#ececec] hover:bg-[#333] transition-colors cursor-pointer"
-                        >
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                          </svg>
-                          Rename
-                        </button>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(item.id); setOpenMenuId(null); }}
-                          className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:bg-[#333] transition-colors cursor-pointer"
-                        >
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14H6L5 6" /><path d="M10 11v6" /><path d="M14 11v6" /><path d="M9 6V4h6v2" />
-                          </svg>
-                          Delete
-                        </button>
-                      </div>
+                      <>
+                        {/* Invisible fullscreen backdrop — tapping outside closes menu without swallowing the tap */}
+                        <div className="fixed inset-0 z-40" onClick={() => setOpenMenuId(null)} />
+                        <div className="absolute right-1 top-full mt-1 w-40 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1">
+                          <button
+                            onClick={() => { setRenameId(item.id); setRenameValue(item.title); setOpenMenuId(null); }}
+                            className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#ccc] hover:text-[#ececec] hover:bg-[#333] transition-colors cursor-pointer"
+                          >
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            Rename
+                          </button>
+                          <button
+                            onClick={() => { setDeleteConfirmId(item.id); setOpenMenuId(null); }}
+                            className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-red-400 hover:bg-[#333] transition-colors cursor-pointer"
+                          >
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14H6L5 6" /><path d="M10 11v6" /><path d="M14 11v6" /><path d="M9 6V4h6v2" />
+                            </svg>
+                            Delete
+                          </button>
+                        </div>
+                      </>
                     )}
                   </div>
                 ));
@@ -592,7 +742,7 @@ export default function Home() {
             {profileOpen && (
               <div className="absolute bottom-full left-2 right-2 mb-2 bg-[#323232] rounded-xl shadow-2xl overflow-hidden py-1.5 z-50">
                 <div className="px-3 py-2 mb-0.5">
-                  <p className="text-xs text-[#666]">joel@schoolofmentors.com</p>
+                  <p className="text-xs text-[#666] truncate">{user?.email ?? ""}</p>
                 </div>
                 <MenuDivider />
                 <div className="px-1.5">
@@ -609,11 +759,16 @@ export default function Home() {
                 </div>
                 <MenuDivider />
                 <div className="px-1.5">
-                  <MenuItem label="Log out" danger icon={
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
-                    </svg>
-                  } />
+                  <MenuItem
+                    label="Log out"
+                    danger
+                    onClick={async () => { await signOut(); setProfileOpen(false); window.location.href = "/login"; }}
+                    icon={
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
+                      </svg>
+                    }
+                  />
                 </div>
               </div>
             )}
@@ -623,11 +778,11 @@ export default function Home() {
               className="w-full flex items-center gap-3 px-3 py-2 cursor-pointer"
             >
               <div className="w-9 h-9 rounded-full bg-transparent border border-[#505050] flex items-center justify-center text-[#ececec] text-sm font-semibold flex-shrink-0">
-                J
+                {initials}
               </div>
               <div className="text-left min-w-0">
-                <p className="text-sm text-[#ececec] font-medium truncate">Joel Kaplan</p>
-                <p className="text-xs text-[#666] truncate">School of Mentors</p>
+                <p className="text-sm text-[#ececec] font-medium truncate">{profileDisplayName}</p>
+                <p className="text-xs text-[#666] truncate select-none">School of Mentors</p>
               </div>
             </button>
           </div>
@@ -722,10 +877,10 @@ export default function Home() {
                   draggable={false}
                 />
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-light text-[#ececec] mb-3 tracking-tight animate-fade-up-delay">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-brand text-[#ececec] mb-2 tracking-tight animate-fade-up-delay">
                 {greeting},{" "}
                 <span className="relative inline-block pb-2">
-                  {userName}
+                  {firstName}
                   <svg
                     className="absolute w-[140%] h-[20px] -bottom-1 -left-[5%] text-[#890B0F]"
                     viewBox="0 0 140 24"
@@ -764,7 +919,7 @@ export default function Home() {
         ) : view === "podcasts" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-serif font-light text-[#ececec] mb-1">Podcasts</h2>
+              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
               <p className="hidden lg:block text-sm text-[#555] mb-8">Select an episode to start a conversation.</p>
 
               {transcriptList.length === 0 ? (
@@ -884,7 +1039,7 @@ export default function Home() {
         ) : view === "recordings" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-serif font-light text-[#ececec] mb-1">Call Recordings</h2>
+              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Call Recordings</h2>
               <p className="hidden lg:block text-sm text-[#555] mb-8">Your recorded mentor sessions, all in one place.</p>
               <EmptyState
                 icon={
@@ -902,7 +1057,7 @@ export default function Home() {
         ) : view === "sessions" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-serif font-light text-[#ececec] mb-1">Mentor Sessions</h2>
+              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Mentor Sessions</h2>
               <p className="hidden lg:block text-sm text-[#555] mb-8">Track your progress with your assigned mentors.</p>
               <EmptyState
                 icon={
@@ -951,8 +1106,9 @@ export default function Home() {
                   const firstAssistantIdx = messages.findIndex((msg) => msg.role === "assistant");
                   return messages.map((m, msgIdx) => {
                     // Extract text once — reused for render + copy
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const msgText = (m.parts as any[]).filter((p) => p.type === "text").map((p) => p.text as string).join("");
+                    const msgText = getMessageText(m.parts);
+                    const isStreamingThis = m.role === "assistant" && status === "streaming" && msgIdx === messages.length - 1;
+                    const contentToRender = isStreamingThis ? streamingDisplayText : msgText;
                     return (
                     <div key={m.id} className="flex flex-col gap-2">
                       {/* Message bubble */}
@@ -968,7 +1124,7 @@ export default function Home() {
                             : "text-[#ececec]"
                         }`}>
                           {m.role === "assistant" ? (
-                            <MarkdownContent content={msgText} />
+                            <MarkdownContent content={contentToRender} />
                           ) : (
                             msgText
                           )}
@@ -1096,7 +1252,7 @@ export default function Home() {
             </button>
             <button
               onClick={() => handleDeleteChat(deleteConfirmId)}
-              className="px-4 py-2 rounded-lg text-sm font-medium bg-red-600 hover:bg-red-500 text-white transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-lg text-sm font-medium bg-[#890B0D] hover:bg-[#a00e10] text-white transition-colors cursor-pointer"
             >
               Delete
             </button>
