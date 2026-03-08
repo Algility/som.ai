@@ -210,6 +210,10 @@
   .pt-safe-area-lg {
     padding-top: max(1rem, env(safe-area-inset-top));
   }
+  /* Auth pages: more top padding so logo + title don’t sit flush at the top */
+  .pt-safe-area-auth {
+    padding-top: max(2.25rem, calc(env(safe-area-inset-top, 0px) + 1.5rem));
+  }
   /* Top offset for absolutely positioned elements */
   .top-safe-area {
     top: max(0.75rem, env(safe-area-inset-top));

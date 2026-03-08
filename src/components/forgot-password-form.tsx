@@ -12,6 +12,12 @@ function getAuthErrorMessage(err: unknown): string {
   if (/rate limit|too many requests|email.*limit/i.test(msg)) {
     return "Too many emails sent. Please wait an hour and try again.";
   }
+  if (/network|failed to fetch|load failed|connection/i.test(msg)) {
+    return "Connection failed. Check your network and try again.";
+  }
+  if (/missing.*email|missing.*phone|email.*required/i.test(msg)) {
+    return "Please enter your email address.";
+  }
   return msg;
 }
 
@@ -67,25 +73,30 @@ export function ForgotPasswordForm({ className }: { className?: string }) {
     }
   };
 
+  const errorId = "forgot-password-error";
   return (
-    <form onSubmit={handleSubmit} className={className}>
+    <form onSubmit={handleSubmit} className={className} aria-label="Reset password" noValidate>
       <FieldGroup className="gap-6">
         <div className="space-y-0.5 mb-0.5">
           <h1 className="text-2xl font-bold text-[#ececec]">Reset password</h1>
           <p className="text-sm font-medium text-[#a3a3a3]">We'll email you a reset link.</p>
         </div>
-        {error && <p className="text-base text-[#e07c7c]" role="alert" aria-live="polite">{error}</p>}
+        {error && <p id={errorId} className="text-base text-[#e07c7c]" role="alert" aria-live="assertive">{error}</p>}
         <Field>
           <FieldLabel htmlFor="email" className="text-base">Email</FieldLabel>
           <Input
             id="email"
+            name="email"
             type="email"
+            inputMode="email"
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             className="max-lg:min-h-[48px] transition-colors duration-150"
             autoComplete="email"
+            aria-invalid={!!error}
+            aria-describedby={error ? errorId : undefined}
           />
         </Field>
         <Button type="submit" disabled={submitting} className="w-full h-11 max-lg:min-h-[48px] text-base transition-colors duration-150 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-[#890B0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:outline-none">

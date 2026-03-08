@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
@@ -49,6 +48,15 @@ function getAuthErrorMessage(err: unknown): string {
   if (/rate limit|too many requests|email.*limit/i.test(msg)) {
     return "Too many emails sent. Please wait an hour and try again.";
   }
+  if (/network|failed to fetch|load failed|connection|timed out/i.test(msg)) {
+    return "Connection failed. Check your network and try again.";
+  }
+  if (err instanceof TypeError && /fetch|load failed/i.test(String(err))) {
+    return "Connection failed. Check your network and try again.";
+  }
+  if (/missing.*email|missing.*phone|email.*required|invalid login credentials/i.test(msg)) {
+    return "Please enter your email and password.";
+  }
   return msg;
 }
 
@@ -58,7 +66,6 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"form"> & { errorFromUrl?: string }) {
   const { signIn, signUp, signInWithGoogle, loading: authLoading } = useAuth();
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -71,6 +78,7 @@ export function LoginForm({
   const [signUpEmailSent, setSignUpEmailSent] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
 
   if (authLoading) {
     return (
@@ -103,11 +111,15 @@ export function LoginForm({
         if (data?.user && !data?.session) {
           setSignUpEmailSent(true);
         } else {
-          router.replace("/onboarding");
+          setRedirecting(true);
+          setTimeout(() => { window.location.href = "/onboarding"; }, 150);
+          return;
         }
       } else {
         await signIn(email, password);
-        router.replace("/");
+        setRedirecting(true);
+        setTimeout(() => { window.location.href = "/"; }, 150);
+        return;
       }
     } catch (err) {
       setError(getAuthErrorMessage(err));
@@ -148,8 +160,9 @@ export function LoginForm({
     );
   }
 
+  const errorId = "login-error";
   return (
-    <form onSubmit={handleSubmit} className={cn("flex flex-col gap-6", className)} {...props}>
+    <form onSubmit={handleSubmit} className={cn("flex flex-col gap-6", className)} aria-label={isSignUp ? "Sign up" : "Sign in"} noValidate {...props}>
       <FieldGroup className={isSignUp ? "gap-4" : "gap-6"}>
         <div className="space-y-0.5 mb-0.5">
           <h1 className="text-2xl font-bold text-[#ececec]">
@@ -161,22 +174,31 @@ export function LoginForm({
         </div>
 
         {error && (
-          <p className="text-base text-[#e07c7c]" role="alert" aria-live="polite">
-            {error}
-          </p>
+          <div className="space-y-1">
+            <p id={errorId} className="text-base text-[#e07c7c]" role="alert" aria-live="assertive">
+              {error}
+            </p>
+            {errorFromUrl && (errorFromUrl === "verify_failed" || errorFromUrl === "missing_code" || errorFromUrl === "missing_token") && (
+              <p className="text-sm text-[#a3a3a3]">Sign in again below or use Forgot password to get a new link.</p>
+            )}
+          </div>
         )}
 
         <Field>
           <FieldLabel htmlFor="email" className="text-base">Email</FieldLabel>
           <Input
             id="email"
+            name="email"
             type="email"
+            inputMode="email"
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             className="max-lg:min-h-[48px] transition-colors duration-150"
             autoComplete="email"
+            aria-invalid={!!error}
+            aria-describedby={error ? errorId : undefined}
           />
         </Field>
 
@@ -185,12 +207,15 @@ export function LoginForm({
           <div className="relative">
             <Input
               id="password"
+              name="password"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               className="pr-10 max-lg:min-h-[48px] transition-colors duration-150"
               autoComplete={isSignUp ? "new-password" : "current-password"}
+              aria-invalid={!!error}
+              aria-describedby={error ? errorId : undefined}
             />
             <button
               type="button"
@@ -223,12 +248,15 @@ export function LoginForm({
             <div className="relative">
               <Input
                 id="confirmPassword"
+                name="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 className="pr-10 max-lg:min-h-[48px] transition-colors duration-150"
                 autoComplete="new-password"
+                aria-invalid={!!error}
+                aria-describedby={error ? errorId : undefined}
               />
               <button
                 type="button"
@@ -246,13 +274,19 @@ export function LoginForm({
           </Field>
         )}
 
-        <Button
-          type="submit"
-          disabled={submitting}
-          className="w-full h-11 max-lg:min-h-[48px] text-base transition-colors duration-150 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-[#890B0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:outline-none"
-        >
-          {submitting ? (isSignUp ? "Signing up..." : "Signing in...") : (isSignUp ? "Sign up" : "Sign in")}
-        </Button>
+        <div className="space-y-1.5">
+          <Button
+            type="submit"
+            disabled={submitting || redirecting}
+            className="w-full h-11 max-lg:min-h-[48px] text-base transition-colors duration-150 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-[#890B0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:outline-none"
+          >
+            {redirecting
+              ? (isSignUp ? "Taking you to onboarding…" : "Taking you in…")
+              : submitting
+                ? (isSignUp ? "Signing up…" : "Signing in…")
+                : (isSignUp ? "Sign up" : "Sign in")}
+          </Button>
+        </div>
 
         <div className="relative flex items-center gap-3 py-1.5">
           <div className="flex-1 border-t border-[#505050] min-w-0" aria-hidden />

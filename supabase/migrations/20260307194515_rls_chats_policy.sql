@@ -1,0 +1,1 @@
+-- RLS policy for chats (placeholder; add your policies here if needed).

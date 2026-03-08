@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
+import Image from "next/image";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import ReactMarkdown from "react-markdown";
@@ -211,7 +212,7 @@ const MarkdownContent = React.memo(function MarkdownContent({ content }: { conte
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [view, setView] = useState<"home" | "chat" | "podcasts" | "recordings" | "sessions">("home");
+  const [view, setView] = useState<"home" | "chat" | "podcasts" | "recordings" | "sessions" | "settings">("home");
   const [selectedModel, setSelectedModel] = useState("haiku-4.5");
   const [selectedTranscript, setSelectedTranscript] = useState<string | null>(null);
   const [transcriptList, setTranscriptList] = useState<{ title: string; preview: string; summary?: string; youtube?: string }[]>([]);
@@ -232,9 +233,13 @@ export default function Home() {
   const [showScrollBottom, setShowScrollBottom] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [renameId, setRenameId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState("");
   const renameInputRef = useRef<HTMLInputElement>(null);
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+  const [avatarUploading, setAvatarUploading] = useState(false);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<Array<{
@@ -276,6 +281,60 @@ export default function Home() {
     if (firstName && firstName !== "there") return firstName.slice(0, 2).toUpperCase();
     return user?.email?.slice(0, 2).toUpperCase() ?? "?";
   })();
+  const avatarUrl = (user?.user_metadata?.avatar_url as string) || null;
+
+  const handleAvatarChange = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file || !user?.id) return;
+    if (!file.type.startsWith("image/")) {
+      setAvatarError("Please choose an image file.");
+      return;
+    }
+    setAvatarError(null);
+    setAvatarUploading(true);
+    try {
+      const supabase = createClient();
+      if (!supabase) throw new Error("Not configured");
+      const ext = file.name.split(".").pop() || "jpg";
+      const path = `${user.id}/avatar.${ext}`;
+      const { error: uploadError } = await supabase.storage.from("avatars").upload(path, file, { upsert: true });
+      if (uploadError) throw uploadError;
+      const { data: { publicUrl } } = supabase.storage.from("avatars").getPublicUrl(path);
+      const { error: updateError } = await supabase.auth.updateUser({ data: { avatar_url: publicUrl } });
+      if (updateError) throw updateError;
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to update photo.";
+      setAvatarError(
+        /bucket.*not found|Bucket not found/i.test(msg)
+          ? "Avatars bucket missing. In Supabase Dashboard run Storage → New bucket → name “avatars”, set Public, then add policies (see AUTH_SETUP.md)."
+          : msg
+      );
+    } finally {
+      setAvatarUploading(false);
+      if (avatarInputRef.current) avatarInputRef.current.value = "";
+    }
+  }, [user?.id]);
+
+  const handleAvatarRemove = useCallback(async () => {
+    if (!user?.id) return;
+    setAvatarError(null);
+    setAvatarUploading(true);
+    try {
+      const supabase = createClient();
+      if (!supabase) throw new Error("Not configured");
+      const { data: files } = await supabase.storage.from("avatars").list(user.id);
+      if (files?.length) {
+        const paths = files.map((f) => `${user.id}/${f.name}`);
+        await supabase.storage.from("avatars").remove(paths);
+      }
+      await supabase.auth.updateUser({ data: { avatar_url: "" } });
+    } catch (err) {
+      setAvatarError(err instanceof Error ? err.message : "Failed to remove photo.");
+    } finally {
+      setAvatarUploading(false);
+    }
+  }, [user?.id]);
 
   const { messages, sendMessage, status, setMessages, stop } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
@@ -355,6 +414,7 @@ export default function Home() {
   useEffect(() => {
     if (messages.length === 0) return;
     const chatId = messages[0].id;
+    setActiveChatId(chatId);
     const title = getChatTitle(messages);
     const item = { id: chatId, title, messages, transcript: selectedTranscript, timestamp: Date.now() };
     setChatHistory((prev) => {
@@ -442,51 +502,50 @@ export default function Home() {
     setMessages([]);
     setView("home");
     setSelectedTranscript(null);
+    setActiveChatId(null);
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
   const handleRestoreChat = (item: { id: string; messages: unknown[]; transcript: string | null }) => {
     setMessages(item.messages as Parameters<typeof setMessages>[0]);
     setSelectedTranscript(item.transcript);
+    setActiveChatId(item.id);
     setView("chat");
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
+  const isUuid = (s: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
+
   const handleDeleteChat = useCallback((id: string) => {
     if (supabase) {
-      supabase
-        .from("chats")
-        .delete()
-        .or(`client_chat_id.eq.${id},id.eq.${id}`)
-        .then(({ error }) => {
-          if (error) setDbError(error.message);
-        });
+      const q = supabase.from("chats").delete();
+      (isUuid(id) ? q.eq("id", id) : q.eq("client_chat_id", id)).then(({ error }) => {
+        if (error) setDbError(error.message);
+      });
     }
     setChatHistory((prev) => {
       const next = prev.filter((h) => h.id !== id);
       if (!supabase) try { localStorage.setItem("som_chat_history", JSON.stringify(next)); } catch {}
       return next;
     });
-    if (messages.length > 0 && messages[0].id === id) {
+    if (id === activeChatId) {
       setMessages([]);
       setView("home");
       setSelectedTranscript(null);
+      setActiveChatId(null);
     }
     setDeleteConfirmId(null);
     setOpenMenuId(null);
-  }, [messages, setMessages, supabase]);
+  }, [activeChatId, setMessages, supabase]);
 
   const handleRenameChat = useCallback((id: string, newTitle: string) => {
     const trimmed = newTitle.trim();
     if (!trimmed) return;
     if (supabase) {
-      supabase
-        .from("chats")
-        .update({ title: trimmed })
-        .or(`client_chat_id.eq.${id},id.eq.${id}`)
-        .then(({ error }) => {
-          if (error) setDbError(error.message);
-        });
+      const q = supabase.from("chats").update({ title: trimmed });
+      (isUuid(id) ? q.eq("id", id) : q.eq("client_chat_id", id)).then(({ error }) => {
+        if (error) setDbError(error.message);
+      });
     }
     setChatHistory((prev) => {
       const next = prev.map((h) => (h.id === id ? { ...h, title: trimmed } : h));
@@ -547,7 +606,7 @@ export default function Home() {
           : "-translate-x-full lg:translate-x-0 lg:w-0 lg:border-r-0"
         }`}>
 
-        <div className="flex flex-col h-full w-[260px] overflow-hidden">
+        <div className="flex flex-col h-full w-[260px] min-h-0 overflow-visible">
 
           {/* Header */}
           <div className="flex items-center justify-between px-4 pb-1 pt-safe-area-lg lg:pt-4">
@@ -572,7 +631,7 @@ export default function Home() {
           <div className="px-3 py-1 space-y-0.5">
             <button
               onClick={handleNewChat}
-              className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[#ececec] hover:bg-[#2a2a2a] transition-colors font-medium cursor-pointer"
+              className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[#8a8a8a] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
             >
               <span className="w-4 h-4 flex-shrink-0">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -663,10 +722,21 @@ export default function Home() {
                 </svg>
               }
             />
+            <NavItem
+              active={view === "settings"}
+              onClick={() => { setView("settings"); if (window.innerWidth < 1024) setSidebarOpen(false); }}
+              label="Settings"
+              icon={
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              }
+            />
           </div>
 
           {/* Recents */}
-          <div className="flex-1 overflow-y-auto px-3 mt-2">
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 mt-2">
             <p className="text-xs text-[#555] px-2 py-1.5 font-medium uppercase tracking-wider">Recents</p>
             <div className="space-y-0.5">
               {(() => {
@@ -735,18 +805,17 @@ export default function Home() {
             </div>
           </div>
 
-          {/* User profile */}
-          <div className="h-px bg-[#403F3D]" />
-          <div className={`px-3 pb-3 pt-2 relative cursor-pointer ${profileOpen ? "bg-[#2a2a2a]" : "hover:bg-[#222]"}`} ref={profileRef}>
-
+          {/* User profile — overflow-visible so popup above is not clipped */}
+          <div className="h-px bg-[#403F3D] flex-shrink-0" />
+          <div className="px-2 pb-3 pt-1.5 relative overflow-visible flex-shrink-0" ref={profileRef}>
             {profileOpen && (
-              <div className="absolute bottom-full left-2 right-2 mb-2 bg-[#323232] rounded-xl shadow-2xl overflow-hidden py-1.5 z-50">
-                <div className="px-3 py-2 mb-0.5">
-                  <p className="text-xs text-[#666] truncate">{user?.email ?? ""}</p>
+              <div className="absolute bottom-full left-2 right-2 mb-2 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl z-50 py-2 min-w-0 overflow-hidden">
+                <div className="px-3 py-2.5 mb-1 border-b border-[#383838]">
+                  <p className="text-xs text-[#737373] font-medium uppercase tracking-wider">Account</p>
+                  <p className="text-sm text-[#a3a3a3] truncate mt-0.5">{user?.email ?? ""}</p>
                 </div>
-                <MenuDivider />
-                <div className="px-1.5">
-                  <MenuItem label="Settings" right="⇧⌘," icon={
+                <div className="px-1.5 pt-1">
+                  <MenuItem label="Settings" right="⇧⌘," onClick={() => { setView("settings"); setProfileOpen(false); if (window.innerWidth < 1024) setSidebarOpen(false); }} icon={
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" />
                     </svg>
@@ -757,7 +826,7 @@ export default function Home() {
                     </svg>
                   } />
                 </div>
-                <MenuDivider />
+                <div className="h-px bg-[#383838] my-1" />
                 <div className="px-1.5">
                   <MenuItem
                     label="Log out"
@@ -775,15 +844,26 @@ export default function Home() {
 
             <button
               onClick={() => setProfileOpen(!profileOpen)}
-              className="w-full flex items-center gap-3 px-3 py-2 cursor-pointer"
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors cursor-pointer ${profileOpen ? "bg-[#2a2a2a]" : "hover:bg-[#2a2a2a]"}`}
+              aria-expanded={profileOpen}
+              aria-haspopup="true"
             >
-              <div className="w-9 h-9 rounded-full bg-transparent border border-[#505050] flex items-center justify-center text-[#ececec] text-sm font-semibold flex-shrink-0">
-                {initials}
-              </div>
-              <div className="text-left min-w-0">
+              {avatarUrl ? (
+                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 border border-[#404040] bg-[#333]">
+                  <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="w-9 h-9 rounded-full bg-[#333] border border-[#404040] flex items-center justify-center text-[#ececec] text-sm font-semibold flex-shrink-0">
+                  {initials}
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
                 <p className="text-sm text-[#ececec] font-medium truncate">{profileDisplayName}</p>
-                <p className="text-xs text-[#666] truncate select-none">School of Mentors</p>
+                <p className="text-xs text-[#737373] truncate select-none">School of Mentors</p>
               </div>
+              <svg className={`w-4 h-4 text-[#666] flex-shrink-0 transition-transform ${profileOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </div>
         </div>
@@ -820,7 +900,7 @@ export default function Home() {
                 })()
               ) : (
                 <span className="text-sm font-semibold text-[#ececec]">
-                  {view === "podcasts" ? "Podcasts" : view === "recordings" ? "Call Recordings" : view === "sessions" ? "Mentor Sessions" : ""}
+                  {view === "podcasts" ? "Podcasts" : view === "recordings" ? "Call Recordings" : view === "sessions" ? "Mentor Sessions" : view === "settings" ? "Settings" : ""}
                 </span>
               )}
             </div>
@@ -1074,6 +1154,93 @@ export default function Home() {
             </div>
           </main>
 
+        /* ── Settings ── */
+        ) : view === "settings" ? (
+          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-brand-sub text-[#ececec] mb-1">Settings</h2>
+              <p className="text-sm text-[#555] mb-8">Manage your account and preferences.</p>
+
+              <section className="rounded-2xl bg-[#1c1c1c] border border-[#272727] overflow-hidden mb-6">
+                <div className="px-4 py-3 border-b border-[#272727]">
+                  <h3 className="text-sm font-semibold text-[#ececec]">Account</h3>
+                </div>
+                <div className="p-4 space-y-5">
+                  <div className="flex items-center gap-4">
+                    <input
+                      ref={avatarInputRef}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleAvatarChange}
+                    />
+                    <button
+                      type="button"
+                      disabled={avatarUploading}
+                      onClick={() => {
+                      if (avatarInputRef.current) {
+                        avatarInputRef.current.value = "";
+                        avatarInputRef.current.click();
+                      }
+                    }}
+                      className="flex-shrink-0 rounded-full focus:outline-none focus:ring-2 focus:ring-[#890B0F] focus:ring-offset-2 focus:ring-offset-[#1c1c1c] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      aria-label={avatarUploading ? "Uploading…" : "Change profile photo"}
+                    >
+                      {avatarUrl ? (
+                        <div className="w-16 h-16 rounded-full overflow-hidden border border-[#383838] bg-[#2a2a2a] ring-2 ring-transparent hover:ring-[#383838] transition-all">
+                          <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
+                        </div>
+                      ) : (
+                        <div className="w-16 h-16 rounded-full bg-[#333] border border-[#404040] flex items-center justify-center text-[#ececec] text-xl font-semibold ring-2 ring-transparent hover:ring-[#383838] transition-all">
+                          {initials}
+                        </div>
+                      )}
+                    </button>
+                    {avatarUrl && (
+                      <button
+                        type="button"
+                        disabled={avatarUploading}
+                        onClick={handleAvatarRemove}
+                        className="text-sm text-[#737373] hover:text-[#a3a3a3] disabled:opacity-50 transition-colors cursor-pointer"
+                      >
+                        {avatarUploading ? "…" : "Remove photo"}
+                      </button>
+                    )}
+                    {avatarError && <p className="text-xs text-red-400">{avatarError}</p>}
+                  </div>
+                  <div className="h-px bg-[#272727]" />
+                  <div>
+                    <p className="text-xs font-medium text-[#737373] uppercase tracking-wider mb-1">Email</p>
+                    <p className="text-sm text-[#d4d4d4]">{user?.email ?? "—"}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-[#737373] uppercase tracking-wider mb-1">Name</p>
+                    <p className="text-sm text-[#d4d4d4]">{profileDisplayName}</p>
+                  </div>
+                </div>
+              </section>
+
+              <section className="rounded-2xl bg-[#1c1c1c] border border-[#272727] overflow-hidden">
+                <div className="px-4 py-3 border-b border-[#272727]">
+                  <h3 className="text-sm font-semibold text-[#ececec]">Support</h3>
+                </div>
+                <div className="p-4 space-y-3">
+                  <p className="text-sm text-[#a3a3a3]">Need help? Reach out to the School of Mentors team.</p>
+                  <a
+                    href="mailto:support@schoolofmentors.com"
+                    className="inline-flex items-center gap-2 text-sm text-[#7eb8da] hover:text-[#9ecce8] transition-colors"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    support@schoolofmentors.com
+                  </a>
+                </div>
+              </section>
+            </div>
+          </main>
+
         /* ── Chat ── */
         ) : (
           <main className="flex-1 flex flex-col overflow-hidden relative">
@@ -1115,7 +1282,7 @@ export default function Home() {
                       <div className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                         {m.role === "assistant" && (
                           <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
-                            <img src="/logo.png" alt="SOM" className="w-7 h-7 object-contain select-none pointer-events-none" />
+                            <Image src="/logo.png" alt="SOM" width={28} height={28} className="w-7 h-7 object-contain select-none pointer-events-none" />
                           </div>
                         )}
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -1210,7 +1377,7 @@ export default function Home() {
                 {isLoading && messages[messages.length - 1]?.role === "user" && (
                   <div className="flex justify-start">
                     <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
-                      <img src="/logo.png" alt="SOM" className="w-7 h-7 object-contain select-none pointer-events-none" />
+                      <Image src="/logo.png" alt="SOM" width={28} height={28} className="w-7 h-7 object-contain select-none pointer-events-none" />
                     </div>
                     <div className="py-3.5 flex items-center gap-[5px]">
                       <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0s" }} />

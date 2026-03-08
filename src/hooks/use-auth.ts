@@ -4,6 +4,18 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import type { User, Session } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase";
 
+const SESSION_CHECK_TIMEOUT_MS = 4_000;
+const AUTH_REQUEST_TIMEOUT_MS = 15_000;
+
+function withTimeout<T>(p: Promise<T>, ms: number, message: string): Promise<T> {
+  return Promise.race([
+    p,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(message)), ms)
+    ),
+  ]);
+}
+
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
@@ -17,11 +29,15 @@ export function useAuth() {
       setLoading(false);
       return;
     }
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
+    const sessionPromise = supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s);
       setUser(s?.user ?? null);
-      setLoading(false);
     });
+    const timeoutPromise = new Promise<void>((resolve) =>
+      setTimeout(resolve, SESSION_CHECK_TIMEOUT_MS)
+    );
+    Promise.race([sessionPromise, timeoutPromise]).finally(() => setLoading(false));
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, s) => {
@@ -34,7 +50,11 @@ export function useAuth() {
   const signIn = useCallback(
     async (email: string, password: string) => {
       if (!supabase) throw new Error("Supabase not configured");
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await withTimeout(
+        supabase.auth.signInWithPassword({ email, password }),
+        AUTH_REQUEST_TIMEOUT_MS,
+        "Connection timed out. Check your network and try again."
+      );
       if (error) throw error;
     },
     [supabase]
@@ -47,14 +67,18 @@ export function useAuth() {
       const first = firstName?.trim();
       const last = lastName?.trim();
       const full_name = first && last ? `${first} ${last}` : first || undefined;
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${origin}/auth/confirm`,
-          data: full_name ? { full_name } : undefined,
-        },
-      });
+      const { data, error } = await withTimeout(
+        supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${origin}/auth/confirm`,
+            data: full_name ? { full_name } : undefined,
+          },
+        }),
+        AUTH_REQUEST_TIMEOUT_MS,
+        "Connection timed out. Check your network and try again."
+      );
       if (error) throw error;
       return data;
     },
@@ -65,9 +89,13 @@ export function useAuth() {
     async (email: string) => {
       if (!supabase) throw new Error("Supabase not configured");
       const origin = typeof window !== "undefined" ? window.location.origin : "";
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${origin}/auth/confirm?next=/login`,
-      });
+      const { error } = await withTimeout(
+        supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${origin}/auth/confirm?next=/login`,
+        }),
+        AUTH_REQUEST_TIMEOUT_MS,
+        "Connection timed out. Check your network and try again."
+      );
       if (error) throw error;
     },
     [supabase]

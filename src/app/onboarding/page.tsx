@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/use-auth";
 import { createClient } from "@/lib/supabase";
@@ -118,47 +119,54 @@ export default function OnboardingPage() {
   return (
     <div className="min-h-svh flex bg-[#1a1a1a]">
       <div className="flex-1 flex flex-col min-h-0">
-        <div className="flex-shrink-0 px-4 pt-safe-area pb-1.5">
+        <div className="flex-shrink-0 px-4 pt-safe-area-auth pb-1.5">
           <Link href="/" className="inline-flex items-center gap-2 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#353535] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]" aria-label="Home">
-            <img src="/logo.png" alt="" className="h-11 w-auto object-contain select-none pointer-events-none" width={44} height={44} draggable={false} />
+            <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-auto object-contain select-none pointer-events-none" priority />
             <span className="text-base font-brand text-[#ececec] tracking-tight select-none">School of Mentors AI</span>
           </Link>
         </div>
-        <div className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto py-5">
+        <main className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto py-5" aria-label="Onboarding">
           <div className="my-auto w-full max-w-sm px-4">
+            <p className="text-xs font-medium text-[#737373] mb-4" aria-hidden="true">Step {step} of 2</p>
             {step === 1 ? (
-              <form onSubmit={handleStep1} className="flex flex-col gap-6">
+              <form onSubmit={handleStep1} className="flex flex-col gap-6" aria-label="Set your name" noValidate>
               <FieldGroup className="gap-5">
                 <div className="space-y-0.5 mb-0.5">
                   <h1 className="text-2xl font-bold text-[#ececec]">Welcome! What should we call you?</h1>
                   <p className="text-sm font-medium text-[#a3a3a3]">We’ll use this in the app.</p>
                 </div>
 {error && (
-                <p className="text-base text-[#e07c7c]" role="alert" aria-live="polite">{error}</p>
+                <p id="onboarding-step1-error" className="text-base text-[#e07c7c]" role="alert" aria-live="assertive">{error}</p>
               )}
                 <div className="flex w-full gap-4">
                   <Field className="min-w-0 flex-1 basis-0">
                     <FieldLabel htmlFor="onboarding-firstName" className="text-base">First name</FieldLabel>
                     <Input
                       id="onboarding-firstName"
+                      name="firstName"
                       type="text"
                       placeholder="James"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="max-lg:min-h-[48px] transition-colors duration-150"
                       autoComplete="given-name"
+                      aria-invalid={!!error}
+                      aria-describedby={error ? "onboarding-step1-error" : undefined}
                     />
                   </Field>
                   <Field className="min-w-0 flex-1 basis-0">
                     <FieldLabel htmlFor="onboarding-lastName" className="text-base">Last name</FieldLabel>
                     <Input
                       id="onboarding-lastName"
+                      name="lastName"
                       type="text"
                       placeholder="Dumoulin"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       className="max-lg:min-h-[48px] transition-colors duration-150"
                       autoComplete="family-name"
+                      aria-invalid={!!error}
+                      aria-describedby={error ? "onboarding-step1-error" : undefined}
                     />
                   </Field>
                 </div>
@@ -172,22 +180,25 @@ export default function OnboardingPage() {
               </FieldGroup>
             </form>
             ) : (
-              <form onSubmit={handleStep2} className="flex flex-col gap-6">
+              <form onSubmit={handleStep2} className="flex flex-col gap-6" aria-label="Choose your goal" noValidate>
                 <FieldGroup className="gap-5">
                   <div className="space-y-0.5 mb-0.5">
                     <h1 className="text-2xl font-bold text-[#ececec]">What brings you here?</h1>
                     <p className="text-sm font-medium text-[#a3a3a3]">Help us personalize your experience.</p>
                   </div>
                   {error && (
-                    <p className="text-base text-[#e07c7c]" role="alert" aria-live="polite">{error}</p>
+                    <p id="onboarding-step2-error" className="text-base text-[#e07c7c]" role="alert" aria-live="assertive">{error}</p>
                   )}
                   <Field>
                     <FieldLabel htmlFor="onboarding-goal" className="text-base">I'm mainly here to</FieldLabel>
                     <select
                       id="onboarding-goal"
+                      name="goal"
                       value={goal}
                       onChange={(e) => setGoal(e.target.value)}
                       className="w-full h-11 max-lg:min-h-[48px] rounded-md border border-[#333] bg-[#1a1a1a] px-3 text-[#ececec] text-base transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#890B0F] focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
+                      aria-invalid={!!error}
+                      aria-describedby={error ? "onboarding-step2-error" : undefined}
                     >
                       <option value="">Select one…</option>
                       {GOAL_OPTIONS.map((opt) => (
@@ -222,18 +233,25 @@ export default function OnboardingPage() {
                       disabled={submitting}
                       className="flex-1 h-11 max-lg:min-h-[48px] text-base transition-colors duration-150 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-[#890B0F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a] focus-visible:outline-none"
                     >
-                      {submitting ? "Finishing…" : "Get started"}
+                      {submitting ? "Taking you in…" : "Get started"}
                     </Button>
                   </div>
                 </FieldGroup>
               </form>
             )}
           </div>
-        </div>
+        </main>
       </div>
       <div className="hidden lg:flex flex-1 min-h-svh flex-col items-center justify-center gap-3 bg-[#141414] p-8 flex-shrink-0">
-        <Link href="/" className="focus-visible:outline-none focus-visible:ring-0 rounded-lg no-underline">
-          <img src="/logo.png" alt="School of Mentors" className="w-56 h-56 object-contain select-none drop-shadow-none pointer-events-none" width={224} height={224} draggable={false} />
+        <Link href="/" className="focus-visible:outline-none focus-visible:ring-0 rounded-lg no-underline block w-fit">
+          <Image
+            src="/logo.png"
+            alt="School of Mentors"
+            width={256}
+            height={256}
+            className="w-48 h-48 lg:w-64 lg:h-64 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
+            priority
+          />
         </Link>
       </div>
     </div>

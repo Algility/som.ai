@@ -165,61 +165,32 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ models, selectedModel, on
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`inline-flex items-center justify-center relative shrink-0 transition font-base duration-300 ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-xl px-3 min-w-[4rem] active:scale-[0.98] whitespace-nowrap !text-xs pl-2.5 pr-2 gap-1
+        className={`inline-flex items-center justify-center relative shrink-0 transition h-8 rounded-xl px-2.5 min-w-0 active:scale-[0.98] whitespace-nowrap text-xs gap-1
           ${isOpen
-            ? "bg-bg-200 text-text-100 dark:bg-[#454540] dark:text-[#ECECEC]"
-            : "text-text-300 hover:text-text-200 hover:bg-bg-200 dark:text-[#B4B4B4] dark:hover:text-[#ECECEC] dark:hover:bg-[#454540]"
+            ? "bg-[#2a2a2a] text-[#ececec] border border-[#383838]"
+            : "text-[#a3a3a3] hover:text-[#ececec] hover:bg-[#2a2a2a] border border-transparent hover:border-[#383838]"
           }`}
       >
-        <div className="inline-flex gap-[3px] text-[14px] h-[14px] leading-none items-baseline">
-          <div className="flex items-center gap-[4px]">
-            <div className="whitespace-nowrap select-none font-medium">{currentModel.name}</div>
-          </div>
-        </div>
-        <div className="flex items-center justify-center opacity-75" style={{ width: "20px", height: "20px" }}>
-          <Icons.SelectArrow
-            className={`shrink-0 opacity-75 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-          />
-        </div>
+        <span className="select-none font-medium">{currentModel.name}</span>
+        <Icons.SelectArrow
+          className={`shrink-0 w-3.5 h-3.5 opacity-75 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full right-0 mb-2 w-[260px] bg-white dark:bg-[#212121] border border-[#DDDDDD] dark:border-[#30302E] rounded-2xl shadow-2xl overflow-hidden z-50 flex flex-col p-1.5 origin-bottom-right">
+        <div className="absolute bottom-full right-0 mb-2 w-[200px] bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-xl overflow-hidden z-50 flex flex-col py-1 origin-bottom-right">
           {models.map((model) => (
             <button
               key={model.id}
               onClick={() => { onSelect(model.id); setIsOpen(false); }}
-              className="w-full text-left px-3 py-2.5 rounded-xl flex items-start justify-between group transition-colors hover:bg-bg-200 dark:hover:bg-[#30302E]"
+              className="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between gap-2 transition-colors hover:bg-[#333] text-[#ececec]"
             >
-              <div className="flex flex-col gap-0.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-[13px] font-semibold text-text-100 dark:text-[#ECECEC]">
-                    {model.name}
-                  </span>
-                  {model.badge && (
-                    <span
-                      className={`px-1.5 py-[1px] rounded-full text-[10px] font-medium border ${
-                        model.badge === "Upgrade"
-                          ? "border-blue-200 text-blue-600 bg-white dark:border-blue-500/30 dark:text-blue-400 dark:bg-blue-500/10"
-                          : "border-bg-300 text-text-300"
-                      }`}
-                    >
-                      {model.badge}
-                    </span>
-                  )}
-                </div>
-                <span className="text-[11px] text-text-300 dark:text-[#999999]">{model.description}</span>
-              </div>
+              <span className="text-sm font-medium">{model.name}</span>
               {selectedModel === model.id && (
-                <Icons.Check className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-1" />
+                <Icons.Check className="w-4 h-4 text-[#890B0F] shrink-0" />
               )}
             </button>
           ))}
-          <div className="h-px bg-bg-300 dark:bg-[#30302E] my-1 mx-2" />
-          <button className="w-full text-left px-3 py-2.5 rounded-xl flex items-center justify-between transition-colors hover:bg-bg-200 dark:hover:bg-[#30302E] text-text-100 dark:text-[#ECECEC]">
-            <span className="text-[13px] font-semibold">More models</span>
-            <Icons.SelectArrow className="w-4 h-4 -rotate-90 text-text-300 dark:text-[#999999]" />
-          </button>
         </div>
       )}
     </div>

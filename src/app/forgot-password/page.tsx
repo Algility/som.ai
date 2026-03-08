@@ -1,25 +1,39 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ForgotPasswordForm } from "@/components/forgot-password-form";
+
+export const metadata = {
+  title: "Reset password | School of Mentors AI",
+  description: "Request a password reset link.",
+  robots: "noindex, nofollow",
+};
 
 export default function ForgotPasswordPage() {
   return (
     <div className="min-h-svh flex bg-[#1a1a1a]">
       <div className="flex-1 flex flex-col min-h-0">
-        <div className="flex-shrink-0 px-4 pt-safe-area pb-1.5">
+        <div className="flex-shrink-0 px-4 pt-safe-area-auth pb-1.5">
           <Link href="/login" className="inline-flex items-center gap-2 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#353535] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]" aria-label="Back to login">
-            <img src="/logo.png" alt="" className="h-11 w-auto object-contain select-none pointer-events-none" width={44} height={44} draggable={false} />
+            <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-auto object-contain select-none pointer-events-none" priority />
             <span className="text-base font-brand text-[#ececec] tracking-tight select-none">School of Mentors AI</span>
           </Link>
         </div>
-        <div className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto py-5">
+        <main className="flex-1 min-h-0 flex items-center justify-center overflow-y-auto py-5" aria-label="Reset password">
           <div className="my-auto w-full max-w-sm px-4">
             <ForgotPasswordForm />
           </div>
-        </div>
+        </main>
       </div>
       <div className="hidden lg:flex flex-1 min-h-svh flex-col items-center justify-center gap-3 bg-[#141414] p-8 flex-shrink-0">
-        <Link href="/" className="focus-visible:outline-none focus-visible:ring-0 rounded-lg no-underline">
-          <img src="/logo.png" alt="School of Mentors" className="w-56 h-56 object-contain select-none drop-shadow-none pointer-events-none" width={224} height={224} draggable={false} />
+        <Link href="/" className="focus-visible:outline-none focus-visible:ring-0 rounded-lg no-underline block w-fit">
+          <Image
+            src="/logo.png"
+            alt="School of Mentors"
+            width={256}
+            height={256}
+            className="w-48 h-48 lg:w-64 lg:h-64 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
+            priority
+          />
         </Link>
       </div>
     </div>
