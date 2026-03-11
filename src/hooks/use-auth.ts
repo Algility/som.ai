@@ -7,6 +7,12 @@ import { createClient } from "@/lib/supabase";
 const SESSION_CHECK_TIMEOUT_MS = 4_000;
 const AUTH_REQUEST_TIMEOUT_MS = 15_000;
 
+function isInvalidRefreshTokenError(err: unknown): boolean {
+  const code = (err as { code?: string })?.code;
+  const message = (err as { message?: string })?.message ?? "";
+  return code === "refresh_token_not_found" || /refresh token/i.test(message);
+}
+
 function withTimeout<T>(p: Promise<T>, ms: number, message: string): Promise<T> {
   return Promise.race([
     p,
@@ -29,10 +35,24 @@ export function useAuth() {
       setLoading(false);
       return;
     }
-    const sessionPromise = supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
-      setUser(s?.user ?? null);
-    });
+    const clearInvalidSession = () => {
+      void supabase.auth.signOut();
+      setSession(null);
+      setUser(null);
+    };
+    const sessionPromise = supabase.auth
+      .getSession()
+      .then(({ data: { session: s }, error }) => {
+        if (error && isInvalidRefreshTokenError(error)) {
+          clearInvalidSession();
+          return;
+        }
+        setSession(s);
+        setUser(s?.user ?? null);
+      })
+      .catch((err) => {
+        if (isInvalidRefreshTokenError(err)) clearInvalidSession();
+      });
     const timeoutPromise = new Promise<void>((resolve) =>
       setTimeout(resolve, SESSION_CHECK_TIMEOUT_MS)
     );

@@ -10,6 +10,8 @@ import remarkGfm from "remark-gfm";
 import ClaudeChatInput from "@/components/ui/claude-style-chat-input";
 import { useAuth } from "@/hooks/use-auth";
 import { createClient, type ChatRow } from "@/lib/supabase";
+import { formatMainChannelTitle } from "@/lib/content-utils";
+import { SOM_DEFAULT_MODEL_ID } from "@/lib/som-models";
 
 type MessagePart = { type?: string; text?: string };
 
@@ -20,11 +22,13 @@ function getMessageText(parts: unknown[]): string {
     .join("");
 }
 
-const SidebarToggleIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 3V21M7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+function SidebarToggleIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 3V21M7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V16.2C21 17.8802 21 18.7202 20.673 19.362C20.3854 19.9265 19.9265 20.3854 19.362 20.673C18.7202 21 17.8802 21 16.2 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 const NavItem = ({ icon, label, right, active, onClick }: { icon: React.ReactNode; label: string; right?: React.ReactNode; active?: boolean; onClick?: () => void }) => (
   <button onClick={onClick} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer
@@ -97,6 +101,11 @@ const PodcastAvatar = ({ speaker, initials }: { speaker: string | null; initials
   );
 };
 
+// Remove emojis from video/episode titles for display
+function stripEmojis(s: string): string {
+  return s.replace(/\p{Extended_Pictographic}|\p{Emoji_Presentation}|\p{Emoji}\uFE0F?/gu, "").replace(/\s{2,}/g, " ").trim();
+}
+
 // Extract YouTube video ID from short or long URL
 function getYouTubeId(url: string): string | null {
   const m = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/);
@@ -137,12 +146,12 @@ function getChatTitle(msgs: Array<{ role: string; parts: unknown[] }>): string {
 // Shared empty-state placeholder used by recordings + sessions views
 function EmptyState({ icon, title, subtitle }: { icon: React.ReactNode; title: string; subtitle: string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-[#1c1c1c] border border-[#272727] flex items-center justify-center mb-5 text-[#444]">
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <div className="w-14 h-14 rounded-xl bg-[#1c1c1c] border border-[#272727] flex items-center justify-center mb-4 text-[#555]">
         {icon}
       </div>
-      <p className="text-sm font-medium text-[#4a4a4a] mb-1.5">{title}</p>
-      <p className="text-xs text-[#3a3a3a] max-w-xs leading-relaxed">{subtitle}</p>
+      <p className="text-sm font-medium text-[#a3a3a3] mb-1">{title}</p>
+      <p className="text-xs text-[#737373] max-w-xs leading-relaxed">{subtitle}</p>
     </div>
   );
 }
@@ -212,10 +221,17 @@ const MarkdownContent = React.memo(function MarkdownContent({ content }: { conte
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [view, setView] = useState<"home" | "chat" | "podcasts" | "recordings" | "sessions" | "settings">("home");
-  const [selectedModel, setSelectedModel] = useState("haiku-4.5");
+  const [view, setView] = useState<"home" | "chat" | "main-channel" | "podcasts" | "recordings" | "sessions" | "settings">("home");
+  const [selectedModel, setSelectedModel] = useState(SOM_DEFAULT_MODEL_ID);
   const [selectedTranscript, setSelectedTranscript] = useState<string | null>(null);
-  const [transcriptList, setTranscriptList] = useState<{ title: string; preview: string; summary?: string; youtube?: string }[]>([]);
+  const [transcriptList, setTranscriptList] = useState<{ title: string; displayTitle?: string; category?: string; preview: string; summary?: string; youtube?: string }[]>([]);
+  const [transcriptTotal, setTranscriptTotal] = useState(0);
+  const [podcastSearch, setPodcastSearch] = useState("");
+  const [transcriptsLoadingMore, setTranscriptsLoadingMore] = useState(false);
+  const [mainChannelList, setMainChannelList] = useState<{ title: string; displayTitle?: string; guest?: string; category?: string; preview: string; summary?: string; youtube?: string; image?: string }[]>([]);
+  const [mainChannelTotal, setMainChannelTotal] = useState(0);
+  const [mainChannelSearch, setMainChannelSearch] = useState("");
+  const [mainChannelLoadingMore, setMainChannelLoadingMore] = useState(false);
   const [hoveredPodcast, setHoveredPodcast] = useState<{
     speaker: string | null;
     topic: string;
@@ -393,13 +409,17 @@ export default function Home() {
             setDbError(error.message);
             return;
           }
-          const list = ((data ?? []) as ChatRow[]).map((row) => ({
-            id: (row.client_chat_id ?? row.id) as string,
-            title: row.title,
-            messages: row.messages as Array<{ type?: string; text?: string; id?: string }>,
-            transcript: row.transcript,
-            timestamp: new Date(row.updated_at).getTime(),
-          }));
+          const list = ((data ?? []) as ChatRow[]).map((row) => {
+            const msgs = (row.messages ?? []) as Array<{ role: string; parts: unknown[] }>;
+            const derivedTitle = getChatTitle(msgs) || "New chat";
+            return {
+              id: (row.client_chat_id ?? row.id) as string,
+              title: (row.title && row.title.trim()) ? row.title : derivedTitle,
+              messages: row.messages as Array<{ type?: string; text?: string; id?: string }>,
+              transcript: row.transcript,
+              timestamp: new Date(row.updated_at).getTime(),
+            };
+          });
           setChatHistory(list);
         });
     } else if (!supabase) {
@@ -415,7 +435,7 @@ export default function Home() {
     if (messages.length === 0) return;
     const chatId = messages[0].id;
     setActiveChatId(chatId);
-    const title = getChatTitle(messages);
+    const title = getChatTitle(messages) || "New chat";
     const item = { id: chatId, title, messages, transcript: selectedTranscript, timestamp: Date.now() };
     setChatHistory((prev) => {
       const filtered = prev.filter((h) => h.id !== chatId);
@@ -437,11 +457,50 @@ export default function Home() {
   }, [messages, selectedTranscript, supabase, user?.id]);
 
   useEffect(() => {
-    fetch("/api/transcripts")
+    fetch("/api/podcasts?limit=50&offset=0")
       .then((r) => r.json())
-      .then((data: { title: string; preview: string; summary?: string; youtube?: string }[]) => setTranscriptList(data))
+      .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string }[]; total: number }) => {
+        setTranscriptList(data.items ?? []);
+        setTranscriptTotal(data.total ?? 0);
+      })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    fetch("/api/main-channel?limit=50&offset=0")
+      .then((r) => r.json())
+      .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string; image?: string }[]; total: number }) => {
+        setMainChannelList(data.items ?? []);
+        setMainChannelTotal(data.total ?? 0);
+      })
+      .catch(() => {});
+  }, []);
+
+  const loadMoreTranscripts = () => {
+    if (transcriptList.length >= transcriptTotal || transcriptsLoadingMore) return;
+    setTranscriptsLoadingMore(true);
+    fetch(`/api/podcasts?limit=50&offset=${transcriptList.length}`)
+      .then((r) => r.json())
+      .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string }[]; total: number }) => {
+        setTranscriptList((prev) => [...prev, ...(data.items ?? [])]);
+        setTranscriptTotal(data.total ?? transcriptTotal);
+      })
+      .catch(() => {})
+      .finally(() => setTranscriptsLoadingMore(false));
+  };
+
+  const loadMoreMainChannel = () => {
+    if (mainChannelList.length >= mainChannelTotal || mainChannelLoadingMore) return;
+    setMainChannelLoadingMore(true);
+    fetch(`/api/main-channel?limit=50&offset=${mainChannelList.length}`)
+      .then((r) => r.json())
+      .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string; image?: string }[]; total: number }) => {
+        setMainChannelList((prev) => [...prev, ...(data.items ?? [])]);
+        setMainChannelTotal(data.total ?? mainChannelTotal);
+      })
+      .catch(() => {})
+      .finally(() => setMainChannelLoadingMore(false));
+  };
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -618,13 +677,13 @@ export default function Home() {
             >
               <span className="text-lg lg:text-xl font-brand text-[#ececec] tracking-tight select-none">School of Mentors</span>
             </button>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="p-1.5 rounded-lg text-[#666] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
-              aria-label="Close sidebar"
-            >
-              <SidebarToggleIcon />
-            </button>
+<button
+            onClick={() => setSidebarOpen(false)}
+            className="p-1.5 rounded-lg text-[#666] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+            aria-label="Close sidebar"
+          >
+            <SidebarToggleIcon />
+          </button>
           </div>
 
           {/* Top actions */}
@@ -710,6 +769,16 @@ export default function Home() {
               }
             />
             <NavItem
+              active={view === "main-channel"}
+              onClick={() => { setView("main-channel"); if (window.innerWidth < 1024) setSidebarOpen(false); }}
+              label="Main channel"
+              icon={
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              }
+            />
+            <NavItem
               active={view === "podcasts"}
               onClick={() => { setView("podcasts"); if (window.innerWidth < 1024) setSidebarOpen(false); }}
               label="Podcasts"
@@ -755,9 +824,9 @@ export default function Home() {
                     <button
                       onClick={() => handleRestoreChat(item)}
                       className="w-full text-left px-3 py-2 pr-8 rounded-lg text-sm text-[#8a8a8a] hover:text-[#ececec] hover:bg-[#2a2a2a] transition-colors truncate cursor-pointer"
-                      title={item.title}
+                      title={item.title ?? "New chat"}
                     >
-                      {item.title}
+                      {item.title ?? "New chat"}
                     </button>
                     {/* Three-dot menu trigger */}
                     <button
@@ -779,7 +848,7 @@ export default function Home() {
                         <div className="fixed inset-0 z-40" onClick={() => setOpenMenuId(null)} />
                         <div className="absolute right-1 top-full mt-1 w-40 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl overflow-hidden z-50 py-1">
                           <button
-                            onClick={() => { setRenameId(item.id); setRenameValue(item.title); setOpenMenuId(null); }}
+                            onClick={() => { setRenameId(item.id); setRenameValue(item.title ?? ""); setOpenMenuId(null); }}
                             className="w-full flex items-center gap-2.5 px-3 py-2 text-sm text-[#ccc] hover:text-[#ececec] hover:bg-[#333] transition-colors cursor-pointer"
                           >
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -888,19 +957,21 @@ export default function Home() {
             <div className="absolute inset-x-0 flex justify-center pointer-events-none">
               {view === "chat" && selectedTranscript ? (
                 (() => {
-                  const { speaker, topic } = parsePodcast(selectedTranscript);
+                  const mainItem = mainChannelList.find((t) => t.title === selectedTranscript);
+                  const podcastItem = transcriptList.find((t) => t.title === selectedTranscript);
+                  const displayName = mainItem?.displayTitle ?? podcastItem?.displayTitle ?? mainItem?.guest ?? parsePodcast(selectedTranscript).speaker ?? parsePodcast(selectedTranscript).topic ?? selectedTranscript;
                   return (
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 rounded-md overflow-hidden flex-shrink-0 bg-[#2a2a2a]">
-                        <PodcastAvatar speaker={speaker} initials={(speaker ?? topic).slice(0, 2).toUpperCase()} />
+                        <PodcastAvatar speaker={displayName} initials={(displayName ?? "").slice(0, 2).toUpperCase()} />
                       </div>
-                      <span className="text-sm text-[#ececec] font-semibold">{speaker ?? topic}</span>
+                      <span className="text-sm text-[#ececec] font-semibold">{stripEmojis(displayName ?? selectedTranscript ?? "")}</span>
                     </div>
                   );
                 })()
               ) : (
                 <span className="text-sm font-semibold text-[#ececec]">
-                  {view === "podcasts" ? "Podcasts" : view === "recordings" ? "Call Recordings" : view === "sessions" ? "Mentor Sessions" : view === "settings" ? "Settings" : ""}
+                  {view === "main-channel" ? "Main channel" : view === "podcasts" ? "Podcasts" : view === "recordings" ? "Call Recordings" : view === "sessions" ? "Mentor Sessions" : view === "settings" ? "Settings" : ""}
                 </span>
               )}
             </div>
@@ -977,16 +1048,17 @@ export default function Home() {
             <ClaudeChatInput onSendMessage={handleSendMessage} isLoading={isLoading} onStop={stop} />
 
             <div className="flex flex-wrap justify-center gap-2 mt-4 max-w-2xl mx-auto px-4">
-              {(["Call Recordings", "Mentor Sessions", "Podcasts", "Resources"] as const).map((label) => (
+              {(["Main channel", "Call Recordings", "Mentor Sessions", "Podcasts", "Resources"] as const).map((label) => (
                 <button
                   key={label}
                   onClick={() => {
-                    if (label === "Podcasts") setView("podcasts");
+                    if (label === "Main channel") setView("main-channel");
+                    else if (label === "Podcasts") setView("podcasts");
                     else if (label === "Call Recordings") setView("recordings");
                     else if (label === "Mentor Sessions") setView("sessions");
                     else handleSendMessage({ message: `Show me ${label}`, model: selectedModel });
                   }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#888] bg-transparent border border-[#333] rounded-full hover:bg-[#242424] hover:text-[#ccc] hover:border-[#444] transition-colors duration-150 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#888] bg-transparent border border-[#333] rounded-xl hover:bg-[#242424] hover:text-[#ccc] hover:border-[#444] transition-colors duration-150 cursor-pointer"
                 >
                   {label}
                 </button>
@@ -995,18 +1067,123 @@ export default function Home() {
 
           </main>
 
+        /* ── Main channel ── */
+        ) : view === "main-channel" ? (
+          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Main channel</h2>
+              <p className="text-sm text-[#555] mb-4">Pick an episode for actionable advice. {mainChannelTotal > 0 && `${mainChannelTotal} episodes`}</p>
+
+              {mainChannelTotal > 0 && (
+                <div className="mb-4">
+                  <input
+                    type="search"
+                    placeholder="Search episodes…"
+                    value={mainChannelSearch}
+                    onChange={(e) => setMainChannelSearch(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg bg-[#242424] border border-[#383838] text-sm text-[#ececec] placeholder-[#555] outline-none focus:border-[#555]"
+                  />
+                </div>
+              )}
+
+              {mainChannelList.length === 0 ? (
+                <p className="text-sm text-[#555]">No main channel content yet. Add .txt files to src/data/main-channel/</p>
+              ) : (
+                <div className="flex flex-col gap-0.5 rounded-xl border border-[#272727] overflow-hidden bg-[#1c1c1c]">
+                  {mainChannelList
+                    .filter(({ title, displayTitle, guest, category }) => {
+                      if (!mainChannelSearch.trim()) return true;
+                      const q = mainChannelSearch.toLowerCase().trim();
+                      const display = displayTitle ?? formatMainChannelTitle(title, guest ?? null);
+                      return title.toLowerCase().includes(q) || (displayTitle?.toLowerCase().includes(q)) || (guest?.toLowerCase().includes(q)) || (category?.toLowerCase().includes(q)) || display.toLowerCase().includes(q);
+                    })
+                    .map(({ title, displayTitle, guest, category, image }, index) => (
+                      <button
+                        key={title}
+                        onClick={() => handleSelectPodcast(title)}
+                        style={{ animationDelay: `${Math.min(index, 20) * 25}ms` }}
+                        className="animate-main-channel-item w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-[#252525] transition-colors cursor-pointer border-b border-[#272727] last:border-b-0"
+                      >
+                        <span className="w-10 h-10 rounded-lg bg-[#2a2a2a] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                          {image ? (
+                            <img src={image} alt="" className="w-full h-full object-cover" />
+                          ) : (
+                            <span className="text-[#890B10]" title="YouTube" aria-label="YouTube">
+                              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                              </svg>
+                            </span>
+                          )}
+                        </span>
+                        <span className="flex-1 min-w-0 flex flex-col gap-0.5">
+                          <span className="text-sm text-[#d0d0d0] hover:text-[#ececec] truncate block">
+                            {stripEmojis(displayTitle ?? formatMainChannelTitle(title, guest ?? null))}
+                          </span>
+                          {category && (
+                            <span className="text-[10px] uppercase tracking-wider text-[#666] truncate block">
+                              {category}
+                            </span>
+                          )}
+                        </span>
+                        <svg className="w-4 h-4 text-[#555] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 18l6-6-6-6" />
+                        </svg>
+                      </button>
+                    ))}
+                </div>
+              )}
+
+              {mainChannelList.length > 0 && mainChannelList.length < mainChannelTotal && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={loadMoreMainChannel}
+                    disabled={mainChannelLoadingMore}
+                    className="px-4 py-2 rounded-lg text-sm font-medium text-[#ececec] bg-[#2a2a2a] hover:bg-[#333] border border-[#383838] transition-colors disabled:opacity-50"
+                  >
+                    {mainChannelLoadingMore ? "Loading…" : `Load more (${mainChannelList.length} of ${mainChannelTotal})`}
+                  </button>
+                </div>
+              )}
+            </div>
+          </main>
+
         /* ── Podcasts ── */
         ) : view === "podcasts" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
-              <p className="hidden lg:block text-sm text-[#555] mb-8">Select an episode to start a conversation.</p>
+              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
+              <p className="text-sm text-[#555] mb-4">Pick an episode for actionable advice. {transcriptTotal > 0 && `${transcriptTotal} episodes`}</p>
+
+              {transcriptTotal > 0 && (
+                <div className="mb-4">
+                  <input
+                    type="search"
+                    placeholder="Search episodes…"
+                    value={podcastSearch}
+                    onChange={(e) => setPodcastSearch(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg bg-[#242424] border border-[#383838] text-sm text-[#ececec] placeholder-[#555] outline-none focus:border-[#555]"
+                  />
+                </div>
+              )}
 
               {transcriptList.length === 0 ? (
-                <p className="text-sm text-[#555]">No transcripts found. Add .txt files to src/data/transcripts/</p>
+                <p className="text-sm text-[#555]">No podcasts found. Add .txt files to src/data/podcasts/</p>
               ) : (
                 <div className="flex flex-col gap-3">
-                  {transcriptList.map(({ title, summary }) => {
+                  {transcriptList
+                    .filter(({ title, category }) => {
+                      if (!podcastSearch.trim()) return true;
+                      const q = podcastSearch.toLowerCase().trim();
+                      const { speaker, topic } = parsePodcast(title);
+                      return (
+                        title.toLowerCase().includes(q) ||
+                        (speaker?.toLowerCase().includes(q) ?? false) ||
+                        topic.toLowerCase().includes(q) ||
+                        (category?.toLowerCase().includes(q) ?? false)
+                      );
+                    })
+                    .map(({ title, category, summary }) => {
                     const { speaker, topic, initials } = parsePodcast(title);
                     const isExpanded = expandedPodcast === title;
                     return (
@@ -1016,7 +1193,7 @@ export default function Home() {
                         onMouseLeave={() => setHoveredPodcast(null)}
                         className="rounded-2xl bg-[#1c1c1c] hover:bg-[#212121] border border-[#272727] hover:border-[#333] transition-all duration-200 group overflow-hidden"
                       >
-                        <div className="flex items-center gap-3 lg:gap-4 p-3.5 lg:p-4">
+                        <div className="flex items-center gap-3 lg:gap-4 p-3 lg:p-4">
                           {/* Avatar */}
                           <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl overflow-hidden flex-shrink-0 bg-[#2a2a2a]">
                             <PodcastAvatar speaker={speaker} initials={initials} />
@@ -1028,19 +1205,22 @@ export default function Home() {
                             className="min-w-0 flex-1 text-left cursor-pointer"
                           >
                             {speaker && (
-                              <p className="text-[11px] font-medium text-[#890B0F] uppercase tracking-widest mb-1">{speaker}</p>
+                              <p className="text-[11px] font-medium text-[#890B0F] uppercase tracking-widest mb-1">{stripEmojis(speaker)}</p>
                             )}
                             <p className="text-sm font-medium text-[#d0d0d0] group-hover:text-[#ececec] line-clamp-2 leading-snug transition-colors">
-                              {topic}
+                              {stripEmojis(topic)}
                             </p>
+                            {category && (
+                              <p className="text-[10px] uppercase tracking-wider text-[#666] mt-1">{category}</p>
+                            )}
                           </button>
 
                           {/* Desktop: navigate arrow */}
                           <button
                             onClick={() => handleSelectPodcast(title)}
-                            className="hidden xl:flex flex-shrink-0 w-7 h-7 rounded-full bg-[#2a2a2a] group-hover:bg-[#890B0F]/20 items-center justify-center transition-colors cursor-pointer"
+                            className="hidden xl:flex flex-shrink-0 w-6 h-6 rounded-lg bg-[#2a2a2a] group-hover:bg-[#890B0F]/20 items-center justify-center transition-colors cursor-pointer p-1"
                           >
-                            <svg className="w-3.5 h-3.5 text-[#555] group-hover:text-[#890B0F] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg className="w-3 h-3 text-[#555] group-hover:text-[#890B0F] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d="M9 18l6-6-6-6" />
                             </svg>
                           </button>
@@ -1048,10 +1228,10 @@ export default function Home() {
                           {/* Mobile: expand/collapse toggle */}
                           <button
                             onClick={() => setExpandedPodcast(isExpanded ? null : title)}
-                            className="xl:hidden flex-shrink-0 w-7 h-7 rounded-full bg-[#2a2a2a] flex items-center justify-center transition-colors cursor-pointer"
+                            className="xl:hidden flex-shrink-0 w-6 h-6 rounded-lg bg-[#2a2a2a] flex items-center justify-center transition-colors cursor-pointer p-1"
                           >
                             <svg
-                              className={`w-3.5 h-3.5 text-[#555] transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                              className={`w-3 h-3 text-[#555] transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
                               viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                             >
                               <path d="M6 9l6 6 6-6" />
@@ -1066,7 +1246,7 @@ export default function Home() {
                               <p className="text-xs text-[#888] leading-relaxed mb-4">{summary ?? "No summary available."}</p>
                               <button
                                 onClick={() => handleSelectPodcast(title)}
-                                className="w-full py-2.5 px-4 rounded-xl bg-[#890B0F] hover:bg-[#a01010] text-white text-sm font-medium transition-colors cursor-pointer"
+                                className="w-full py-2 px-4 rounded-lg bg-[#890B0F] hover:bg-[#a01010] text-white text-sm font-medium transition-colors cursor-pointer"
                               >
                                 Start chatting
                               </button>
@@ -1076,6 +1256,19 @@ export default function Home() {
                       </div>
                     );
                   })}
+                </div>
+              )}
+
+              {transcriptList.length > 0 && transcriptList.length < transcriptTotal && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={loadMoreTranscripts}
+                    disabled={transcriptsLoadingMore}
+                    className="px-4 py-2 rounded-lg text-sm font-medium text-[#ececec] bg-[#2a2a2a] hover:bg-[#333] border border-[#383838] transition-colors disabled:opacity-50"
+                  >
+                    {transcriptsLoadingMore ? "Loading…" : `Load more (${transcriptList.length} of ${transcriptTotal})`}
+                  </button>
                 </div>
               )}
             </div>
@@ -1094,11 +1287,11 @@ export default function Home() {
                   <div className="p-4">
                     {hoveredPodcast.speaker && (
                       <p className="text-[10px] font-semibold text-[#890B0F] uppercase tracking-widest mb-1.5">
-                        {hoveredPodcast.speaker}
+                        {stripEmojis(hoveredPodcast.speaker)}
                       </p>
                     )}
                     <p className="text-sm font-medium text-[#d4d4d4] leading-snug mb-3">
-                      {hoveredPodcast.topic}
+                      {stripEmojis(hoveredPodcast.topic)}
                     </p>
                     <p className="text-xs text-[#666] leading-relaxed">
                       {hoveredPodcast.summary ?? "No summary available."}
@@ -1119,8 +1312,8 @@ export default function Home() {
         ) : view === "recordings" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Call Recordings</h2>
-              <p className="hidden lg:block text-sm text-[#555] mb-8">Your recorded mentor sessions, all in one place.</p>
+              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Call Recordings</h2>
+              <p className="text-sm text-[#555] mb-6 lg:mb-8">Your recorded mentor sessions, all in one place.</p>
               <EmptyState
                 icon={
                   <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1137,8 +1330,8 @@ export default function Home() {
         ) : view === "sessions" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
             <div className="max-w-2xl mx-auto">
-              <h2 className="hidden lg:block text-2xl font-brand-sub text-[#ececec] mb-1">Mentor Sessions</h2>
-              <p className="hidden lg:block text-sm text-[#555] mb-8">Track your progress with your assigned mentors.</p>
+              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Mentor Sessions</h2>
+              <p className="text-sm text-[#555] mb-6 lg:mb-8">Track your progress with your assigned mentors.</p>
               <EmptyState
                 icon={
                   <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1263,12 +1456,18 @@ export default function Home() {
                 <div className="flex-1 min-h-4 lg:hidden" />
               <div className="space-y-5 lg:space-y-6 py-4 lg:py-5">
                 {(() => {
+                  const mainChannelItem = selectedTranscript ? mainChannelList.find((t) => t.title === selectedTranscript) : undefined;
                   const activeYoutube = selectedTranscript
-                    ? transcriptList.find((t) => t.title === selectedTranscript)?.youtube
+                    ? (transcriptList.find((t) => t.title === selectedTranscript) ?? mainChannelItem)?.youtube
                     : undefined;
                   const activeParsed = selectedTranscript ? parsePodcast(selectedTranscript) : null;
-                  const activeSpeaker = activeParsed?.speaker ?? "Podcast";
-                  const activeTopic = activeParsed?.topic ?? selectedTranscript ?? "";
+                  const activeSpeaker = mainChannelItem?.guest ?? activeParsed?.speaker ?? "Episode";
+                  const activeSpeakerDisplay = mainChannelItem?.displayTitle ?? transcriptList.find((t) => t.title === selectedTranscript)?.displayTitle ?? activeSpeaker ?? selectedTranscript ?? "Episode";
+                  const formattedMain = mainChannelItem?.guest && selectedTranscript ? formatMainChannelTitle(selectedTranscript, mainChannelItem.guest) : "";
+                  const activeTopic = mainChannelItem?.guest
+                    ? formattedMain.replace(mainChannelItem.guest + ": ", "").trim()
+                    : (activeParsed?.topic ?? selectedTranscript ?? "");
+                  const activeTopicDisplay = activeTopic || selectedTranscript || "";
                   const activeVideoId = activeYoutube ? getYouTubeId(activeYoutube) : null;
                   const firstAssistantIdx = messages.findIndex((msg) => msg.role === "assistant");
                   return messages.map((m, msgIdx) => {
@@ -1342,8 +1541,8 @@ export default function Home() {
                                 />
                               )}
                               <div className="p-3">
-                                <p className="text-[10px] font-semibold text-[#890B0F] uppercase tracking-widest mb-1">{activeSpeaker}</p>
-                                <p className="text-xs text-[#d0d0d0] leading-snug mb-2.5 line-clamp-2">{activeTopic}</p>
+                                <p className="text-[10px] font-semibold text-[#890B0F] uppercase tracking-widest mb-1">{stripEmojis(activeSpeakerDisplay)}</p>
+                                <p className="text-xs text-[#d0d0d0] leading-snug mb-2.5 line-clamp-2">{stripEmojis(activeTopicDisplay)}</p>
                                 <div className="flex items-center gap-1.5 text-[10px] text-[#555]">
                                   <svg className="w-2.5 h-2.5 text-[#890B0F]" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -1413,13 +1612,13 @@ export default function Home() {
           <div className="flex justify-end gap-3">
             <button
               onClick={() => setDeleteConfirmId(null)}
-              className="px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
+              className="min-h-[44px] px-4 py-2 rounded-lg text-sm text-[#ccc] border border-[#383838] hover:bg-[#2a2a2a] active:bg-[#333] transition-colors cursor-pointer touch-manipulation"
             >
               Cancel
             </button>
             <button
               onClick={() => handleDeleteChat(deleteConfirmId)}
-              className="px-4 py-2 rounded-lg text-sm font-medium bg-[#890B0D] hover:bg-[#a00e10] text-white transition-colors cursor-pointer"
+              className="min-h-[44px] px-4 py-2 rounded-lg text-sm font-medium bg-[#890B0D] hover:bg-[#a00e10] text-white transition-colors cursor-pointer touch-manipulation"
             >
               Delete
             </button>

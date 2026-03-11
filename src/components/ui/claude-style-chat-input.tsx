@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Plus, ChevronDown, ArrowUp, X, FileText, Loader2, Check, Archive, Square } from "lucide-react";
+import { SOM_MODELS, SOM_DEFAULT_MODEL_ID, type SomModel } from "@/lib/som-models";
 
 /* --- ICONS --- */
 export const Icons = {
@@ -133,15 +134,8 @@ const PastedContentCard: React.FC<PastedContentCardProps> = ({ content, onRemove
 );
 
 /* --- MODEL SELECTOR --- */
-interface Model {
-  id: string;
-  name: string;
-  description: string;
-  badge?: string;
-}
-
 interface ModelSelectorProps {
-  models: Model[];
+  models: SomModel[];
   selectedModel: string;
   onSelect: (modelId: string) => void;
 }
@@ -149,7 +143,7 @@ interface ModelSelectorProps {
 const ModelSelector: React.FC<ModelSelectorProps> = ({ models, selectedModel, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const currentModel = models.find((m) => m.id === selectedModel) || models[0];
+  const currentModel = models.find((m) => m.id === selectedModel) ?? models[0];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -165,29 +159,34 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ models, selectedModel, on
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`inline-flex items-center justify-center relative shrink-0 transition h-8 rounded-xl px-2.5 min-w-0 active:scale-[0.98] whitespace-nowrap text-xs gap-1
+        className={`inline-flex items-center justify-center relative shrink-0 transition font-base duration-300 ease-[cubic-bezier(0.165,0.85,0.45,1)] h-8 rounded-xl px-3 min-w-[4rem] active:scale-[0.98] whitespace-nowrap !text-xs pl-2.5 pr-2 gap-1
           ${isOpen
-            ? "bg-[#2a2a2a] text-[#ececec] border border-[#383838]"
-            : "text-[#a3a3a3] hover:text-[#ececec] hover:bg-[#2a2a2a] border border-transparent hover:border-[#383838]"
+            ? "bg-bg-200 text-text-100 dark:bg-[#454540] dark:text-[#ECECEC]"
+            : "text-text-300 hover:text-text-200 hover:bg-bg-200 dark:text-[#B4B4B4] dark:hover:text-[#ECECEC] dark:hover:bg-[#454540]"
           }`}
       >
-        <span className="select-none font-medium">{currentModel.name}</span>
-        <Icons.SelectArrow
-          className={`shrink-0 w-3.5 h-3.5 opacity-75 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-        />
+        <span className="select-none font-medium">SOM AI</span>
+        <div className="flex items-center justify-center opacity-75" style={{ width: "20px", height: "20px" }}>
+          <Icons.SelectArrow
+            className={`shrink-0 opacity-75 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          />
+        </div>
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full right-0 mb-2 w-[200px] bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-xl overflow-hidden z-50 flex flex-col py-1 origin-bottom-right">
+        <div className="absolute bottom-full right-0 mb-2 w-[260px] bg-white dark:bg-[#212121] border border-[#DDDDDD] dark:border-[#30302E] rounded-2xl shadow-2xl overflow-hidden z-50 flex flex-col p-1.5 origin-bottom-right">
           {models.map((model) => (
             <button
               key={model.id}
               onClick={() => { onSelect(model.id); setIsOpen(false); }}
-              className="w-full text-left px-3 py-2 rounded-lg flex items-center justify-between gap-2 transition-colors hover:bg-[#333] text-[#ececec]"
+              className="w-full text-left px-3 py-2.5 rounded-xl flex items-start justify-between gap-2 transition-colors hover:bg-bg-200 dark:hover:bg-[#30302E] text-text-100 dark:text-[#ECECEC]"
             >
-              <span className="text-sm font-medium">{model.name}</span>
+              <div className="flex flex-col gap-0.5 min-w-0">
+                <span className="text-sm font-medium">{model.name}</span>
+                <span className="text-[11px] text-text-300 dark:text-[#999999]">{model.description}</span>
+              </div>
               {selectedModel === model.id && (
-                <Icons.Check className="w-4 h-4 text-[#890B0F] shrink-0" />
+                <Icons.Check className="w-4 h-4 text-[#890B0F] shrink-0 mt-0.5" />
               )}
             </button>
           ))}
@@ -215,16 +214,12 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage,
   const [files, setFiles] = useState<AttachedFile[]>([]);
   const [pastedContent, setPastedContent] = useState<{ id: string; content: string; timestamp: Date }[]>([]);
   const [isDragging, setIsDragging] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("sonnet-4.5");
+  const [selectedModel, setSelectedModel] = useState(SOM_DEFAULT_MODEL_ID);
   const isThinkingEnabled = false;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const models: Model[] = [
-    { id: "opus-4.5", name: "Opus 4.5", description: "Most capable for complex work" },
-    { id: "sonnet-4.5", name: "Sonnet 4.5", description: "Best for everyday tasks" },
-    { id: "haiku-4.5", name: "Haiku 4.5", description: "Fastest for quick answers" },
-  ];
+  const models = SOM_MODELS;
 
   // Auto-resize textarea
   useEffect(() => {
@@ -345,7 +340,7 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage,
                 onChange={(e) => setMessage(e.target.value)}
                 onPaste={handlePaste}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask me anything..."
+                placeholder="Ask your mentor anything..."
                 className="w-full bg-transparent border-0 outline-none text-text-100 text-[16px] placeholder:text-text-400 resize-none overflow-hidden py-0 leading-relaxed block font-normal antialiased"
                 rows={1}
                 enterKeyHint="send"
@@ -360,11 +355,11 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage,
             <div className="relative flex-1 flex items-center shrink min-w-0 gap-1">
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center justify-center shrink-0 transition-colors duration-200 h-8 w-8 rounded-lg active:scale-95 text-text-400 hover:text-text-200 hover:bg-bg-200"
+                className="inline-flex items-center justify-center shrink-0 transition-colors duration-200 h-8 w-8 rounded-full active:scale-95 text-text-400 hover:text-text-200 hover:bg-bg-200 touch-manipulation"
                 type="button"
                 aria-label="Attach file"
               >
-                <Icons.Plus className="w-5 h-5" />
+                <Icons.Plus className="w-4 h-4" />
               </button>
 
             </div>
@@ -377,22 +372,22 @@ export const ClaudeChatInput: React.FC<ClaudeChatInputProps> = ({ onSendMessage,
               {isLoading ? (
                 <button
                   onClick={onStop}
-                  className="inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95 bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer"
+                  className="inline-flex items-center justify-center shrink-0 transition-colors min-h-[36px] min-w-[36px] h-9 w-9 !rounded-xl active:scale-95 bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer touch-manipulation"
                   type="button"
                   aria-label="Stop generating"
                 >
-                  <Square className="w-3.5 h-3.5" fill="currentColor" />
+                  <Square className="w-3 h-3" fill="currentColor" />
                 </button>
               ) : (
                 <button
                   onClick={handleSend}
                   disabled={!hasContent}
-                  className={`inline-flex items-center justify-center shrink-0 transition-colors h-8 w-8 !rounded-xl active:scale-95
+                  className={`inline-flex items-center justify-center shrink-0 transition-colors min-h-[36px] min-w-[36px] h-9 w-9 !rounded-xl active:scale-95 touch-manipulation
                     ${hasContent ? "bg-[#890B0D] text-white hover:bg-[#a00e10] shadow-md cursor-pointer" : "bg-[#890B0D]/30 text-white/60 cursor-default"}`}
                   type="button"
                   aria-label="Send message"
                 >
-                  <Icons.ArrowUp className="w-4 h-4" />
+                  <Icons.ArrowUp className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>

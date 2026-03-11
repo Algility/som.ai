@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "School of Mentors AI",
-  description: "Learn from your mentors and podcasts in one place.",
+  description: "Your personal AI business advisor. Implementation-focused answers grounded in your mentors and content—actionable and specific, not generic.",
   icons: {
     apple: "/logo.png",
   },
@@ -31,6 +31,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#1a1a1a",
 };
 
 export default function RootLayout({

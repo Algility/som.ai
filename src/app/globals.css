@@ -180,8 +180,13 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
-  html, body {
+  html {
+    -webkit-text-size-adjust: 100%;
+    min-height: 100dvh;
+  }
+  body {
     @apply bg-background text-foreground;
+    min-height: 100dvh;
     height: 100%;
     overflow: hidden;
     overscroll-behavior: none;
@@ -218,6 +223,10 @@
   .top-safe-area {
     top: max(0.75rem, env(safe-area-inset-top));
   }
+  /* Reduce 300ms tap delay on mobile */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
 }
 
 /* Logo animations */
@@ -241,6 +250,15 @@
 
 .animate-fade-up-delay {
   animation: fadeUp 0.7s 0.15s cubic-bezier(0.2, 0.0, 0, 1.0) both;
+}
+
+/* Main channel list: subtle fade-in + slide up on appear */
+@keyframes main-channel-item-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-main-channel-item {
+  animation: main-channel-item-in 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
 /* Typing indicator dots */

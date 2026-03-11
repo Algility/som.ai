@@ -1,0 +1,513 @@
+00:00 within the first month we did fifty
+00:02 thousand dollars in Business Without any
+00:04 advertising and within 11 months we were
+00:07 doing almost as much as the security
+00:10 company and within four years we're
+00:12 doing 120 million in sales
+00:15 what's going on everyone welcome back to
+00:17 episode 7 of 10 questions with a
+00:19 millionaire I'm James with the School of
+00:20 Hard Knocks and I'm here with Glenn Boyd
+00:22 he's a founder of a major tech company
+00:24 we're super excited to be with you today
+00:26 just kind of ask you some questions
+00:27 about your journey could you kind of
+00:28 give us a little rundown about your
+00:30 story I started my career really young
+00:33 teaching myself to program then in my
+00:35 early 20s started a tech company that
+00:38 ended up taking public in 99 it was one
+00:41 of the early.com companies as they say I
+00:43 got out before it all crashed and it did
+00:45 really well that I took it public and
+00:47 then ended up selling it in a merger
+00:48 later on your first company was
+00:50 originally called EG software I believe
+00:52 that's correct at that time how did you
+00:54 know that that was the idea that you
+00:56 were going to take it to Market and how
+00:57 did you know that that was the company
+00:58 that you wanted to kind of invest in and
+01:00 go all in with the original product was
+01:02 not that the original product was
+01:03 actually a security product and what it
+01:05 does is it was like a surveillance
+01:07 system for internal networks Because the
+01:10 Internet really hadn't been invented yet
+01:11 or it wasn't being utilized but there
+01:13 was a lot of local area networks most of
+01:15 the Banks and financial institutions
+01:16 were being pushed to put in some type of
+01:19 audit control as more and more things
+01:21 were becoming computerized I saw an
+01:23 opportunity and wrote a product for
+01:24 logging and analyzing all the traffic
+01:27 and all the access of what goes on on a
+01:29 local area network we had a great
+01:31 amazing little business we had the
+01:33 entire Federal Reserve we had almost
+01:34 every major Bank in the the US it was me
+01:37 my partner Ellie and my wife worked in
+01:40 the business and my brother-in-law there
+01:42 was four of us and we were banging out a
+01:44 million dollars a year out of a little
+01:45 office about the size of this uh this
+01:47 room all of a sudden the internet comes
+01:49 along Yahoo had gone public Netscape and
+01:52 I realized the world's going to change
+01:53 here it is I had been working in local
+01:55 area networks but now all of a sudden
+01:56 the whole world is becoming networked
+01:58 and we looked at like how do we
+01:60 capitalize on that and I think the
+02:01 analogy I gave at the time to to Elias I
+02:04 said look you know I see this train
+02:06 going past and I see people on that
+02:08 train and they're all got champagne
+02:10 glasses I said if we start running now
+02:11 we might be able to catch the the last
+02:14 car of that train because this is going
+02:16 to be the future so we spent the whole
+02:18 summer trying to figure out what product
+02:19 we were going to go into and what we're
+02:21 going to do almost willing to abandon
+02:23 our really successful business then I
+02:26 don't know if it was him or me but we
+02:27 had this Epiphany that is that we
+02:29 pivoted our company so instead of having
+02:31 this product that analyzed local traffic
+02:33 and looking for say security violations
+02:35 in a bank potential fraud it started
+02:37 analyzing Anonymous traffic that was
+02:39 coming into the web and instead of
+02:41 producing say a security report produced
+02:43 a marketing report so instead of trying
+02:44 to find somebody who's committing fraud
+02:46 we said what if you analyze all this
+02:48 Anonymous data and identified how many
+02:50 people are interested in this and how
+02:52 many people are interested in that so
+02:53 some of our earliest clients and
+02:55 customers or people like Sports
+02:56 Illustrated magazine they had a website
+02:58 everybody was brand new but they didn't
+02:60 know if they had a hundred thousand
+03:02 people coming or ten thousand people
+03:03 coming and visiting it 10 times because
+03:05 there was no product to be able to tell
+03:07 them that and I but I had this
+03:09 technology that we had spent years
+03:11 building to could analyze massive
+03:13 amounts of data very quickly and we
+03:15 pivoted we had no idea if the product
+03:17 was going to be successful we didn't
+03:18 know if the dogs would eat the dog food
+03:19 within the first month we did 50 000 in
+03:22 Business Without any advertising and
+03:24 within 11 months we were doing almost as
+03:28 much as the security company and within
+03:31 four years we're doing 120 million in
+03:32 sales a lot of people they tend to have
+03:35 these great ideas but they really
+03:36 struggle to get the funding for them so
+03:38 what do you recommend to people that are
+03:39 trying to get that funding for their
+03:41 ideas to build companies well it always
+03:42 helps to have something demonstrable and
+03:45 not just an idea ideas are really
+03:47 difficult to get funded and if you can
+03:49 build something that's a sample you know
+03:51 something that you can demonstrate I
+03:53 mean that goes a long long way there's
+03:55 an old expression that I think it was
+03:56 founded in the 70s and it happened to do
+03:59 with all these advertising companies
+04:00 were creating you know I think it's
+04:02 called the dog food Wars where they're
+04:03 creating all these different dog foods
+04:05 and they spend all this money and they
+04:06 put them on television but it turns out
+04:08 the dogs just didn't like the dog food
+04:10 and it didn't matter how great the
+04:13 advertising was or how flashy it was so
+04:16 the expression especially in the tech
+04:17 world was will the dogs eat the dog food
+04:19 and what that meant is will people
+04:21 actually use the product so often you
+04:23 don't know completely until you build a
+04:25 product or build some of it and if you
+04:27 can get early adoption even if it's a
+04:29 small amount you can typically
+04:30 demonstrate a path to where you know
+04:33 somebody will be willing to invest in it
+04:35 because they can say wow this is really
+04:37 not only a good idea but I can see how
+04:39 people are using it and they're really
+04:40 gravitating towards it and there's a
+04:43 huge chance of it exploding I mean you
+04:44 just look at some of the examples
+04:46 whether it was YouTube it started out
+04:47 with just cat videos or Instagram it
+04:50 just started out with people wanting to
+04:51 share some of their personal you know
+04:53 photos to almost every tech company they
+04:55 started as some little simple idea but
+04:57 it it really went viral or it really
+04:60 went to the level of the dogs loved the
+05:02 dog food in in today's world we're
+05:04 seeing a lot of light being shined on
+05:06 self-improvement personal development
+05:08 for you throughout your career what
+05:10 would you say with some of the most
+05:11 pivotal things that you Incorporated
+05:13 whether it was into your routine or just
+05:14 throughout your life that led you to
+05:16 where you are today for any entrepreneur
+05:17 it's always a challenge and it
+05:19 definitely was for me keeping life work
+05:21 balance even more so as I'm older it's
+05:23 Life Health work balance I started very
+05:26 young I had children very young and I
+05:28 had a high-tech super successful company
+05:30 very young through that process I ended
+05:32 up divorced early on some of that was
+05:34 with the stress of starting a company
+05:36 and having young children and having a
+05:38 young marriage that was where I think
+05:40 some of that life work balance broke
+05:42 down later on in life I ended up having
+05:44 a heart attack and a triple bypass
+05:46 surgery some of that led to me to
+05:48 realize that I have to as I'm getting
+05:49 older take my health almost as seriously
+05:52 as my physical health as seriously as my
+05:54 mental health as well as Conquering the
+05:57 boredom of life it's easy to find
+05:59 yourself working too much as an
+06:00 entrepreneur because you love it but not
+06:02 everybody else around you can appreciate
+06:04 that and that's where your relationships
+06:06 can suffer whether it's with your
+06:07 significant other or with your your
+06:09 family how can someone prioritize their
+06:11 mental health what were some of the
+06:12 steps that you kind of learned to take
+06:13 during that process to you focus on your
+06:16 personal and mental health anybody who's
+06:18 looking for a good entrepreneurial
+06:20 work-life balance I would encourage them
+06:22 to you know partner with somebody I
+06:24 think there's no way I could have ever
+06:25 built my company if I hadn't have a
+06:27 strong co-partner in founding the
+06:29 company and we were able to offload a
+06:32 lot of things for each other whether it
+06:34 was somebody has a personal emergency or
+06:36 just dividing up the work and finding
+06:38 somebody you trust is is critical and
+06:41 somebody you enjoy working with and also
+06:42 somebody who has not just complimentary
+06:44 but even non-complementary skills so
+06:46 that you both bring something to the
+06:47 table that the other one doesn't have
+06:49 what was the biggest risk that you ever
+06:51 took and how important has risk been to
+06:53 you I had a newborn on the way and
+06:57 gotten down to probably the last I think
+07:00 thousand dollars in my bank account oh
+07:02 actually I had somebody save up I quit
+07:04 my job and started writing my first
+07:05 product and I got down to like the last
+07:08 thousand dollars into my bank account
+07:10 and went and sold the one asset I had at
+07:12 the time which is a motorcycle that got
+07:13 us through another month or two then my
+07:16 business partner and he came on board
+07:17 and put some his personal money in and
+07:20 the two of us together went on to make a
+07:22 very successful company but to say that
+07:24 I put it all on the line is not an
+07:26 understatement at the time I my total
+07:28 risk mentality was the worst thing that
+07:31 can happen to me is I can always I'll
+07:32 have to go get a job and so for me it
+07:35 was like let me take all this risk even
+07:36 though I had a newborn on the way I knew
+07:39 that if I failed I'll just have to go
+07:41 get a job but I also knew that if I
+07:43 didn't try it I would be studying at a
+07:45 job someplace always wondering why
+07:47 didn't I try when you're creating a
+07:49 company it's important to build like a
+07:51 strong leadership team what are the
+07:52 three most important traits that you
+07:54 look for in people when you're
+07:56 assembling like a leadership team or
+07:58 employing people for a company well I
+07:59 think you have to work with honest
+08:01 people you have to work with intelligent
+08:03 people you have to work with people that
+08:05 they can take you know constructive
+08:07 feedback and that includes yourself I
+08:09 think that's that's critical you're not
+08:11 always going to get along our wives at
+08:12 the time in our first earlier days of
+08:14 the family of the company they thought
+08:16 that my partner and I were going to kill
+08:18 each other because we were constantly
+08:20 arguing but what we were doing is really
+08:22 fleshing out the best path forward or
+08:24 the best idea forward I remember in the
+08:26 early days we we had some horaceous
+08:28 arguments over which shade of red we
+08:30 were going to make our first packaging
+08:32 on our product and it turned out to be
+08:33 this inconsequential kind of thing but
+08:36 eventually through that process we
+08:38 became closer and closer friends and
+08:39 trusted each other more and more to make
+08:41 independent decisions and we needed to
+08:43 go through that early on to order get to
+08:45 that level of confidence with each other
+08:47 what would you say is the worst
+08:48 financial decision that you've made
+08:50 throughout your life getting involved in
+08:51 things you don't want to be involved in
+08:53 I had this Misfortune of doing a
+08:55 construction loan on a business that I
+08:58 really didn't want to be in I got kind
+09:00 of talked into it with a another friend
+09:02 of mine it was supposed to be a
+09:04 temporary construction loan everything
+09:06 was collateralized and management was
+09:07 failing I had to step in and spend a
+09:09 couple of my years of my life turning it
+09:11 around only to have the whole thing
+09:13 because of a tragic accident and
+09:15 somebody unfortunately passed away ended
+09:17 up costing the entire company I lost
+09:19 close to three million dollars on that
+09:21 and what that taught me is don't get
+09:23 involved with something you don't want
+09:24 to get involved in my gut instinct was
+09:26 telling me from day one don't do it but
+09:27 I ended up doing it anyway then I
+09:29 powered through and thought and by
+09:31 circumstance I wished I'd just never
+09:33 done it but what was the best financial
+09:34 decision that you've ever made probably
+09:36 for us both my partner and I at the time
+09:39 we founded the company the best decision
+09:40 was the company was growing so fast we
+09:42 were profitable but we felt like we
+09:45 needed additional Capital just to expand
+09:47 faster and we sought out a venture
+09:50 capital firm and we spent a lot of
+09:52 energy working with them because Venture
+09:54 Capital can spend and take a lot of
+09:56 attention it's like there's a courtship
+09:57 that goes on and in the end they decided
+10:00 to pass on us we were kind of glad
+10:02 because we were so frustrated with them
+10:04 and the process so they ended up not
+10:06 investing in us what that meant though
+10:08 is we didn't have that Financial
+10:11 underpinning that you would with ventral
+10:13 Capital but we also so we're way more
+10:16 frugal with the decisions we made going
+10:18 forward and when we took the company
+10:19 public he and I owned 95 percent of the
+10:22 company what is your best piece of
+10:23 advice to someone trying to scale their
+10:25 business keep your expenses controlled
+10:27 the problem with scaling is that
+10:28 expenses scale as well the numbers
+10:30 become multiples so you know one bad dip
+10:34 someplace can wipe out your whole
+10:36 business especially if you're trying to
+10:37 stay profitable especially if you're
+10:39 trying to grow really fast you know just
+10:41 keep your expenses under control what
+10:43 are the three books that you'd recommend
+10:45 that any entrepreneur should read my
+10:47 favor that changed my it probably saved
+10:50 my business or helped me understand my
+10:52 business there's actually two of them
+10:54 but one more than anything else at the
+10:56 time my business was growing so fast but
+10:59 I couldn't quite put my finger on what
+11:02 the problems were I would come home
+11:03 because I'd had these hellaciously
+11:05 stressful days and I would try to read
+11:07 some just so I could sleep and I started
+11:08 reading Into Thin Air and then it
+11:10 clicked for me what the problem was with
+11:12 my company in the book he talks about
+11:14 everybody has a level where they run out
+11:16 of oxygen when they go up in altitude
+11:18 and even the simplest task when you get
+11:21 up to a certain level like tying your
+11:23 shoes becomes very very difficult and
+11:24 everybody's built differently and unless
+11:26 you have supplemental oxygen some people
+11:28 will tap out and it becomes deadly and
+11:30 they the only solution is to go down the
+11:32 mountain there are some people that are
+11:33 natural athletes who can you know or
+11:35 they're Sherpas because they were born
+11:36 with the the genetics with their blood
+11:38 to carry the oxygen can go all the way
+11:40 to the top of Mount Everest without
+11:41 supplemental oxygen extremely rare but
+11:43 it does happen but what I was Finding is
+11:45 because my company was growing so fast
+11:47 somebody that was an employee six months
+11:49 ago or a year ago who I hired and was
+11:51 just an amazing employee was failing and
+11:54 it dawned on me what they were really
+11:55 doing is they were out of oxygen because
+11:57 they had started out and they were
+11:58 working maybe managing four people or
+11:60 six people or ten people because that's
+12:02 what I hired them at that level to do
+12:03 and then a year later or six months
+12:05 later they're managing 20 people or 30
+12:06 people and it's the same analogy as if
+12:09 you're good at juggling and you can
+12:10 juggle three balls and I hand you a
+12:11 fourth and you're good at that you hand
+12:13 you a fifth a six eventually you're
+12:14 you're going to reach the level you're
+12:15 going to drop all the balls and what I
+12:17 realized is it was my responsibility to
+12:19 stop handing them balls and also in some
+12:21 cases take them down the mountain it
+12:23 also changed my hiring practices so that
+12:26 when I would hire somebody I would say
+12:28 okay so I know we were hiring you for to
+12:30 manage 20 people and you managed 50 in
+12:32 the past but you'll be managing 50
+12:34 people within a year and I need somebody
+12:36 who can who's already been up the
+12:37 mountain so that book to me saved my
+12:40 company you know and once we identified
+12:42 that we changed our hiring practices
+12:43 across the company to hire above a level
+12:46 for the position that we were doing and
+12:47 people that were used to be good that
+12:49 were starting to fail we took them down
+12:50 the mountain and divided up their
+12:51 responsibilities another one which is
+12:53 it's great for marketing and if we're
+12:55 launching a new uh product is called
+12:57 crossing the chasm and it's talking
+12:59 about the process and there's this chasm
+13:01 in the bell curve of getting your
+13:02 product across before it gets into
+13:04 adoption and it really resonated in the
+13:06 early days when we were trying to grow
+13:08 our product and how to launch it into
+13:10 new markets you sold your company for
+13:12 over a billion dollars so my question
+13:14 for you is you know you made a lot of
+13:16 money off that does money by happiness
+13:18 no my it just doesn't I think there's a
+13:21 certain level that money does I mean I
+13:24 grew up very poor I roof houses as a
+13:27 child in the Texas heat to help my dad
+13:29 and then later washing dishes with my
+13:30 mother yes money definitely bought
+13:32 happiness when you reach a certain level
+13:33 beyond that when I finally was able to
+13:35 feel secure enough that I could send my
+13:37 children to college and that gave me a
+13:40 lot more freedom to try new things but
+13:42 at a certain level the champagne doesn't
+13:44 get any better and a certain level the
+13:46 women don't get prettier or a certain
+13:47 level the the beaches don't get any
+13:49 nicer just making more and more money
+13:52 doesn't buy happiness but there is
+13:54 probably a base level somewhere between
+13:56 poverty and paying all your bills if you
+13:58 were to go back to you know when you're
+13:60 18 years old and you could have a
+14:01 conversation with younger Glenn what are
+14:03 the three pieces of advice that you
+14:05 would tell yourself in a conversation
+14:06 with your younger self I mean I
+14:08 definitely would have said enjoy life a
+14:10 little bit more I mean I I didn't really
+14:12 have a childhood but that was also
+14:14 because I they started working so young
+14:16 and was successful young but I also the
+14:18 intensity of it I had to process that
+14:20 later in my life after I sold my company
+14:22 it was like actually learning how to
+14:24 enjoy life you know not just work work
+14:27 work work and so I think I would tell my
+14:30 18 year old self is like maybe not be so
+14:32 ambitious and finish college maybe not
+14:35 be so ambitious and have a little bit
+14:38 deeper meaningful relationships here or
+14:39 there other advice I'd give myself I
+14:42 think I I would tell myself to take care
+14:45 of my health better because I think
+14:46 that's the first and easiest thing to to
+14:48 let go as an entrepreneur when you're
+14:50 working you just can't get away from
+14:52 working 50 60 70 hours a week even if
+14:54 you're not physically doing it you're
+14:55 thinking about it when you're at home
+14:57 you're here you're there that translates
+14:58 into your relationships don't spend so
+15:01 much money once you finally make it
+15:02 better yet would be get some really good
+15:04 Financial advice once you finally do
+15:07 make good money we've interviewed
+15:09 hundreds of of millionaires and one of
+15:12 the biggest you know pieces of advice
+15:13 that they would tell their younger
+15:15 selves is they wish that they would have
+15:16 started sooner for someone who has all
+15:18 these thoughts and great ideas and
+15:20 they're always say oh I'll start
+15:21 tomorrow I'll start tomorrow or whether
+15:23 it's a YouTube channel or this company
+15:24 but you actually you execute it you
+15:27 created a company you sold it for a lot
+15:29 of money what is your advice to someone
+15:30 you know trying to really start and
+15:32 begin their business well
+15:34 procrastination is your worst enemy you
+15:36 know and I think that's what you're
+15:37 getting at and it's easy to always put
+15:39 it off and not do it and not take the
+15:42 risk the one thing we do not have in
+15:45 life that's renewable is time and the
+15:47 longer you delay it the longer it's
+15:49 going to take you to get to where you
+15:50 want to be so I think there's an old
+15:52 expression uh and I think it's even if
+15:54 you're going to fail fail fast get in
+15:56 there try it it didn't work move on do
+15:58 the next thing because if you're an
+15:59 entrepreneur you're probably gonna be an
+16:01 entrepreneur your whole life and if
+16:02 you're going to make a mistake and have
+16:03 a failure get it out of the way and go
+16:05 learn from that and do the next one and
+16:08 the longer you delay for that perfect
+16:10 idea that just means you're that much
+16:12 further away from a success
+16:14 well guys that wraps up today's episode
+16:16 of 10 questions with a millionaire we
+16:18 were super excited to be able to sit
+16:20 down here with Glenn Glenn thank you so
+16:21 much for coming on and it was great to
+16:23 meet you talk to you find out more about
+16:25 your story today so stay tuned guys for
+16:27 more content if you enjoyed this video
+16:29 make sure that you like leave us a
+16:30 subscribe we got a ton of great content
+16:32 coming let's get it

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-svh flex flex-col items-center justify-center gap-4 bg-[#1a1a1a] p-6">
+    <div className="min-h-[100dvh] flex flex-col items-center justify-center gap-4 bg-[#1a1a1a] p-6">
       <h1 className="text-xl font-semibold text-[#ececec]">Page not found</h1>
       <p className="text-sm text-[#a3a3a3] text-center max-w-sm">
         The page you’re looking for doesn’t exist or was moved.
