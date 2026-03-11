@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: "School of Mentors AI",
   description: "Your personal AI business advisor. Implementation-focused answers grounded in your mentors and content—actionable and specific, not generic.",
   icons: {
+    icon: "/favicon.ico",
     apple: "/logo.png",
   },
 };

@@ -550,10 +550,12 @@ export default function Home() {
     setSelectedTranscript(title);
     setExpandedPodcast(null);
     if (window.innerWidth < 1024) setSidebarOpen(false);
+    const isMainChannelVideo = mainChannelList.some((t) => t.title === title);
     const { speaker } = parsePodcast(title);
+    const medium = isMainChannelVideo ? "video" : "podcast";
     const prompt = speaker
-      ? `Give me the key takeaways from the ${speaker} podcast.`
-      : `Give me the key takeaways from the "${title}" podcast.`;
+      ? `Give me the key takeaways from the ${speaker} ${medium}.`
+      : `Give me the key takeaways from the "${title}" ${medium}.`;
     handleSendMessage({ message: prompt, model: selectedModel }, title);
   };
 
@@ -1067,18 +1069,21 @@ export default function Home() {
 
           </main>
 
-        /* ── Main channel ── */
+        /* ── Main channel (School of Hard Knocks YouTube) ── */
         ) : view === "main-channel" ? (
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
             <div className="max-w-2xl mx-auto">
-              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Main channel</h2>
-              <p className="text-sm text-[#555] mb-4">Pick an episode for actionable advice. {mainChannelTotal > 0 && `${mainChannelTotal} episodes`}</p>
+              <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">School of Hard Knocks</h2>
+              <p className="text-sm text-[#555] mb-4">
+                YouTube videos from the main channel. Pick one for actionable advice.
+                {mainChannelTotal > 0 && ` ${mainChannelTotal} videos.`}
+              </p>
 
               {mainChannelTotal > 0 && (
                 <div className="mb-4">
                   <input
                     type="search"
-                    placeholder="Search episodes…"
+                    placeholder="Search videos…"
                     value={mainChannelSearch}
                     onChange={(e) => setMainChannelSearch(e.target.value)}
                     className="w-full px-3 py-2 rounded-lg bg-[#242424] border border-[#383838] text-sm text-[#ececec] placeholder-[#555] outline-none focus:border-[#555]"
@@ -1087,7 +1092,7 @@ export default function Home() {
               )}
 
               {mainChannelList.length === 0 ? (
-                <p className="text-sm text-[#555]">No main channel content yet. Add .txt files to src/data/main-channel/</p>
+                <p className="text-sm text-[#555]">{mainChannelTotal > 0 ? "Loading…" : "No videos yet."}</p>
               ) : (
                 <div className="flex flex-col gap-0.5 rounded-xl border border-[#272727] overflow-hidden bg-[#1c1c1c]">
                   {mainChannelList
@@ -1420,14 +1425,14 @@ export default function Home() {
                 <div className="p-4 space-y-3">
                   <p className="text-sm text-[#a3a3a3]">Need help? Reach out to the School of Mentors team.</p>
                   <a
-                    href="mailto:support@schoolofmentors.com"
-                    className="inline-flex items-center gap-2 text-sm text-[#7eb8da] hover:text-[#9ecce8] transition-colors"
+                    href="mailto:support@schoolofmentors.app"
+                    className="inline-flex items-center gap-2 text-sm text-[#ececec] hover:text-white transition-colors"
                   >
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
-                    support@schoolofmentors.com
+                    support@schoolofmentors.app
                   </a>
                 </div>
               </section>
@@ -1461,8 +1466,9 @@ export default function Home() {
                     ? (transcriptList.find((t) => t.title === selectedTranscript) ?? mainChannelItem)?.youtube
                     : undefined;
                   const activeParsed = selectedTranscript ? parsePodcast(selectedTranscript) : null;
-                  const activeSpeaker = mainChannelItem?.guest ?? activeParsed?.speaker ?? "Episode";
-                  const activeSpeakerDisplay = mainChannelItem?.displayTitle ?? transcriptList.find((t) => t.title === selectedTranscript)?.displayTitle ?? activeSpeaker ?? selectedTranscript ?? "Episode";
+                  const defaultLabel = mainChannelItem ? "Video" : "Episode";
+                  const activeSpeaker = mainChannelItem?.guest ?? activeParsed?.speaker ?? defaultLabel;
+                  const activeSpeakerDisplay = mainChannelItem?.displayTitle ?? transcriptList.find((t) => t.title === selectedTranscript)?.displayTitle ?? activeSpeaker ?? selectedTranscript ?? defaultLabel;
                   const formattedMain = mainChannelItem?.guest && selectedTranscript ? formatMainChannelTitle(selectedTranscript, mainChannelItem.guest) : "";
                   const activeTopic = mainChannelItem?.guest
                     ? formattedMain.replace(mainChannelItem.guest + ": ", "").trim()

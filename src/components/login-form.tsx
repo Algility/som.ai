@@ -48,11 +48,11 @@ function getAuthErrorMessage(err: unknown): string {
   if (/rate limit|too many requests|email.*limit/i.test(msg)) {
     return "Too many emails sent. Please wait an hour and try again.";
   }
-  if (/network|failed to fetch|load failed|connection|timed out/i.test(msg)) {
-    return "Connection failed. Check your network and try again.";
+  if (/network|failed to fetch|load failed|connection refused|timed out/i.test(msg)) {
+    return "Connection failed. Check your network and try again. If this is a deployed app, add your site URL and redirect URL in Supabase → Authentication → URL Configuration.";
   }
   if (err instanceof TypeError && /fetch|load failed/i.test(String(err))) {
-    return "Connection failed. Check your network and try again.";
+    return "Connection failed. Check your network and try again. If this is a deployed app, add your site URL and redirect URL in Supabase → Authentication → URL Configuration.";
   }
   if (/missing.*email|missing.*phone|email.*required|invalid login credentials/i.test(msg)) {
     return "Please enter your email and password.";

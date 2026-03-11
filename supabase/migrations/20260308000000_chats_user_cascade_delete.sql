@@ -14,8 +14,11 @@ BEGIN
     JOIN pg_namespace n ON n.oid = t.relnamespace
     JOIN pg_class ref ON ref.oid = c.confrelid
     JOIN pg_namespace refn ON refn.oid = ref.relnamespace
-    WHERE n.nspname = 'public' AND t.relname = 'chats' AND c.contype = 'f'
-      AND refn.nspname = 'auth' AND ref.relname = 'users'
+    WHERE n.nspname = 'public'
+      AND t.relname = 'chats'
+      AND c.contype = 'f'
+      AND refn.nspname = 'auth'
+      AND ref.relname = 'users'
   ) LOOP
     EXECUTE format('ALTER TABLE public.chats DROP CONSTRAINT IF EXISTS %I', r.conname);
   END LOOP;

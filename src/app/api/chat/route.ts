@@ -27,11 +27,12 @@ interface Transcript {
   content: string;
   keywords: string[];
   youtube?: string;
+  source: "main-channel" | "podcast";
 }
 
 const SKIP_WORDS = new Set(["the", "and", "with", "for", "from", "that", "this", "how", "why", "his", "her", "him"]);
 
-function loadFromDir(dir: string): Transcript[] {
+function loadFromDir(dir: string, source: "main-channel" | "podcast"): Transcript[] {
   if (!fs.existsSync(dir)) return [];
 
   const metaPath = path.join(dir, "metadata.json");
@@ -55,29 +56,31 @@ function loadFromDir(dir: string): Transcript[] {
         .split(/[\s,&$#@!?.'"–—]+/)
         .filter((w) => w.length >= 3 && !SKIP_WORDS.has(w));
       const youtube = meta[title]?.youtube;
-      return { title, content, keywords, youtube };
+      return { title, content, keywords, youtube, source };
     });
 }
 
-// Main channel + podcasts — merged for chat context (both under src/data)
-const TRANSCRIPTS = [...loadFromDir(DATA_DIRS.mainChannel), ...loadFromDir(DATA_DIRS.podcasts)];
+// Main channel (YouTube videos) + podcasts — merged for chat context (both under src/data)
+const MAIN_CHANNEL = loadFromDir(DATA_DIRS.mainChannel, "main-channel");
+const PODCASTS = loadFromDir(DATA_DIRS.podcasts, "podcast");
+const TRANSCRIPTS = [...MAIN_CHANNEL, ...PODCASTS];
 
 const TRANSCRIPT_TITLES =
   TRANSCRIPTS.length > 0
-    ? `\n\nYou have access to many episodes (${TRANSCRIPTS.length}+). When the user picks one or asks about a topic, relevant transcript context will be included below. Do not list or guess episode titles — use only the context provided.`
+    ? `\n\nYou have access to many YouTube videos (main channel) and podcast episodes (${TRANSCRIPTS.length}+). When the user picks one or asks about a topic, relevant context will be included below. Context labeled "Video:" is a YouTube video from the main channel (refer to it as "YouTube video" or "this YouTube video", never as music video or podcast). "Podcast:" is from podcasts. Do not list or guess titles — use only the context provided.`
     : "";
 
-const BASE_SYSTEM_PROMPT = `You are the School of Mentors AI — the user's personal AI business advisor and strategic co-pilot. You give implementation, not just information: execution-ready next steps and ROI-focused insight grounded in the mentor content and episodes you have access to. You cover business strategy, sales, mindset, call recordings, mentor sessions, projects, and personal development. Think like a top-tier advisor: actionable and specific, not generic.
+const BASE_SYSTEM_PROMPT = `You are the School of Mentors AI — the user's personal AI business advisor and strategic co-pilot. You give implementation, not just information: execution-ready next steps and ROI-focused insight grounded in the mentor content you have access to. You cover business strategy, sales, mindset, call recordings, mentor sessions, projects, and personal development. Think like a top-tier advisor: actionable and specific, not generic.
 
 Tone and style:
 - Talk like a sharp mentor who has their back. Natural, human, no corporate-speak or robot vibes.
-- Be implementation-focused: when you give advice, make it actionable (what to do next, how to apply it). Prefer execution-ready assets (scripts, playbooks, steps) over theory. Ground answers in the episodes and content when relevant.
+- Be implementation-focused: when you give advice, make it actionable (what to do next, how to apply it). Prefer execution-ready assets (scripts, playbooks, steps) over theory. Ground answers in the YouTube videos and content when relevant.
 - Never start a response with "Certainly", "Great question", "Of course", "Absolutely", or any filler affirmation.
 - Don't over-structure simple answers. Quick question → direct answer. Use bullets or headers only when they actually make things clearer (e.g. steps, comparisons).
 - Be concise. No padding, no throat-clearing. Say what matters.
 - Never end with "Is there anything else I can help you with?" or similar. When you're done, just stop.
 - No emojis.
-- When referencing content from a podcast or episode, call it the "podcast" or "episode" — never "transcript", "document", or "text". Talk as if you listened to it. When quoting or summarizing, use clean prose only (no timestamps or speaker IDs).${TRANSCRIPT_TITLES}`;
+- When referencing content: if the context is labeled "Video:", always refer to it as a "YouTube video" (e.g. "this YouTube video", "from the [title] YouTube video", "the Tom Brady YouTube video") — never call it a podcast or music video. If labeled "Podcast:", call it the "podcast" or "episode". Never use "transcript", "document", or "text". Talk as if you watched the YouTube video or listened to the podcast. When quoting or summarizing, use clean prose only (no timestamps or speaker IDs).${TRANSCRIPT_TITLES}`;
 
 // Pull only the chunks of a transcript most relevant to the query.
 // Keeps token usage under ~5K even for large transcripts.
@@ -157,13 +160,14 @@ function getRelevantContext(messages: { role: string; content: unknown }[]): str
   const sections: string[] = [];
   for (const t of matches) {
     const chunks = retrieveChunks(t.content, recentUserText, Math.floor((MAX_CONTEXT_CHARS - totalLen) / matches.length));
-    const block = `=== ${t.title} ===\n${normalizeTranscriptContent(chunks)}`;
+    const label = t.source === "main-channel" ? "Video" : "Podcast";
+    const block = `=== ${label}: ${t.title} ===\n${normalizeTranscriptContent(chunks)}`;
     if (totalLen + block.length > MAX_CONTEXT_CHARS) break;
     sections.push(block);
     totalLen += block.length;
   }
 
-  return `\n\n## Relevant episode excerpts\n\n${sections.join("\n\n")}`;
+  return `\n\n## Relevant excerpts\n\n${sections.join("\n\n")}`;
 }
 
 export async function POST(req: Request) {
@@ -172,7 +176,6 @@ export async function POST(req: Request) {
 
   let transcriptContext = "";
   if (transcript) {
-    // User selected a specific podcast — force-include it
     const found = TRANSCRIPTS.find((t) => t.title === transcript);
     if (found) {
       const lastUser = [...messages].reverse().find((m: { role: string }) => m.role === "user");
@@ -183,7 +186,8 @@ export async function POST(req: Request) {
           ? lastUser.content.filter((p: { type: string }) => p.type === "text").map((p: { text: string }) => p.text).join(" ")
           : found.title;
       const chunks = retrieveChunks(found.content, query);
-      transcriptContext = `\n\n## Episode: ${found.title}\n\n${normalizeTranscriptContent(chunks)}`;
+      const label = found.source === "main-channel" ? "Video" : "Podcast";
+      transcriptContext = `\n\n## ${label}: ${found.title}\n\n${normalizeTranscriptContent(chunks)}`;
     }
   } else {
     transcriptContext = getRelevantContext(messages);

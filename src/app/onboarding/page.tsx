@@ -43,7 +43,7 @@ export default function OnboardingPage() {
       return;
     }
     if (hasDisplayName(user)) {
-      router.replace("/");
+      window.location.href = "/";
       return;
     }
   }, [user, authLoading, router]);
@@ -100,7 +100,9 @@ export default function OnboardingPage() {
       });
       if (updateError) throw updateError;
       await supabase.auth.refreshSession();
-      router.replace("/");
+      // Full page navigation so middleware sees updated session cookie (avoids redirect loop)
+      window.location.href = "/";
+      return;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
