@@ -45,8 +45,11 @@ const AUTH_ERROR_MESSAGES: Record<string, string> = {
 
 function getAuthErrorMessage(err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err ?? "Something went wrong.");
-  if (/rate limit|too many requests|email.*limit/i.test(msg)) {
-    return "Too many emails sent. Please wait an hour and try again.";
+  const status = (err as { status?: number })?.status;
+  if (status === 429 || /rate limit|too many requests|email.*limit/i.test(msg)) {
+    return status === 429
+      ? "Too many sign-in attempts. Please wait a few minutes and try again."
+      : "Too many emails sent. Please wait an hour and try again.";
   }
   if (/network|failed to fetch|load failed|connection refused|timed out/i.test(msg)) {
     return "Connection failed. Check your network and try again. If this is a deployed app, add your site URL and redirect URL in Supabase → Authentication → URL Configuration.";

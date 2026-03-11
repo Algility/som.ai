@@ -36,9 +36,10 @@ export function useAuth() {
       return;
     }
     const clearInvalidSession = () => {
-      void supabase.auth.signOut();
+      void supabase.auth.signOut({ scope: "local" });
       setSession(null);
       setUser(null);
+      setLoading(false);
     };
     const sessionPromise = supabase.auth
       .getSession()
@@ -60,9 +61,10 @@ export function useAuth() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, s) => {
+    } = supabase.auth.onAuthStateChange((event, s) => {
       setSession(s);
       setUser(s?.user ?? null);
+      if (event === "SIGNED_OUT" || !s) setLoading(false);
     });
     return () => subscription.unsubscribe();
   }, [supabase]);
@@ -123,7 +125,7 @@ export function useAuth() {
 
   const signOut = useCallback(async () => {
     if (!supabase) return;
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: "local" });
   }, [supabase]);
 
   const signInWithGoogle = useCallback(async () => {
