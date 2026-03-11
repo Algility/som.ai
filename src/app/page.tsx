@@ -8,10 +8,12 @@ import { DefaultChatTransport } from "ai";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ClaudeChatInput from "@/components/ui/claude-style-chat-input";
+import { CommandK, type CommandKItem } from "@/components/ui/command-k";
 import { useAuth } from "@/hooks/use-auth";
 import { createClient, type ChatRow } from "@/lib/supabase";
 import { formatMainChannelTitle } from "@/lib/content-utils";
 import { SOM_DEFAULT_MODEL_ID } from "@/lib/som-models";
+import { Search, Settings, MessageSquare, Youtube, Phone, Users, FileText, Plus } from "lucide-react";
 
 type MessagePart = { type?: string; text?: string };
 
@@ -241,6 +243,7 @@ export default function Home() {
   const [expandedPodcast, setExpandedPodcast] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -393,6 +396,18 @@ export default function Home() {
   useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
+
+  // Command palette: Cmd+K / Ctrl+K
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setCommandPaletteOpen((open) => !open);
+      }
+    };
+    window.addEventListener("keydown", down);
+    return () => window.removeEventListener("keydown", down);
+  }, []);
 
   const supabase = useMemo(() => createClient(), []);
 
@@ -567,6 +582,113 @@ export default function Home() {
     if (window.innerWidth < 1024) setSidebarOpen(false);
   };
 
+  const commandPaletteItems: CommandKItem[] = useMemo(
+    () => [
+      {
+        label: "Search conversations",
+        group: "Actions",
+        description: "Search your chat history",
+        icon: Search,
+        shortcut: ["⌘", "K"],
+        keywords: ["search", "chats", "history"],
+      },
+      {
+        label: "New chat",
+        group: "Actions",
+        description: "Start a new conversation",
+        icon: Plus,
+        shortcut: ["N"],
+        keywords: ["new", "chat", "conversation"],
+      },
+      {
+        label: "Chats",
+        group: "Navigation",
+        description: "Go to chats",
+        icon: MessageSquare,
+        keywords: ["chat", "conversation"],
+      },
+      {
+        label: "Main channel",
+        group: "Navigation",
+        description: "YouTube videos from School of Hard Knocks",
+        icon: Youtube,
+        keywords: ["main", "youtube", "videos"],
+      },
+      {
+        label: "Podcasts",
+        group: "Navigation",
+        description: "Podcast episodes",
+        icon: FileText,
+        keywords: ["podcast", "episodes"],
+      },
+      {
+        label: "Call Recordings",
+        group: "Navigation",
+        description: "Call recordings",
+        icon: Phone,
+        keywords: ["call", "recordings"],
+      },
+      {
+        label: "Mentor Sessions",
+        group: "Navigation",
+        description: "Mentor sessions",
+        icon: Users,
+        keywords: ["mentor", "sessions"],
+      },
+      {
+        label: "Settings",
+        group: "Navigation",
+        description: "Application preferences",
+        icon: Settings,
+        shortcut: ["O"],
+        keywords: ["settings", "preferences"],
+      },
+    ],
+    []
+  );
+
+  const handleCommandSelect = useCallback(
+    (item: CommandKItem) => {
+      setCommandPaletteOpen(false);
+      switch (item.label) {
+        case "Search conversations":
+          setSearchOpen(true);
+          setTimeout(() => searchInputRef.current?.focus(), 50);
+          break;
+        case "New chat":
+          handleNewChat();
+          break;
+        case "Chats":
+          setView(messages.length > 0 ? "chat" : "home");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        case "Main channel":
+          setView("main-channel");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        case "Podcasts":
+          setView("podcasts");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        case "Call Recordings":
+          setView("recordings");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        case "Mentor Sessions":
+          setView("sessions");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        case "Settings":
+          setView("settings");
+          if (window.innerWidth < 1024) setSidebarOpen(false);
+          break;
+        default:
+          break;
+      }
+    },
+    [messages.length]
+  );
+
   const handleRestoreChat = (item: { id: string; messages: unknown[]; transcript: string | null }) => {
     setMessages(item.messages as Parameters<typeof setMessages>[0]);
     setSelectedTranscript(item.transcript);
@@ -631,6 +753,13 @@ export default function Home() {
 
   return (
     <>
+    <CommandK
+      items={commandPaletteItems}
+      open={commandPaletteOpen}
+      onOpenChange={setCommandPaletteOpen}
+      onSelect={handleCommandSelect}
+      placeholder="Search or jump to…"
+    />
     {/* DB error toast — dismissible, auto-clears after 5s */}
     {dbError && (
       <div className="fixed bottom-4 left-4 right-4 z-[100] flex items-center justify-between gap-3 rounded-xl border border-red-500/30 bg-[#1a1a1a] px-4 py-3 shadow-xl sm:left-auto sm:right-4 sm:max-w-sm">
@@ -727,7 +856,7 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-              <NavItem label="Search" onClick={() => setSearchOpen(true)} icon={
+              <NavItem label="Search" onClick={() => setCommandPaletteOpen(true)} icon={
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
                 </svg>
@@ -1094,7 +1223,7 @@ export default function Home() {
               {mainChannelList.length === 0 ? (
                 <p className="text-sm text-[#555]">{mainChannelTotal > 0 ? "Loading…" : "No videos yet."}</p>
               ) : (
-                <div className="flex flex-col gap-0.5 rounded-xl border border-[#272727] overflow-hidden bg-[#1c1c1c]">
+                <div className="flex flex-col gap-0.5 rounded-xl border border-[#272727] overflow-hidden bg-[#1c1c1c] max-h-[calc(100dvh-14rem)] overflow-y-auto scroll-smooth custom-scrollbar">
                   {mainChannelList
                     .filter(({ title, displayTitle, guest, category }) => {
                       if (!mainChannelSearch.trim()) return true;
@@ -1107,25 +1236,25 @@ export default function Home() {
                         key={title}
                         onClick={() => handleSelectPodcast(title)}
                         style={{ animationDelay: `${Math.min(index, 20) * 25}ms` }}
-                        className="animate-main-channel-item w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-[#252525] transition-colors cursor-pointer border-b border-[#272727] last:border-b-0"
+                        className="animate-main-channel-item w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-[#252525] transition-colors cursor-pointer border-b border-[#272727] last:border-b-0"
                       >
-                        <span className="w-10 h-10 rounded-lg bg-[#2a2a2a] flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <span className="w-9 h-9 rounded-lg bg-[#2a2a2a] flex items-center justify-center flex-shrink-0 overflow-hidden">
                           {image ? (
                             <img src={image} alt="" className="w-full h-full object-cover" />
                           ) : (
                             <span className="text-[#890B10]" title="YouTube" aria-label="YouTube">
-                              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                               </svg>
                             </span>
                           )}
                         </span>
                         <span className="flex-1 min-w-0 flex flex-col gap-0.5">
-                          <span className="text-sm text-[#d0d0d0] hover:text-[#ececec] truncate block">
+                          <span className="text-sm text-[#d0d0d0] hover:text-[#ececec] break-words leading-snug">
                             {stripEmojis(displayTitle ?? formatMainChannelTitle(title, guest ?? null))}
                           </span>
                           {category && (
-                            <span className="text-[10px] uppercase tracking-wider text-[#666] truncate block">
+                            <span className="text-[10px] uppercase tracking-wider text-[#666] break-words">
                               {category}
                             </span>
                           )}
@@ -1155,7 +1284,7 @@ export default function Home() {
 
         /* ── Podcasts ── */
         ) : view === "podcasts" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
+          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
               <p className="text-sm text-[#555] mb-4">Pick an episode for actionable advice. {transcriptTotal > 0 && `${transcriptTotal} episodes`}</p>
@@ -1175,7 +1304,7 @@ export default function Home() {
               {transcriptList.length === 0 ? (
                 <p className="text-sm text-[#555]">No podcasts found. Add .txt files to src/data/podcasts/</p>
               ) : (
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2 max-h-[calc(100dvh-14rem)] overflow-y-auto scroll-smooth custom-scrollbar pr-1">
                   {transcriptList
                     .filter(({ title, category }) => {
                       if (!podcastSearch.trim()) return true;
@@ -1196,11 +1325,11 @@ export default function Home() {
                         key={title}
                         onMouseEnter={() => setHoveredPodcast({ speaker, topic, initials, summary })}
                         onMouseLeave={() => setHoveredPodcast(null)}
-                        className="rounded-2xl bg-[#1c1c1c] hover:bg-[#212121] border border-[#272727] hover:border-[#333] transition-all duration-200 group overflow-hidden"
+                        className="rounded-xl bg-[#1c1c1c] hover:bg-[#212121] border border-[#272727] hover:border-[#333] transition-all duration-200 group overflow-hidden"
                       >
-                        <div className="flex items-center gap-3 lg:gap-4 p-3 lg:p-4">
+                        <div className="flex items-center gap-2.5 p-2.5 lg:p-3">
                           {/* Avatar */}
-                          <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl overflow-hidden flex-shrink-0 bg-[#2a2a2a]">
+                          <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-lg overflow-hidden flex-shrink-0 bg-[#2a2a2a]">
                             <PodcastAvatar speaker={speaker} initials={initials} />
                           </div>
 
@@ -1210,13 +1339,13 @@ export default function Home() {
                             className="min-w-0 flex-1 text-left cursor-pointer"
                           >
                             {speaker && (
-                              <p className="text-[11px] font-medium text-[#890B0F] uppercase tracking-widest mb-1">{stripEmojis(speaker)}</p>
+                              <p className="text-[11px] font-medium text-[#890B0F] uppercase tracking-widest mb-0.5">{stripEmojis(speaker)}</p>
                             )}
-                            <p className="text-sm font-medium text-[#d0d0d0] group-hover:text-[#ececec] line-clamp-2 leading-snug transition-colors">
+                            <p className="text-sm font-medium text-[#d0d0d0] group-hover:text-[#ececec] leading-snug break-words transition-colors">
                               {stripEmojis(topic)}
                             </p>
                             {category && (
-                              <p className="text-[10px] uppercase tracking-wider text-[#666] mt-1">{category}</p>
+                              <p className="text-[10px] uppercase tracking-wider text-[#666] mt-0.5 break-words">{category}</p>
                             )}
                           </button>
 
@@ -1548,7 +1677,7 @@ export default function Home() {
                               )}
                               <div className="p-3">
                                 <p className="text-[10px] font-semibold text-[#890B0F] uppercase tracking-widest mb-1">{stripEmojis(activeSpeakerDisplay)}</p>
-                                <p className="text-xs text-[#d0d0d0] leading-snug mb-2.5 line-clamp-2">{stripEmojis(activeTopicDisplay)}</p>
+                                <p className="text-xs text-[#d0d0d0] leading-snug mb-2.5 break-words">{stripEmojis(activeTopicDisplay)}</p>
                                 <div className="flex items-center gap-1.5 text-[10px] text-[#555]">
                                   <svg className="w-2.5 h-2.5 text-[#890B0F]" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
