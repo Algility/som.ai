@@ -3,8 +3,8 @@ import Image from "next/image";
 import { LoginForm } from "@/components/login-form";
 
 export const metadata = {
-  title: "Sign in | School of Mentors AI",
-  description: "Sign in to your account.",
+  title: "Sign in",
+  description: "Sign in to School of Mentors AI.",
   robots: "noindex, nofollow",
 };
 
