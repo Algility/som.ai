@@ -285,3 +285,24 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--text-500);
 }
+
+/* Podcasts thumb grid scroll */
+.podcast-thumbs-scrollbar {
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+}
+.podcast-thumbs-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+.podcast-thumbs-scrollbar::-webkit-scrollbar-track {
+  background: #1f1f1f;
+  border-radius: 6px;
+}
+.podcast-thumbs-scrollbar::-webkit-scrollbar-thumb {
+  background: #5c5c5c;
+  border-radius: 6px;
+  border: 2px solid #1f1f1f;
+}
+.podcast-thumbs-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}

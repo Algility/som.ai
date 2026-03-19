@@ -13,6 +13,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { createClient, type ChatRow } from "@/lib/supabase";
 import { formatMainChannelTitle } from "@/lib/content-utils";
 import { SOM_DEFAULT_MODEL_ID } from "@/lib/som-models";
+import { PODCAST_PAGE_VIDEOS, podcastPageVideoKey, type PodcastEpisode } from "@/data/podcast-episodes";
+import { MAIN_CHANNEL_PAGE_VIDEOS, mainChannelPageVideoKey } from "@/data/main-channel-videos";
 import { Search, Settings, MessageSquare, Youtube, Phone, Users, FileText, Plus } from "lucide-react";
 
 type MessagePart = { type?: string; text?: string };
@@ -112,6 +114,55 @@ function stripEmojis(s: string): string {
 function getYouTubeId(url: string): string | null {
   const m = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/);
   return m ? m[1] : null;
+}
+
+/**
+ * YouTube often returns HTTP 200 + a 120×90 grey “missing” image for maxresdefault (and sometimes others).
+ * onError never fires — we detect that in onLoad and step down.
+ */
+const YOUTUBE_THUMB_QUALITIES = ["maxresdefault", "sddefault", "hqdefault", "mqdefault", "default", "0"] as const;
+const YOUTUBE_THUMB_HOSTS = ["https://img.youtube.com", "https://i.ytimg.com"] as const;
+
+function isYoutubePlaceholderThumb(quality: (typeof YOUTUBE_THUMB_QUALITIES)[number], naturalWidth: number) {
+  if (naturalWidth > 130) return false;
+  return quality !== "default" && quality !== "0";
+}
+
+function YouTubeThumbnailImg({ videoId, className }: { videoId: string; className?: string }) {
+  const [tier, setTier] = React.useState(0);
+  const [hostIndex, setHostIndex] = React.useState(0);
+  const i = Math.min(tier, YOUTUBE_THUMB_QUALITIES.length - 1);
+  const quality = YOUTUBE_THUMB_QUALITIES[i];
+  const host = YOUTUBE_THUMB_HOSTS[hostIndex] ?? YOUTUBE_THUMB_HOSTS[0];
+  const src = `${host}/vi/${videoId}/${quality}.jpg`;
+
+  const tryNextHostOrTier = React.useCallback(() => {
+    setHostIndex((h) => {
+      if (h === 0) return 1;
+      setTier((t) => (t < YOUTUBE_THUMB_QUALITIES.length - 1 ? t + 1 : t));
+      return 0;
+    });
+  }, []);
+
+  return (
+    <img
+      key={`${videoId}-q${i}-h${hostIndex}`}
+      src={src}
+      alt=""
+      width={1280}
+      height={720}
+      className={className}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      onLoad={(e) => {
+        const w = e.currentTarget.naturalWidth;
+        if (w === 0) return;
+        if (isYoutubePlaceholderThumb(quality, w)) tryNextHostOrTier();
+      }}
+      onError={tryNextHostOrTier}
+    />
+  );
 }
 
 // Parse speaker name from podcast title like "Andy Elliott on Making $715k..."
@@ -231,9 +282,6 @@ export default function Home() {
   const [podcastSearch, setPodcastSearch] = useState("");
   const [transcriptsLoadingMore, setTranscriptsLoadingMore] = useState(false);
   const [mainChannelList, setMainChannelList] = useState<{ title: string; displayTitle?: string; guest?: string; category?: string; preview: string; summary?: string; youtube?: string; image?: string }[]>([]);
-  const [mainChannelTotal, setMainChannelTotal] = useState(0);
-  const [mainChannelSearch, setMainChannelSearch] = useState("");
-  const [mainChannelLoadingMore, setMainChannelLoadingMore] = useState(false);
   const [hoveredPodcast, setHoveredPodcast] = useState<{
     speaker: string | null;
     topic: string;
@@ -241,6 +289,12 @@ export default function Home() {
     summary?: string;
   } | null>(null);
   const [expandedPodcast, setExpandedPodcast] = useState<string | null>(null);
+  const [selectedPodcastPageIndex, setSelectedPodcastPageIndex] = useState(0);
+  const [podcastVideos, setPodcastVideos] = useState<PodcastEpisode[]>(PODCAST_PAGE_VIDEOS);
+  const [podcastVideosFromChannel, setPodcastVideosFromChannel] = useState(false);
+  const [selectedMainChannelPageIndex, setSelectedMainChannelPageIndex] = useState(0);
+  const [mainChannelVideos, setMainChannelVideos] = useState<PodcastEpisode[]>(MAIN_CHANNEL_PAGE_VIDEOS);
+  const [mainChannelVideosFromChannel, setMainChannelVideosFromChannel] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -486,10 +540,97 @@ export default function Home() {
       .then((r) => r.json())
       .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string; image?: string }[]; total: number }) => {
         setMainChannelList(data.items ?? []);
-        setMainChannelTotal(data.total ?? 0);
       })
       .catch(() => {});
   }, []);
+
+  /**
+   * Podcasts RSS: YOUTUBE_PODCAST_CHANNEL_ID → YOUTUBE_CHANNEL_ID2 → YOUTUBE_CHANNEL_ID.
+   */
+  useEffect(() => {
+    if (view !== "podcasts") return;
+    let cancelled = false;
+    fetch("/api/youtube-channel-videos?scope=podcasts", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d: { items?: { id: string }[]; source?: string }) => {
+        if (cancelled) return;
+        if (d.source === "youtube-rss" && d.items && d.items.length > 0) {
+          const seen = new Set<string>();
+          const merged: PodcastEpisode[] = [];
+          for (const row of d.items) {
+            const id = row.id;
+            if (seen.has(id)) continue;
+            seen.add(id);
+            const fromStatic = PODCAST_PAGE_VIDEOS.find((s) => s.id === id);
+            merged.push(fromStatic ?? { id });
+          }
+          for (const s of PODCAST_PAGE_VIDEOS) {
+            if (seen.has(s.id)) continue;
+            seen.add(s.id);
+            merged.push(s);
+          }
+          setPodcastVideos(merged);
+          setPodcastVideosFromChannel(true);
+          setSelectedPodcastPageIndex(0);
+        } else {
+          setPodcastVideos(PODCAST_PAGE_VIDEOS);
+          setPodcastVideosFromChannel(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setPodcastVideos(PODCAST_PAGE_VIDEOS);
+          setPodcastVideosFromChannel(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [view]);
+
+  /**
+   * Main channel RSS: YOUTUBE_MAIN_CHANNEL_ID → YOUTUBE_CHANNEL_ID (not CHANNEL_ID2).
+   */
+  useEffect(() => {
+    if (view !== "main-channel") return;
+    let cancelled = false;
+    fetch("/api/youtube-channel-videos?scope=main-channel", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d: { items?: { id: string }[]; source?: string }) => {
+        if (cancelled) return;
+        if (d.source === "youtube-rss" && d.items && d.items.length > 0) {
+          const seen = new Set<string>();
+          const merged: PodcastEpisode[] = [];
+          for (const row of d.items) {
+            const id = row.id;
+            if (seen.has(id)) continue;
+            seen.add(id);
+            const fromStatic = MAIN_CHANNEL_PAGE_VIDEOS.find((s) => s.id === id);
+            merged.push(fromStatic ?? { id });
+          }
+          for (const s of MAIN_CHANNEL_PAGE_VIDEOS) {
+            if (seen.has(s.id)) continue;
+            seen.add(s.id);
+            merged.push(s);
+          }
+          setMainChannelVideos(merged);
+          setMainChannelVideosFromChannel(true);
+          setSelectedMainChannelPageIndex(0);
+        } else {
+          setMainChannelVideos(MAIN_CHANNEL_PAGE_VIDEOS);
+          setMainChannelVideosFromChannel(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setMainChannelVideos(MAIN_CHANNEL_PAGE_VIDEOS);
+          setMainChannelVideosFromChannel(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [view]);
 
   const loadMoreTranscripts = () => {
     if (transcriptList.length >= transcriptTotal || transcriptsLoadingMore) return;
@@ -502,19 +643,6 @@ export default function Home() {
       })
       .catch(() => {})
       .finally(() => setTranscriptsLoadingMore(false));
-  };
-
-  const loadMoreMainChannel = () => {
-    if (mainChannelList.length >= mainChannelTotal || mainChannelLoadingMore) return;
-    setMainChannelLoadingMore(true);
-    fetch(`/api/main-channel?limit=50&offset=${mainChannelList.length}`)
-      .then((r) => r.json())
-      .then((data: { items: { title: string; preview: string; summary?: string; youtube?: string; image?: string }[]; total: number }) => {
-        setMainChannelList((prev) => [...prev, ...(data.items ?? [])]);
-        setMainChannelTotal(data.total ?? mainChannelTotal);
-      })
-      .catch(() => {})
-      .finally(() => setMainChannelLoadingMore(false));
   };
 
   useEffect(() => {
@@ -1203,81 +1331,96 @@ export default function Home() {
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">School of Hard Knocks</h2>
-              <p className="text-sm text-[#555] mb-4">
-                YouTube videos from the main channel. Pick one for actionable advice.
-                {mainChannelTotal > 0 && ` ${mainChannelTotal} videos.`}
+              <p className="text-sm text-[#555] mb-5">
+                Pick a video for how wealth is really built.
+                {mainChannelVideosFromChannel && (
+                  <span className="block mt-1 text-[11px] text-[#666]">New uploads from the channel show up here.</span>
+                )}
               </p>
-
-              {mainChannelTotal > 0 && (
-                <div className="mb-4">
-                  <input
-                    type="search"
-                    placeholder="Search videos…"
-                    value={mainChannelSearch}
-                    onChange={(e) => setMainChannelSearch(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg bg-[#242424] border border-[#383838] text-sm text-[#ececec] placeholder-[#555] outline-none focus:border-[#555]"
-                  />
-                </div>
-              )}
-
-              {mainChannelList.length === 0 ? (
-                <p className="text-sm text-[#555]">{mainChannelTotal > 0 ? "Loading…" : "No videos yet."}</p>
-              ) : (
-                <div className="flex flex-col gap-0.5 rounded-xl border border-[#272727] overflow-hidden bg-[#1c1c1c] max-h-[calc(100dvh-14rem)] overflow-y-auto scroll-smooth custom-scrollbar">
-                  {mainChannelList
-                    .filter(({ title, displayTitle, guest, category }) => {
-                      if (!mainChannelSearch.trim()) return true;
-                      const q = mainChannelSearch.toLowerCase().trim();
-                      const display = displayTitle ?? formatMainChannelTitle(title, guest ?? null);
-                      return title.toLowerCase().includes(q) || (displayTitle?.toLowerCase().includes(q)) || (guest?.toLowerCase().includes(q)) || (category?.toLowerCase().includes(q)) || display.toLowerCase().includes(q);
-                    })
-                    .map(({ title, displayTitle, guest, category, image }, index) => (
-                      <button
-                        key={title}
-                        onClick={() => handleSelectPodcast(title)}
-                        style={{ animationDelay: `${Math.min(index, 20) * 25}ms` }}
-                        className="animate-main-channel-item w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-[#252525] transition-colors cursor-pointer border-b border-[#272727] last:border-b-0"
+              {mainChannelVideos.length > 0 && (
+                <>
+                  {(() => {
+                    const active = mainChannelVideos[selectedMainChannelPageIndex] ?? mainChannelVideos[0];
+                    if (!active) return null;
+                    const q = active.si ? `?si=${active.si}` : "";
+                    return (
+                      <div className="mb-5 w-full max-w-2xl">
+                        <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-black ring-1 ring-white/10">
+                          <iframe
+                            key={`${active.id}-${active.si ?? ""}-${selectedMainChannelPageIndex}`}
+                            className="absolute inset-0 h-full w-full border-0"
+                            src={`https://www.youtube.com/embed/${active.id}${q}`}
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    );
+                  })()}
+                  <div className="w-full max-w-2xl [container-type:inline-size]">
+                    {mainChannelVideos.length > 6 && (
+                      <p className="text-[11px] text-[#888] mb-3">Scroll for more videos.</p>
+                    )}
+                    {mainChannelVideos.length > 6 ? (
+                      <div
+                        className="overflow-hidden rounded-md"
+                        style={{
+                          height: "calc((100cqw - 1.5rem) * 3 / 8 + 0.75rem + 1.25rem - 2px)",
+                        }}
                       >
-                        <span className="w-9 h-9 rounded-lg bg-[#2a2a2a] flex items-center justify-center flex-shrink-0 overflow-hidden">
-                          {image ? (
-                            <img src={image} alt="" className="w-full h-full object-cover" />
-                          ) : (
-                            <span className="text-[#890B10]" title="YouTube" aria-label="YouTube">
-                              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                              </svg>
-                            </span>
-                          )}
-                        </span>
-                        <span className="flex-1 min-w-0 flex flex-col gap-0.5">
-                          <span className="text-sm text-[#d0d0d0] hover:text-[#ececec] break-words leading-snug">
-                            {stripEmojis(displayTitle ?? formatMainChannelTitle(title, guest ?? null))}
-                          </span>
-                          {category && (
-                            <span className="text-[10px] uppercase tracking-wider text-[#666] break-words">
-                              {category}
-                            </span>
-                          )}
-                        </span>
-                        <svg className="w-4 h-4 text-[#555] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M9 18l6-6-6-6" />
-                        </svg>
-                      </button>
-                    ))}
-                </div>
-              )}
-
-              {mainChannelList.length > 0 && mainChannelList.length < mainChannelTotal && (
-                <div className="mt-6 flex justify-center">
-                  <button
-                    type="button"
-                    onClick={loadMoreMainChannel}
-                    disabled={mainChannelLoadingMore}
-                    className="px-4 py-2 rounded-lg text-sm font-medium text-[#ececec] bg-[#2a2a2a] hover:bg-[#333] border border-[#383838] transition-colors disabled:opacity-50"
-                  >
-                    {mainChannelLoadingMore ? "Loading…" : `Load more (${mainChannelList.length} of ${mainChannelTotal})`}
-                  </button>
-                </div>
+                        <div className="h-full overflow-y-auto overflow-x-hidden scroll-smooth custom-scrollbar podcast-thumbs-scrollbar pr-1.5">
+                          <div className="grid grid-cols-3 gap-x-3 gap-y-3 py-2.5">
+                            {mainChannelVideos.map((item, index) => {
+                              const isSelected = selectedMainChannelPageIndex === index;
+                              return (
+                                <button
+                                  key={`${mainChannelPageVideoKey(item)}-${index}`}
+                                  type="button"
+                                  onClick={() => setSelectedMainChannelPageIndex(index)}
+                                  aria-pressed={isSelected}
+                                  aria-label="Play video"
+                                  className={`relative w-full min-w-0 overflow-hidden rounded-md bg-black focus:outline-none shrink-0 ${
+                                    isSelected ? "opacity-100" : "opacity-55 hover:opacity-90"
+                                  }`}
+                                >
+                                  <YouTubeThumbnailImg
+                                    videoId={item.id}
+                                    className="w-full aspect-video object-cover block align-top"
+                                  />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-x-3 gap-y-3 w-full py-0.5">
+                        {mainChannelVideos.map((item, index) => {
+                          const isSelected = selectedMainChannelPageIndex === index;
+                          return (
+                            <button
+                              key={`${mainChannelPageVideoKey(item)}-${index}`}
+                              type="button"
+                              onClick={() => setSelectedMainChannelPageIndex(index)}
+                              aria-pressed={isSelected}
+                              aria-label="Play video"
+                              className={`relative w-full min-w-0 overflow-hidden rounded-md bg-black focus:outline-none ${
+                                isSelected ? "opacity-100" : "opacity-55 hover:opacity-90"
+                              }`}
+                            >
+                              <YouTubeThumbnailImg
+                                videoId={item.id}
+                                className="w-full aspect-video object-cover block align-top"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </>
               )}
             </div>
           </main>
@@ -1287,157 +1430,92 @@ export default function Home() {
           <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
-              <p className="text-sm text-[#555] mb-4">Pick an episode for actionable advice. {transcriptTotal > 0 && `${transcriptTotal} episodes`}</p>
-
-              {transcriptTotal > 0 && (
-                <div className="mb-4">
-                  <input
-                    type="search"
-                    placeholder="Search episodes…"
-                    value={podcastSearch}
-                    onChange={(e) => setPodcastSearch(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg bg-[#242424] border border-[#383838] text-sm text-[#ececec] placeholder-[#555] outline-none focus:border-[#555]"
-                  />
-                </div>
-              )}
-
-              {transcriptList.length === 0 ? (
-                <p className="text-sm text-[#555]">No podcasts found. Add .txt files to src/data/podcasts/</p>
-              ) : (
-                <div className="flex flex-col gap-2 max-h-[calc(100dvh-14rem)] overflow-y-auto scroll-smooth custom-scrollbar pr-1">
-                  {transcriptList
-                    .filter(({ title, category }) => {
-                      if (!podcastSearch.trim()) return true;
-                      const q = podcastSearch.toLowerCase().trim();
-                      const { speaker, topic } = parsePodcast(title);
-                      return (
-                        title.toLowerCase().includes(q) ||
-                        (speaker?.toLowerCase().includes(q) ?? false) ||
-                        topic.toLowerCase().includes(q) ||
-                        (category?.toLowerCase().includes(q) ?? false)
-                      );
-                    })
-                    .map(({ title, category, summary }) => {
-                    const { speaker, topic, initials } = parsePodcast(title);
-                    const isExpanded = expandedPodcast === title;
+              <p className="text-sm text-[#555] mb-5">Pick an episode for mentor wisdom.</p>
+              {/* Main player + 3×2 thumb grid — same max width for alignment */}
+              {podcastVideos.length > 0 && (
+                <>
+                  {(() => {
+                    const active = podcastVideos[selectedPodcastPageIndex] ?? podcastVideos[0];
+                    if (!active) return null;
+                    const q = active.si ? `?si=${active.si}` : "";
                     return (
-                      <div
-                        key={title}
-                        onMouseEnter={() => setHoveredPodcast({ speaker, topic, initials, summary })}
-                        onMouseLeave={() => setHoveredPodcast(null)}
-                        className="rounded-xl bg-[#1c1c1c] hover:bg-[#212121] border border-[#272727] hover:border-[#333] transition-all duration-200 group overflow-hidden"
-                      >
-                        <div className="flex items-center gap-2.5 p-2.5 lg:p-3">
-                          {/* Avatar */}
-                          <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-lg overflow-hidden flex-shrink-0 bg-[#2a2a2a]">
-                            <PodcastAvatar speaker={speaker} initials={initials} />
-                          </div>
-
-                          {/* Text — navigates on all screen sizes */}
-                          <button
-                            onClick={() => handleSelectPodcast(title)}
-                            className="min-w-0 flex-1 text-left cursor-pointer"
-                          >
-                            {speaker && (
-                              <p className="text-[11px] font-medium text-[#890B0F] uppercase tracking-widest mb-0.5">{stripEmojis(speaker)}</p>
-                            )}
-                            <p className="text-sm font-medium text-[#d0d0d0] group-hover:text-[#ececec] leading-snug break-words transition-colors">
-                              {stripEmojis(topic)}
-                            </p>
-                            {category && (
-                              <p className="text-[10px] uppercase tracking-wider text-[#666] mt-0.5 break-words">{category}</p>
-                            )}
-                          </button>
-
-                          {/* Desktop: navigate arrow */}
-                          <button
-                            onClick={() => handleSelectPodcast(title)}
-                            className="hidden xl:flex flex-shrink-0 w-6 h-6 rounded-lg bg-[#2a2a2a] group-hover:bg-[#890B0F]/20 items-center justify-center transition-colors cursor-pointer p-1"
-                          >
-                            <svg className="w-3 h-3 text-[#555] group-hover:text-[#890B0F] transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M9 18l6-6-6-6" />
-                            </svg>
-                          </button>
-
-                          {/* Mobile: expand/collapse toggle */}
-                          <button
-                            onClick={() => setExpandedPodcast(isExpanded ? null : title)}
-                            className="xl:hidden flex-shrink-0 w-6 h-6 rounded-lg bg-[#2a2a2a] flex items-center justify-center transition-colors cursor-pointer p-1"
-                          >
-                            <svg
-                              className={`w-3 h-3 text-[#555] transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
-                              viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-                            >
-                              <path d="M6 9l6 6 6-6" />
-                            </svg>
-                          </button>
+                      <div className="mb-5 w-full max-w-2xl">
+                        <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-black ring-1 ring-white/10">
+                          <iframe
+                            key={`${active.id}-${active.si ?? ""}-${selectedPodcastPageIndex}`}
+                            className="absolute inset-0 h-full w-full border-0"
+                            src={`https://www.youtube.com/embed/${active.id}${q}`}
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                          />
                         </div>
-
-                        {/* Mobile expandable preview */}
-                        {isExpanded && (
-                          <div className="xl:hidden px-4 pb-4">
-                            <div className="border-t border-[#272727] pt-4">
-                              <p className="text-xs text-[#888] leading-relaxed mb-4">{summary ?? "No summary available."}</p>
-                              <button
-                                onClick={() => handleSelectPodcast(title)}
-                                className="w-full py-2 px-4 rounded-lg bg-[#890B0F] hover:bg-[#a01010] text-white text-sm font-medium transition-colors cursor-pointer"
-                              >
-                                Start chatting
-                              </button>
-                            </div>
-                          </div>
-                        )}
                       </div>
                     );
-                  })}
-                </div>
-              )}
-
-              {transcriptList.length > 0 && transcriptList.length < transcriptTotal && (
-                <div className="mt-6 flex justify-center">
-                  <button
-                    type="button"
-                    onClick={loadMoreTranscripts}
-                    disabled={transcriptsLoadingMore}
-                    className="px-4 py-2 rounded-lg text-sm font-medium text-[#ececec] bg-[#2a2a2a] hover:bg-[#333] border border-[#383838] transition-colors disabled:opacity-50"
-                  >
-                    {transcriptsLoadingMore ? "Loading…" : `Load more (${transcriptList.length} of ${transcriptTotal})`}
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Desktop hover preview card */}
-            <div
-              className={`fixed right-6 top-1/2 -translate-y-1/2 w-64 z-40 pointer-events-none hidden xl:block transition-all duration-200 ${
-                hoveredPodcast ? "opacity-100 translate-x-0" : "opacity-0 translate-x-3"
-              }`}
-            >
-              {hoveredPodcast && (
-                <div className="bg-[#1c1c1c] border border-[#2e2e2e] rounded-2xl shadow-2xl overflow-hidden">
-                  <div className="w-full aspect-[4/3] bg-[#242424] overflow-hidden">
-                    <PodcastAvatar speaker={hoveredPodcast.speaker} initials={hoveredPodcast.initials} />
-                  </div>
-                  <div className="p-4">
-                    {hoveredPodcast.speaker && (
-                      <p className="text-[10px] font-semibold text-[#890B0F] uppercase tracking-widest mb-1.5">
-                        {stripEmojis(hoveredPodcast.speaker)}
-                      </p>
+                  })()}
+                  <div className="w-full max-w-2xl [container-type:inline-size]">
+                    {podcastVideos.length > 6 && (
+                      <p className="text-[11px] text-[#888] mb-3">Scroll for more episodes.</p>
                     )}
-                    <p className="text-sm font-medium text-[#d4d4d4] leading-snug mb-3">
-                      {stripEmojis(hoveredPodcast.topic)}
-                    </p>
-                    <p className="text-xs text-[#666] leading-relaxed">
-                      {hoveredPodcast.summary ?? "No summary available."}
-                    </p>
-                    <div className="mt-4 pt-3 border-t border-[#272727] flex items-center gap-1.5 text-[10px] text-[#4a4a4a]">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                      </svg>
-                      Click to start chatting
-                    </div>
+                    {podcastVideos.length > 6 ? (
+                      <div
+                        className="overflow-hidden rounded-md"
+                        style={{
+                          height: "calc((100cqw - 1.5rem) * 3 / 8 + 0.75rem + 1.25rem - 2px)",
+                        }}
+                      >
+                        <div className="h-full overflow-y-auto overflow-x-hidden scroll-smooth custom-scrollbar podcast-thumbs-scrollbar pr-1.5">
+                          <div className="grid grid-cols-3 gap-x-3 gap-y-3 py-2.5">
+                            {podcastVideos.map((item, index) => {
+                              const isSelected = selectedPodcastPageIndex === index;
+                              return (
+                                <button
+                                  key={`${podcastPageVideoKey(item)}-${index}`}
+                                  type="button"
+                                  onClick={() => setSelectedPodcastPageIndex(index)}
+                                  aria-pressed={isSelected}
+                                  aria-label="Play video"
+                                  className={`relative w-full min-w-0 overflow-hidden rounded-md bg-black focus:outline-none shrink-0 ${
+                                    isSelected ? "opacity-100" : "opacity-55 hover:opacity-90"
+                                  }`}
+                                >
+                                  <YouTubeThumbnailImg
+                                    videoId={item.id}
+                                    className="w-full aspect-video object-cover block align-top"
+                                  />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-x-3 gap-y-3 w-full py-0.5">
+                        {podcastVideos.map((item, index) => {
+                          const isSelected = selectedPodcastPageIndex === index;
+                          return (
+                            <button
+                              key={`${podcastPageVideoKey(item)}-${index}`}
+                              type="button"
+                              onClick={() => setSelectedPodcastPageIndex(index)}
+                              aria-pressed={isSelected}
+                              aria-label="Play video"
+                              className={`relative w-full min-w-0 overflow-hidden rounded-md bg-black focus:outline-none ${
+                                isSelected ? "opacity-100" : "opacity-55 hover:opacity-90"
+                              }`}
+                            >
+                              <YouTubeThumbnailImg
+                                videoId={item.id}
+                                className="w-full aspect-video object-cover block align-top"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
-                </div>
+                </>
               )}
             </div>
           </main>
@@ -1669,9 +1747,8 @@ export default function Home() {
                           >
                             <div className="bg-[#1c1c1c] border border-[#333] rounded-xl shadow-2xl overflow-hidden hover:border-[#444] transition-colors">
                               {activeVideoId && (
-                                <img
-                                  src={`https://img.youtube.com/vi/${activeVideoId}/mqdefault.jpg`}
-                                  alt=""
+                                <YouTubeThumbnailImg
+                                  videoId={activeVideoId}
                                   className="w-full aspect-video object-cover"
                                 />
                               )}
