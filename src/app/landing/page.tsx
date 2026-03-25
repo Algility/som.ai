@@ -18,7 +18,7 @@ const landingFooterLogoClassName =
 
 function Step1VideoBlock({ embed }: { embed: string | null }) {
   return (
-    <div className="mt-4 w-full max-w-3xl overflow-hidden rounded-lg bg-black sm:mt-5">
+    <div className="mt-10 w-full max-w-3xl overflow-hidden rounded-lg bg-black sm:mt-12 md:mt-14">
       <p className="flex w-full items-center justify-center overflow-x-auto bg-white px-4 py-2.5 sm:px-5 sm:py-3 [font-family:var(--font-landing-display),system-ui,sans-serif] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <span className="whitespace-nowrap text-center text-base font-black italic leading-snug tracking-tight text-black sm:text-lg md:text-xl lg:text-2xl">
           Step 1: Watch The Short Video Below
@@ -57,8 +57,8 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-dvh overflow-x-hidden bg-[#000] font-sans text-[#ececec] antialiased selection:bg-white/20">
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-10 pt-1 sm:px-6 sm:pb-12 sm:pt-2 md:pb-14">
-        <header className="mb-4 flex w-full justify-center sm:mb-5 md:mb-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-[max(2.5rem,calc(env(safe-area-inset-bottom,0px)+1.5rem))] pt-[max(1.5rem,calc(env(safe-area-inset-top,0px)+1.25rem))] sm:px-6 sm:pb-12 sm:pt-8 md:pb-14 md:pt-10">
+        <header className="mb-5 flex w-full justify-center sm:mb-6 md:mb-8">
           <Link
             href="/"
             className="block rounded-lg transition-opacity duration-150 hover:opacity-90 focus-visible:outline focus-visible:ring-2 focus-visible:ring-[#353535] focus-visible:ring-offset-4 focus-visible:ring-offset-black"
@@ -77,7 +77,7 @@ export default function LandingPage() {
         </header>
 
         <h1
-          className="w-full max-w-4xl px-1 text-center text-balance font-black leading-[1.05] tracking-[-0.03em] text-white sm:leading-[1.04] sm:tracking-[-0.035em] md:leading-[1.03] lg:max-w-[52rem] [font-family:var(--font-landing-display),system-ui,sans-serif] text-[clamp(1.2rem,3.4vw+0.55rem,2.85rem)] sm:text-[clamp(1.35rem,3vw+0.65rem,3.15rem)]"
+          className="w-full max-w-4xl px-1 text-center text-balance font-black leading-[1.05] tracking-[-0.03em] text-white sm:leading-[1.04] sm:tracking-[-0.035em] md:leading-[1.03] lg:max-w-[52rem] [font-family:var(--font-landing-display),system-ui,sans-serif] text-[clamp(1.2rem,3.4vw+0.55rem,2.85rem)] sm:text-[clamp(1.35rem,3vw+0.65rem,3.15rem)] mb-1 sm:mb-2"
         >
           Discover The System Used By Serious Operators To Turn Mentor Content Into Execution, Win Back Time &amp; Rebuild Momentum In Your Business
         </h1>

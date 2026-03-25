@@ -902,7 +902,7 @@ export default function Home() {
         </button>
       </div>
     )}
-    <div className="h-[100dvh] w-full bg-[#1a1a1a] flex font-sans overflow-hidden">
+    <div className="flex h-svh min-h-0 w-full overflow-hidden bg-[#1a1a1a] font-sans">
 
       {/* ── Mobile backdrop ── */}
       {sidebarOpen && (
@@ -914,7 +914,7 @@ export default function Home() {
 
       {/* ── Sidebar ── */}
       <aside className={`
-        h-[100dvh] flex flex-col overflow-hidden
+        flex h-svh flex-col overflow-hidden
         bg-[#181818] border-r border-[#403F3D]
         transition-[transform,width] duration-300 ease-in-out will-change-transform
         fixed inset-y-0 left-0 z-50 w-[260px]
@@ -1064,7 +1064,7 @@ export default function Home() {
           </div>
 
           {/* Recents */}
-          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-3 mt-2">
+          <div className="mt-2 min-h-0 flex-1 touch-pan-y overflow-y-auto overflow-x-hidden overscroll-y-contain px-3">
             <p className="text-xs text-[#555] px-2 py-1.5 font-medium uppercase tracking-wider">Recents</p>
             <div className="space-y-0.5">
               {(() => {
@@ -1198,7 +1198,7 @@ export default function Home() {
       </aside>
 
       {/* ── Main ── */}
-      <div className="flex-1 flex flex-col h-[100dvh] overflow-hidden bg-[#1a1a1a] relative">
+      <div className="relative flex h-svh min-h-0 flex-1 flex-col overflow-hidden bg-[#1a1a1a]">
 
         {/* ── Mobile top bar (shown when sidebar is closed, hidden on home view) ── */}
         {!sidebarOpen && view !== "home" && (
@@ -1277,59 +1277,63 @@ export default function Home() {
 
         {/* ── Home ── */}
         {view === "home" ? (
-          <main className="flex-1 flex flex-col items-center justify-center px-4 pb-safe lg:pb-16">
-            <div className="w-full max-w-3xl mb-6 text-center">
-              <div className="w-fit mx-auto mb-4 animate-fade-up">
-                <img
-                  src="/logo.png"
-                  alt="School of Mentors"
-                  className="logo-no-drag w-28 h-28 lg:w-44 lg:h-44 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
-                  draggable={false}
-                />
+          <main className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain">
+            {/*
+              min-h-full + justify-center: centered when content is short; when tall (mobile), the outer main scrolls so nothing is clipped.
+            */}
+            <div className="flex min-h-full w-full flex-col items-center justify-center px-4 pb-safe pt-[max(5rem,env(safe-area-inset-top,0px)+2.75rem)] lg:px-6 lg:pb-16 lg:pt-8">
+              <div className="mb-6 w-full max-w-3xl text-center">
+                <div className="mx-auto mb-4 w-fit animate-fade-up">
+                  <img
+                    src="/logo.png"
+                    alt="School of Mentors"
+                    className="logo-no-drag h-28 w-28 object-contain [mix-blend-mode:multiply] select-none pointer-events-none dark:[mix-blend-mode:normal] lg:h-44 lg:w-44"
+                    draggable={false}
+                  />
+                </div>
+                <h1 className="mb-2 animate-fade-up-delay font-brand text-2xl tracking-tight text-[#ececec] sm:text-3xl lg:text-4xl">
+                  {greeting},{" "}
+                  <span className="relative inline-block pb-2">
+                    {firstName}
+                    <svg
+                      className="absolute -bottom-1 -left-[5%] h-[20px] w-[140%] text-[#890B0F]"
+                      viewBox="0 0 140 24"
+                      fill="none"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 16 Q 70 24, 134 14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none" />
+                    </svg>
+                  </span>
+                </h1>
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-brand text-[#ececec] mb-2 tracking-tight animate-fade-up-delay">
-                {greeting},{" "}
-                <span className="relative inline-block pb-2">
-                  {firstName}
-                  <svg
-                    className="absolute w-[140%] h-[20px] -bottom-1 -left-[5%] text-[#890B0F]"
-                    viewBox="0 0 140 24"
-                    fill="none"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
+
+              <ClaudeChatInput onSendMessage={handleSendMessage} isLoading={isLoading} onStop={stop} />
+
+              <div className="mx-auto mb-2 mt-4 flex max-w-2xl flex-wrap justify-center gap-2 px-2 sm:px-4">
+                {(["Main channel", "Call Recordings", "Mentor Sessions", "Podcasts", "Resources"] as const).map((label) => (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      if (label === "Main channel") setView("main-channel");
+                      else if (label === "Podcasts") setView("podcasts");
+                      else if (label === "Call Recordings") setView("recordings");
+                      else if (label === "Mentor Sessions") setView("sessions");
+                      else handleSendMessage({ message: `Show me ${label}`, model: selectedModel });
+                    }}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-[#333] bg-transparent px-3 py-1.5 text-sm text-[#888] transition-colors duration-150 hover:border-[#444] hover:bg-[#242424] hover:text-[#ccc]"
                   >
-                    <path d="M6 16 Q 70 24, 134 14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" fill="none" />
-                  </svg>
-                </span>
-              </h1>
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
-
-            <ClaudeChatInput onSendMessage={handleSendMessage} isLoading={isLoading} onStop={stop} />
-
-            <div className="flex flex-wrap justify-center gap-2 mt-4 max-w-2xl mx-auto px-4">
-              {(["Main channel", "Call Recordings", "Mentor Sessions", "Podcasts", "Resources"] as const).map((label) => (
-                <button
-                  key={label}
-                  onClick={() => {
-                    if (label === "Main channel") setView("main-channel");
-                    else if (label === "Podcasts") setView("podcasts");
-                    else if (label === "Call Recordings") setView("recordings");
-                    else if (label === "Mentor Sessions") setView("sessions");
-                    else handleSendMessage({ message: `Show me ${label}`, model: selectedModel });
-                  }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#888] bg-transparent border border-[#333] rounded-xl hover:bg-[#242424] hover:text-[#ccc] hover:border-[#444] transition-colors duration-150 cursor-pointer"
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-
           </main>
 
         /* ── Main channel (School of Hard Knocks YouTube) ── */
         ) : view === "main-channel" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
-            <div className="max-w-2xl mx-auto">
+          <main className="custom-scrollbar min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain scroll-smooth px-4 pb-safe pt-5 lg:px-6 lg:pb-8 lg:pt-8">
+            <div className="mx-auto max-w-2xl">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">School of Hard Knocks</h2>
               <p className="text-sm text-[#555] mb-5">
                 Pick a video for how wealth is really built.
@@ -1427,8 +1431,8 @@ export default function Home() {
 
         /* ── Podcasts ── */
         ) : view === "podcasts" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8 scroll-smooth custom-scrollbar">
-            <div className="max-w-2xl mx-auto">
+          <main className="custom-scrollbar min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain scroll-smooth px-4 pb-safe pt-5 lg:px-6 lg:pb-8 lg:pt-8">
+            <div className="mx-auto max-w-2xl">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Podcasts</h2>
               <p className="text-sm text-[#555] mb-5">Pick an episode for mentor wisdom.</p>
               {/* Main player + 3×2 thumb grid — same max width for alignment */}
@@ -1522,8 +1526,8 @@ export default function Home() {
 
         /* ── Call Recordings ── */
         ) : view === "recordings" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
-            <div className="max-w-2xl mx-auto">
+          <main className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-4 pb-safe pt-5 lg:px-6 lg:pb-8 lg:pt-8">
+            <div className="mx-auto max-w-2xl">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Call Recordings</h2>
               <p className="text-sm text-[#555] mb-6 lg:mb-8">Your recorded mentor sessions, all in one place.</p>
               <EmptyState
@@ -1540,8 +1544,8 @@ export default function Home() {
 
         /* ── Mentor Sessions ── */
         ) : view === "sessions" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
-            <div className="max-w-2xl mx-auto">
+          <main className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-4 pb-safe pt-5 lg:px-6 lg:pb-8 lg:pt-8">
+            <div className="mx-auto max-w-2xl">
               <h2 className="text-xl lg:text-2xl font-brand-sub text-[#ececec] mb-1">Mentor Sessions</h2>
               <p className="text-sm text-[#555] mb-6 lg:mb-8">Track your progress with your assigned mentors.</p>
               <EmptyState
@@ -1561,8 +1565,8 @@ export default function Home() {
 
         /* ── Settings ── */
         ) : view === "settings" ? (
-          <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-5 lg:py-8">
-            <div className="max-w-2xl mx-auto">
+          <main className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-4 pb-safe pt-5 lg:px-6 lg:pb-8 lg:pt-8">
+            <div className="mx-auto max-w-2xl">
               <h2 className="text-2xl font-brand-sub text-[#ececec] mb-1">Settings</h2>
               <p className="text-sm text-[#555] mb-8">Manage your account and preferences.</p>
 
@@ -1648,7 +1652,7 @@ export default function Home() {
 
         /* ── Chat ── */
         ) : (
-          <main className="flex-1 flex flex-col overflow-hidden relative">
+          <main className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
             {/* Scroll-to-bottom button */}
             {showScrollBottom && (
               <button
@@ -1662,7 +1666,11 @@ export default function Home() {
               </button>
             )}
             {/* Messages */}
-            <div ref={messagesContainerRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-3 lg:px-4">
+            <div
+              ref={messagesContainerRef}
+              onScroll={handleScroll}
+              className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-3 lg:px-4"
+            >
               <div className="max-w-2xl mx-auto min-h-full flex flex-col">
                 {/* Top spacer — bottom-anchors short threads on mobile only */}
                 <div className="flex-1 min-h-4 lg:hidden" />
