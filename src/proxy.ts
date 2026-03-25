@@ -1,3 +1,9 @@
+/**
+ * Next.js 16+ edge proxy (replaces deprecated `middleware.ts` for this app).
+ *
+ * Keep `export const config` in THIS file only. Do not add `src/middleware.ts` that does
+ * `export { config } from "@/proxy"` — Next.js rejects re-exported `config` and will error at build/runtime.
+ */
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
@@ -25,7 +31,10 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   if (!user && path === "/") {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/landing", request.url));
+  }
+  if (user && path === "/landing") {
+    return NextResponse.redirect(new URL("/", request.url));
   }
   if (!user && path === "/onboarding") {
     return NextResponse.redirect(new URL("/login", request.url));

@@ -1283,7 +1283,7 @@ export default function Home() {
                 <img
                   src="/logo.png"
                   alt="School of Mentors"
-                  className="w-28 h-28 lg:w-44 lg:h-44 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
+                  className="logo-no-drag w-28 h-28 lg:w-44 lg:h-44 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
                   draggable={false}
                 />
               </div>
@@ -1632,14 +1632,14 @@ export default function Home() {
                 <div className="p-4 space-y-3">
                   <p className="text-sm text-[#a3a3a3]">Need help? Reach out to the School of Mentors team.</p>
                   <a
-                    href="mailto:support@schoolofmentors.app"
+                    href="mailto:somai@schoolofmentors.com"
                     className="inline-flex items-center gap-2 text-sm text-[#ececec] hover:text-white transition-colors"
                   >
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
-                    support@schoolofmentors.app
+                    somai@schoolofmentors.com
                   </a>
                 </div>
               </section>
@@ -1694,7 +1694,7 @@ export default function Home() {
                       <div className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                         {m.role === "assistant" && (
                           <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
-                            <Image src="/logo.png" alt="SOM" width={28} height={28} className="w-7 h-7 object-contain select-none pointer-events-none" />
+                            <Image src="/logo.png" alt="SOM" width={28} height={28} draggable={false} className="logo-no-drag w-7 h-7 object-contain select-none pointer-events-none" />
                           </div>
                         )}
                         <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -1788,7 +1788,7 @@ export default function Home() {
                 {isLoading && messages[messages.length - 1]?.role === "user" && (
                   <div className="flex justify-start">
                     <div className="w-7 h-7 rounded-full flex-shrink-0 mr-3 mt-0.5 flex items-center justify-center flex-none overflow-hidden">
-                      <Image src="/logo.png" alt="SOM" width={28} height={28} className="w-7 h-7 object-contain select-none pointer-events-none" />
+                      <Image src="/logo.png" alt="SOM" width={28} height={28} draggable={false} className="logo-no-drag w-7 h-7 object-contain select-none pointer-events-none" />
                     </div>
                     <div className="py-3.5 flex items-center gap-[5px]">
                       <span className="typing-dot w-[7px] h-[7px] rounded-full bg-[#555]" style={{ animationDelay: "0s" }} />

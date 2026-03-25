@@ -191,6 +191,15 @@
     overflow: hidden;
     overscroll-behavior: none;
   }
+
+  /* Chat UI uses internal scroll regions; landing/marketing needs normal page scroll. */
+  body:has([data-landing-scroll]) {
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+  }
   /* Momentum scrolling on all overflow elements */
   .overflow-y-auto,
   .overflow-auto,
@@ -226,6 +235,12 @@
   /* Reduce 300ms tap delay on mobile */
   .touch-manipulation {
     touch-action: manipulation;
+  }
+
+  /* Block default browser drag on brand logos */
+  .logo-no-drag {
+    -webkit-user-drag: none;
+    user-select: none;
   }
 }
 

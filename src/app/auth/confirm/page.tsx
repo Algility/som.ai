@@ -14,7 +14,7 @@ function safeNext(path: string | null): string {
   return p;
 }
 
-/** Default redirect after signup/recovery confirm: go to onboarding so middleware can send to / if they already have a name. */
+/** Default redirect after signup/recovery confirm: go to onboarding so the edge proxy can send to / if they already have a name. */
 const DEFAULT_NEXT_AFTER_CONFIRM = "/onboarding";
 
 export default function AuthConfirmPage() {
@@ -85,7 +85,8 @@ export default function AuthConfirmPage() {
           alt="School of Mentors"
           width={256}
           height={256}
-          className="w-48 h-48 lg:w-64 lg:h-64 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
+          draggable={false}
+          className="logo-no-drag w-48 h-48 lg:w-64 lg:h-64 object-contain [mix-blend-mode:multiply] dark:[mix-blend-mode:normal] select-none pointer-events-none"
           priority
         />
       </Link>
@@ -98,7 +99,7 @@ export default function AuthConfirmPage() {
         <div className="flex-1 flex flex-col min-h-0">
           <div className="flex-shrink-0 px-4 pt-safe-area-auth pb-1.5">
             <Link href="/login" className="inline-flex items-center gap-2 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#353535] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]" aria-label="Back to login">
-              <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-auto object-contain select-none pointer-events-none" priority />
+              <Image src="/logo.png" alt="" width={44} height={44} draggable={false} className="logo-no-drag h-11 w-auto object-contain select-none pointer-events-none" priority />
               <span className="text-base font-brand text-[#ececec] tracking-tight select-none">School of Mentors AI</span>
             </Link>
           </div>
@@ -120,7 +121,7 @@ export default function AuthConfirmPage() {
       <div className="flex-1 flex flex-col min-h-0">
         <div className="flex-shrink-0 px-4 pt-safe-area-auth pb-1.5">
           <Link href="/" className="inline-flex items-center gap-2 transition-colors duration-150 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#353535] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]" aria-label="Home">
-            <Image src="/logo.png" alt="" width={44} height={44} className="h-11 w-auto object-contain select-none pointer-events-none" priority />
+            <Image src="/logo.png" alt="" width={44} height={44} draggable={false} className="logo-no-drag h-11 w-auto object-contain select-none pointer-events-none" priority />
             <span className="text-base font-brand text-[#ececec] tracking-tight select-none">School of Mentors AI</span>
           </Link>
         </div>
