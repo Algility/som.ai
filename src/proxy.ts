@@ -31,10 +31,7 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   if (!user && path === "/") {
-    return NextResponse.redirect(new URL("/landing", request.url));
-  }
-  if (user && path === "/landing") {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
   if (!user && path === "/onboarding") {
     return NextResponse.redirect(new URL("/login", request.url));
