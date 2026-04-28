@@ -1,0 +1,779 @@
+{
+  "SOM 1 - James Keyes - Former CEO of 7-Eleven and Blockbuster": {
+    "call_number": "SOM 1",
+    "guest": "James Keyes",
+    "title": "Former CEO of 7-Eleven and Blockbuster",
+    "date": "June 6th, 2024",
+    "duration": "1:29:49"
+  },
+  "SOM 2 - Edwin Arroyave - Founder and CEO of Skyline Security Management": {
+    "call_number": "SOM 2",
+    "guest": "Edwin Arroyave",
+    "title": "Founder and CEO of Skyline Security Management",
+    "date": "June 12th, 2024",
+    "duration": "2:06:53"
+  },
+  "SOM 3 - Zain Jan - Founder and CEO of Better Earth": {
+    "call_number": "SOM 3",
+    "guest": "Zain Jan",
+    "title": "Founder and CEO of Better Earth",
+    "date": "June 19th, 2024",
+    "duration": "1:12:02"
+  },
+  "SOM 4 - Shawn Meaike - Founder and CEO of Family First Life": {
+    "call_number": "SOM 4",
+    "guest": "Shawn Meaike",
+    "title": "Founder and CEO of Family First Life",
+    "date": "June 26th, 2024",
+    "duration": "1:50:25"
+  },
+  "SOM 5 - Tommy Mello - Founder and CEO of A1 Garage": {
+    "call_number": "SOM 5",
+    "guest": "Tommy Mello",
+    "title": "Founder and CEO of A1 Garage",
+    "date": "July 3rd, 2024",
+    "duration": "1:15:40"
+  },
+  "SOM 6 - Onyi Odunukwe - Founder and CEO of Glo Tanning": {
+    "call_number": "SOM 6",
+    "guest": "Onyi Odunukwe",
+    "title": "Founder and CEO of Glo Tanning",
+    "date": "July 10th, 2024",
+    "duration": "1:29:23"
+  },
+  "SOM 7 - Andy Elliott - Founder and CEO of The Elliott Group": {
+    "call_number": "SOM 7",
+    "guest": "Andy Elliott",
+    "title": "Founder and CEO of The Elliott Group",
+    "date": "August 17th, 2024",
+    "duration": "1:24:32"
+  },
+  "SOM 8 - Peter Kell - Video Sales Letter Expert and Founder of Geniusai": {
+    "call_number": "SOM 8",
+    "guest": "Peter Kell",
+    "title": "Video Sales Letter Expert and Founder of Genius.ai",
+    "date": "July 24th, 2024",
+    "duration": "1:55:03"
+  },
+  "SOM 9 - Jeremy Perkins - Founder and CEO of Precision Medical Devices": {
+    "call_number": "SOM 9",
+    "guest": "Jeremy Perkins",
+    "title": "Founder and CEO of Precision Medical Devices",
+    "date": "July 31st, 2024",
+    "duration": "1:17:34"
+  },
+  "SOM 10 - Renji Bijoy - Founder of Immersed - Most Used VR Software on the Planet": {
+    "call_number": "SOM 10",
+    "guest": "Renji Bijoy",
+    "title": "Founder of Immersed - Most Used VR Software on the Planet",
+    "date": "August 1st, 2024",
+    "duration": "1:31:31"
+  },
+  "SOM 11 - Chris Watters - Founder and CEO of Watters International Realty": {
+    "call_number": "SOM 11",
+    "guest": "Chris Watters",
+    "title": "Founder and CEO of Watters International Realty",
+    "date": "August 7th, 2024",
+    "duration": "1:32:55"
+  },
+  "SOM 12 - Justin Waller - Founder and CEO of RedIron Construction": {
+    "call_number": "SOM 12",
+    "guest": "Justin Waller",
+    "title": "Founder and CEO of RedIron Construction",
+    "date": "August 14th, 2024",
+    "duration": "1:05:22"
+  },
+  "SOM 13 - Jason Alvarez-Cohen - Founder and CEO of Popl": {
+    "call_number": "SOM 13",
+    "guest": "Jason Alvarez-Cohen",
+    "title": "Founder and CEO of Popl",
+    "date": "August 21st, 2024",
+    "duration": "1:59:19"
+  },
+  "SOM 14 - Joshua Crisp - CEO of 3 Companies - E-Commerce Expert": {
+    "call_number": "SOM 14",
+    "guest": "Joshua Crisp",
+    "title": "CEO of 3 Companies - E-Commerce Expert",
+    "date": "August 28th, 2024",
+    "duration": "3:00:09"
+  },
+  "SOM 15 - Cody Sperber - Real Estate and Education Entrepreneur": {
+    "call_number": "SOM 15",
+    "guest": "Cody Sperber",
+    "title": "Real Estate and Education Entrepreneur",
+    "date": "September 4th, 2024",
+    "duration": "2:43:20"
+  },
+  "SOM 16 - Anthony Powell - Sales Expert and Digital Closer": {
+    "call_number": "SOM 16",
+    "guest": "Anthony Powell",
+    "title": "Sales Expert and Digital Closer",
+    "date": "September 11th, 2024",
+    "duration": "2:47:41"
+  },
+  "SOM 17 - Kaitlin OToole - Speaker and Author": {
+    "call_number": "SOM 17",
+    "guest": "Kaitlin O'Toole",
+    "title": "Speaker and Author",
+    "date": "September 18th, 2024",
+    "duration": "3:21:43"
+  },
+  "SOM 18 - Billy Loesch - Founder and CEO of Baya Bar": {
+    "call_number": "SOM 18",
+    "guest": "Billy Loesch",
+    "title": "Founder and CEO of Baya Bar",
+    "date": "September 25th, 2024",
+    "duration": "2:30:37"
+  },
+  "SOM 19 - Myron Golden - Author Speaker Entrepreneur and Business Consultant": {
+    "call_number": "SOM 19",
+    "guest": "Myron Golden",
+    "title": "Author, Speaker, Entrepreneur and Business Consultant",
+    "date": "October 2nd, 2024",
+    "duration": "3:49:29"
+  },
+  "SOM 20 - Eddie Wilson - The King of Exits": {
+    "call_number": "SOM 20",
+    "guest": "Eddie Wilson",
+    "title": "The King of Exits",
+    "date": "October 9th, 2024",
+    "duration": "2:28:39"
+  },
+  "SOM 21 - Nineveh Madsen - Co-Founder of Supra Human": {
+    "call_number": "SOM 21",
+    "guest": "Nineveh Madsen",
+    "title": "Co-Founder of Supra Human",
+    "date": "October 15th, 2024",
+    "duration": "1:42:53"
+  },
+  "SOM 22 - Kris Krohn - Real Estate Mogul and Wealth-Building Expert": {
+    "call_number": "SOM 22",
+    "guest": "Kris Krohn",
+    "title": "Real Estate Mogul and Wealth-Building Expert",
+    "date": "October 24th, 2024",
+    "duration": "2:41:44"
+  },
+  "SOM 23 - Grant Mitterlehner - CEO of MittGroup": {
+    "call_number": "SOM 23",
+    "guest": "Grant Mitterlehner",
+    "title": "CEO of MittGroup",
+    "date": "October 30th, 2024",
+    "duration": "4:03:09"
+  },
+  "SOM 24 - Dr Kehinde Thomas - Senior Vice President at PHP Agency": {
+    "call_number": "SOM 24",
+    "guest": "Dr. Kehinde Thomas",
+    "title": "Senior Vice President at PHP Agency",
+    "date": "November 6th, 2024",
+    "duration": "3:35:21"
+  },
+  "SOM 25 - Todd Nepola - Founder and President of Current Capital Group": {
+    "call_number": "SOM 25",
+    "guest": "Todd Nepola",
+    "title": "Founder and President of Current Capital Group",
+    "date": "November 13th, 2024",
+    "duration": "3:15:53"
+  },
+  "SOM 26 - Carrie Kerpen - CEO and Co-Founder of Likeable Media": {
+    "call_number": "SOM 26",
+    "guest": "Carrie Kerpen",
+    "title": "CEO and Co-Founder of Likeable Media",
+    "date": "November 20th, 2024",
+    "duration": "3:22:26"
+  },
+  "SOM 27 - Jon Resnick - Visionary CEO and Founder of Ultimate Product Distributors": {
+    "call_number": "SOM 27",
+    "guest": "Jon Resnick",
+    "title": "Visionary CEO and Founder of Ultimate Product Distributors",
+    "date": "November 26th, 2024",
+    "duration": "2:58:40"
+  },
+  "SOM 28 - Stephen J Cloobeck - Billionaire Founder of Diamond Resorts International": {
+    "call_number": "SOM 28",
+    "guest": "Stephen J. Cloobeck",
+    "title": "Billionaire Founder of Diamond Resorts International",
+    "date": "December 2nd, 2024",
+    "duration": "4:15:51"
+  },
+  "SOM 29 - Billy Ray Taylor - Global Keynote Speaker and Business Transformation Expert": {
+    "call_number": "SOM 29",
+    "guest": "Billy Ray Taylor",
+    "title": "Global Keynote Speaker and Business Transformation Expert",
+    "date": "December 11th, 2024",
+    "duration": "3:46:09"
+  },
+  "SOM 30 - James Maddalone - 8-Figure Real Estate Visionary and CEO of Maddalone Development": {
+    "call_number": "SOM 30",
+    "guest": "James Maddalone",
+    "title": "8-Figure Real Estate Visionary and CEO of Maddalone Development",
+    "date": "December 17th, 2024",
+    "duration": "3:11:11"
+  },
+  "SOM 31 - Alli Webb - 9-Figure Founder of Drybar": {
+    "call_number": "SOM 31",
+    "guest": "Alli Webb",
+    "title": "9-Figure Founder of Drybar",
+    "date": "December 23rd, 2024",
+    "duration": "1:52:24"
+  },
+  "SOM 32 - Carl Grant - CEO of Connexa Partners and Best-Selling Author": {
+    "call_number": "SOM 32",
+    "guest": "Carl Grant",
+    "title": "CEO of Connexa Partners and Best-Selling Author",
+    "date": "January 22, 2025",
+    "duration": "4:12:17"
+  },
+  "SOM 33 - Neil Patel - 9-Figure Entrepreneur NYT Best-Selling Author Co-Founder of NP Digital": {
+    "call_number": "SOM 33",
+    "guest": "Neil Patel",
+    "title": "9-Figure Entrepreneur, NYT Best-Selling Author, Co-Founder of NP Digital",
+    "date": "January 08, 2025",
+    "duration": "5:21:11"
+  },
+  "SOM 34 - Robert Miller - CEO of TRU Capital": {
+    "call_number": "SOM 34",
+    "guest": "Robert Miller",
+    "title": "CEO of TRU Capital",
+    "date": "January 16, 2025",
+    "duration": "4:58:50"
+  },
+  "SOM 35 - Pace Morby - 9-Figure Creative Finance Expert Real Estate Mogul": {
+    "call_number": "SOM 35",
+    "guest": "Pace Morby",
+    "title": "9-Figure Creative Finance Expert & Real Estate Mogul",
+    "date": "January 21, 2025",
+    "duration": "1:43:24"
+  },
+  "SOM 36 - William Rivera - Founder of Ecom Degree University": {
+    "call_number": "SOM 36",
+    "guest": "William Rivera",
+    "title": "Founder of Ecom Degree University",
+    "date": "January 29, 2025",
+    "duration": "1:40:23"
+  },
+  "SOM 37 - Eric Spofford - CEO of Spofford Enterprises": {
+    "call_number": "SOM 37",
+    "guest": "Eric Spofford",
+    "title": "CEO of Spofford Enterprises",
+    "date": "February 3, 2025",
+    "duration": "56:30"
+  },
+  "SOM 38 - David Meltzer - Former CEO of Sports 1 Marketing Top 100 Business Coach": {
+    "call_number": "SOM 38",
+    "guest": "David Meltzer",
+    "title": "Former CEO of Sports 1 Marketing, Top 100 Business Coach",
+    "date": "February 11, 2025",
+    "duration": "5:38:17"
+  },
+  "SOM 39 - Todd Johnson - Serial Entrepreneur Investor and Business Coach": {
+    "call_number": "SOM 39",
+    "guest": "Todd Johnson",
+    "title": "Serial Entrepreneur, Investor, and Business Coach",
+    "date": "February 19, 2025",
+    "duration": "3:10:53"
+  },
+  "SOM 40 - Adley Kinsman - Viral Content Creator 1B Monthly Views": {
+    "call_number": "SOM 40",
+    "guest": "Adley Kinsman",
+    "title": "Viral Content Creator (1B+ Monthly Views)",
+    "date": "February 25, 2025",
+    "duration": "2:47:13"
+  },
+  "SOM 41 - Carolyn Aronson - CEO Founder of Its a 10 Haircare": {
+    "call_number": "SOM 41",
+    "guest": "Carolyn Aronson",
+    "title": "CEO & Founder of It's a 10 Haircare",
+    "date": "March 4, 2025",
+    "duration": "57:58"
+  },
+  "SOM 42 - Marcus Whitney - 100M Venture Capitalist Entrepreneur Co-Founder of Nashville SC": {
+    "call_number": "SOM 42",
+    "guest": "Marcus Whitney",
+    "title": "$100M Venture Capitalist, Entrepreneur, Co-Founder of Nashville SC",
+    "date": "March 12, 2025",
+    "duration": "3:48:42"
+  },
+  "SOM 43 - Anne Mahlum - Serial Entrepreneur Philanthropist Founder of solidcore": {
+    "call_number": "SOM 43",
+    "guest": "Anne Mahlum",
+    "title": "Serial Entrepreneur, Philanthropist, Founder of [solidcore]",
+    "date": "March 19, 2025",
+    "duration": "3:05:02"
+  },
+  "SOM 44 - Dan Honig - CEO of Discount Fence USA": {
+    "call_number": "SOM 44",
+    "guest": "Dan Honig",
+    "title": "CEO of Discount Fence USA",
+    "date": "March 26, 2025",
+    "duration": "3:10:55"
+  },
+  "SOM 45 - Heather Monahan - Award-Winning Entrepreneur 2X Best-Selling Author Top 50 Keynote Speaker": {
+    "call_number": "SOM 45",
+    "guest": "Heather Monahan",
+    "title": "Award-Winning Entrepreneur, 2X Best-Selling Author, Top 50 Keynote Speaker",
+    "date": "April 2, 2025",
+    "duration": "2:59:37"
+  },
+  "SOM 46 - Mo Barachi - Tech Entrepreneur Investor Strategic Powerhouse": {
+    "call_number": "SOM 46",
+    "guest": "Mo Barachi",
+    "title": "Tech Entrepreneur, Investor, Strategic Powerhouse",
+    "date": "April 9, 2025",
+    "duration": "3:03:30"
+  },
+  "SOM 47 - Lynnwood Bibbens - Serial Entrepreneur Investor CEO of ReachTV": {
+    "call_number": "SOM 47",
+    "guest": "Lynnwood Bibbens",
+    "title": "Serial Entrepreneur, Investor, CEO of ReachTV",
+    "date": "April 16, 2025",
+    "duration": "3:34:42"
+  },
+  "SOM 48 - Aleric Heck - Founder of AdOutreach Creator of AppFind": {
+    "call_number": "SOM 48",
+    "guest": "Aleric Heck",
+    "title": "Founder of AdOutreach, Creator of AppFind",
+    "date": "April 23, 2025",
+    "duration": "2:30:43"
+  },
+  "SOM 49 - Hugo Sanchez - Serial Entrepreneur Investor Community Builder": {
+    "call_number": "SOM 49",
+    "guest": "Hugo Sanchez",
+    "title": "Serial Entrepreneur, Investor, Community Builder",
+    "date": "April 30, 2025",
+    "duration": "3:24:17"
+  },
+  "SOM 50 - Robert Vazquez - Powerhouse Real Estate Entrepreneur National Speaker Expert in Distressed Assets": {
+    "call_number": "SOM 50",
+    "guest": "Robert Vazquez",
+    "title": "Powerhouse Real Estate Entrepreneur, National Speaker, Expert in Distressed Assets",
+    "date": "May 6, 2025",
+    "duration": "2:46:18"
+  },
+  "SOM 51 - Henry Kaestner - Serial Entrepreneur Faith-Driven Investor Co-Founder of Bandwidth": {
+    "call_number": "SOM 51",
+    "guest": "Henry Kaestner",
+    "title": "Serial Entrepreneur, Faith-Driven Investor, Co-Founder of Bandwidth",
+    "date": "May 14, 2025",
+    "duration": "4:30:55"
+  },
+  "SOM 52 - Dan Young - Tech Entrepreneur Real Estate Developer Founder of PC Laptops XIDAXcom Ugly Unic": {
+    "call_number": "SOM 52",
+    "guest": "Dan Young",
+    "title": "Tech Entrepreneur, Real Estate Developer, Founder of PC Laptops, XIDAX.com, Ugly Unicorn Crypto Fund",
+    "date": "May 21, 2025",
+    "duration": "2:44:42"
+  },
+  "SOM 53 - Josh Snow - Founder of Snow Teeth Whitening 100M Brand Builder": {
+    "call_number": "SOM 53",
+    "guest": "Josh Snow",
+    "title": "Founder of Snow Teeth Whitening, $100M+ Brand Builder",
+    "date": "May 28, 2025",
+    "duration": "2:02:30"
+  },
+  "SOM 54 - Mehul Sanghani - CEO of Octo Billion-Dollar Government Tech Empire": {
+    "call_number": "SOM 54",
+    "guest": "Mehul Sanghani",
+    "title": "CEO of Octo, Billion-Dollar Government Tech Empire",
+    "date": "May 28, 2025",
+    "duration": "1:32:03"
+  },
+  "SOM 55 - Mark McClain - CEO of SailPoint Software Multi-Billionaire": {
+    "call_number": "SOM 55",
+    "guest": "Mark McClain",
+    "title": "CEO of SailPoint, Software Multi-Billionaire",
+    "date": "May 28, 2025",
+    "duration": "1:32:39"
+  },
+  "SOM 56 - Tony Cuccio - Founder and CEO of Star Nail International and Cuccio Brands": {
+    "call_number": "SOM 56",
+    "guest": "Tony Cuccio",
+    "title": "Founder and CEO of Star Nail International and Cuccio Brands",
+    "date": "June 4, 2025",
+    "duration": "2:49:24"
+  },
+  "SOM 57 - Robert Croak - Entrepreneur and Creator of Silly Bandz": {
+    "call_number": "SOM 57",
+    "guest": "Robert Croak",
+    "title": "Entrepreneur and Creator of Silly Bandz",
+    "date": "June 11, 2025",
+    "duration": "4:06:06"
+  },
+  "SOM 58 - Mike Bo - Entrepreneurs 150M Real Estate Empire 43 Companies": {
+    "call_number": "SOM 58",
+    "guest": "Mike & Bo",
+    "title": "Entrepreneurs, $150M+ Real Estate Empire, 43+ Companies",
+    "date": "June 18, 2025",
+    "duration": "1:45:30"
+  },
+  "SOM 59 - Kurt Wilkin - Advisor Entrepreneur Executive Coach Bestselling Author": {
+    "call_number": "SOM 59",
+    "guest": "Kurt Wilkin",
+    "title": "Advisor, Entrepreneur, Executive Coach, Bestselling Author",
+    "date": "June 23, 2025",
+    "duration": "2:32:49"
+  },
+  "SOM 60 - Shawn Meaike - Founder of Family First Life": {
+    "call_number": "SOM 60",
+    "guest": "Shawn Meaike",
+    "title": "Founder of Family First Life",
+    "date": "June 24, 2025",
+    "duration": "1:57:58"
+  },
+  "SOM 61 - Kim Perell - 9X Founder 2X Best-Selling Author Investor": {
+    "call_number": "SOM 61",
+    "guest": "Kim Perell",
+    "title": "9X Founder, 2X Best-Selling Author, Investor",
+    "date": "June 25, 2025",
+    "duration": "2:33:39"
+  },
+  "SOM 62 - Joel Kaplan - Digital Agency Powerhouse": {
+    "call_number": "SOM 62",
+    "guest": "Joel Kaplan",
+    "title": "Digital Agency Powerhouse",
+    "date": "June 26, 2025",
+    "duration": "1:33:09"
+  },
+  "SOM 63 - Ricky Beliveau - Real Estate Powerhouse": {
+    "call_number": "SOM 63",
+    "guest": "Ricky Beliveau",
+    "title": "Real Estate Powerhouse",
+    "date": "June 27, 2025",
+    "duration": "1:23:11"
+  },
+  "SOM 64 - Zarik Boghossian - Serial Tech Entrepreneur Professor": {
+    "call_number": "SOM 64",
+    "guest": "Zarik Boghossian",
+    "title": "Serial Tech Entrepreneur, Professor",
+    "date": "June 30, 2025",
+    "duration": "1:19:04"
+  },
+  "SOM 65 - Chris Turnley - Executive VP of Member Experience at UFCU": {
+    "call_number": "SOM 65",
+    "guest": "Chris Turnley",
+    "title": "Executive VP of Member Experience at UFCU",
+    "date": "July 2, 2025",
+    "duration": "1:37:10"
+  },
+  "SOM 66 - Mike Jager - Real Estate Investor": {
+    "call_number": "SOM 66",
+    "guest": "Mike Jager",
+    "title": "Real Estate Investor",
+    "date": "July 3, 2025",
+    "duration": "1:25:00"
+  },
+  "SOM 67 - Donald Knight - Chief People Officer of Greenhouse Speaker Leadership Strategist": {
+    "call_number": "SOM 67",
+    "guest": "Donald Knight",
+    "title": "Chief People Officer of Greenhouse, Speaker, Leadership Strategist",
+    "date": "July 17, 2025",
+    "duration": "1:40:26"
+  },
+  "SOM 68 - Dan Daly - High-Performance Coach for Elite Businesses": {
+    "call_number": "SOM 68",
+    "guest": "Dan Daly",
+    "title": "High-Performance Coach for Elite Businesses",
+    "date": "July 24, 2025",
+    "duration": "2:22:47"
+  },
+  "SOM 69 - John Madsen - Former NFL Athlete Mindset Coach Founder of Supra Human": {
+    "call_number": "SOM 69",
+    "guest": "John Madsen",
+    "title": "Former NFL Athlete, Mindset Coach, Founder of Supra Human",
+    "date": "July 29, 2025",
+    "duration": "2:19:51"
+  },
+  "SOM 70 - Tommy Barbaccia - Founder of North Shore Strategic Advisors Registered Investment Advisor": {
+    "call_number": "SOM 70",
+    "guest": "Tommy Barbaccia",
+    "title": "Founder of North Shore Strategic Advisors, Registered Investment Advisor",
+    "date": "August 6, 2025",
+    "duration": "2:32:48"
+  },
+  "SOM 71 - John Cosgrove - Entrepreneur in Industrial Equipment Sales": {
+    "call_number": "SOM 71",
+    "guest": "John Cosgrove",
+    "title": "Entrepreneur in Industrial Equipment Sales",
+    "date": "August 12, 2025",
+    "duration": "2:24:15"
+  },
+  "SOM 72 - John David Mann - Award-Winning and Best-Selling Author": {
+    "call_number": "SOM 72",
+    "guest": "John David Mann",
+    "title": "Award-Winning and Best-Selling Author",
+    "date": "August 18, 2025",
+    "duration": "2:54:22"
+  },
+  "SOM 73 - Blake Beltram - Co-founder of MINDBODY": {
+    "call_number": "SOM 73",
+    "guest": "Blake Beltram",
+    "title": "Co-founder of MINDBODY",
+    "date": "September 5, 2025",
+    "duration": "1:48:29"
+  },
+  "SOM 74 - Steve Houghton - CEO Chairman of Houghton Capital Former Co-founder of ProPay": {
+    "call_number": "SOM 74",
+    "guest": "Steve Houghton",
+    "title": "CEO & Chairman of Houghton Capital, Former Co-founder of ProPay",
+    "date": "September 2025",
+    "duration": "1:34:53"
+  },
+  "SOM 75 - Robert Skrob - Membership Growth Expert and Author": {
+    "call_number": "SOM 75",
+    "guest": "Robert Skrob",
+    "title": "Membership Growth Expert and Author",
+    "date": "September 15, 2025",
+    "duration": "3:45:17"
+  },
+  "SOM 76 - Brent Franklin - Founder President of Rise Capital Partners": {
+    "call_number": "SOM 76",
+    "guest": "Brent Franklin",
+    "title": "Founder & President of Rise Capital Partners",
+    "date": "September 17, 2025",
+    "duration": "2:00:34"
+  },
+  "SOM 77 - Pace Morby - Creative Finance Expert Real Estate Mogul Author": {
+    "call_number": "SOM 77",
+    "guest": "Pace Morby",
+    "title": "Creative Finance Expert, Real Estate Mogul, Author",
+    "date": "September 22, 2025",
+    "duration": "1:07:04"
+  },
+  "SOM 78 - Todd Nepola - Commercial Real Estate Powerhouse Author": {
+    "call_number": "SOM 78",
+    "guest": "Todd Nepola",
+    "title": "Commercial Real Estate Powerhouse & Author",
+    "date": "September 22, 2025",
+    "duration": "1:24:32"
+  },
+  "SOM 79 - Matt Teifke - Co-owner of Teifke Real Estate": {
+    "call_number": "SOM 79",
+    "guest": "Matt Teifke",
+    "title": "Co-owner of Teifke Real Estate",
+    "date": "September 22, 2025",
+    "duration": "1:20:16"
+  },
+  "SOM 80 - Thomas Healy - Founder of Hyliion": {
+    "call_number": "SOM 80",
+    "guest": "Thomas Healy",
+    "title": "Founder of Hyliion",
+    "date": "September 24, 2025",
+    "duration": "1:35:46"
+  },
+  "SOM 81 - Joshua Crisp - E-commerce and Branding Expert CEO": {
+    "call_number": "SOM 81",
+    "guest": "Joshua Crisp",
+    "title": "E-commerce and Branding Expert, CEO",
+    "date": "September 29, 2025",
+    "duration": "1:50:04"
+  },
+  "SOM 82 - John Cerasani - Entrepreneur Investor and Author": {
+    "call_number": "SOM 82",
+    "guest": "John Cerasani",
+    "title": "Entrepreneur, Investor, and Author",
+    "date": "October 7, 2025",
+    "duration": "1:10:27"
+  },
+  "SOM 83 - Leo Martinez - CEO Investor and Entrepreneur": {
+    "call_number": "SOM 83",
+    "guest": "Leo Martinez",
+    "title": "CEO, Investor, and Entrepreneur",
+    "date": "October 2025",
+    "duration": "1:46:36"
+  },
+  "SOM 84 - Gil Baumgarten - Award-Winning Financial Advisor Author": {
+    "call_number": "SOM 84",
+    "guest": "Gil Baumgarten",
+    "title": "Award-Winning Financial Advisor, Author",
+    "date": "October 22, 2025",
+    "duration": "1:26:53"
+  },
+  "SOM 85 - Peter Tuchman - Wall Street Trader NYSE Veteran": {
+    "call_number": "SOM 85",
+    "guest": "Peter Tuchman",
+    "title": "Wall Street Trader, NYSE Veteran",
+    "date": "October 22, 2025",
+    "duration": "1:19:06"
+  },
+  "SOM 86 - Ashley Fox - Former Wall Street Analyst Founder of Empify": {
+    "call_number": "SOM 86",
+    "guest": "Ashley Fox",
+    "title": "Former Wall Street Analyst, Founder of Empify",
+    "date": "October 22, 2025",
+    "duration": "1:11:07"
+  },
+  "SOM 87 - Hannah Hammond - Real Estate Investor Capital Advisor CEO of HB Capital": {
+    "call_number": "SOM 87",
+    "guest": "Hannah Hammond",
+    "title": "Real Estate Investor, Capital Advisor, CEO of HB Capital",
+    "date": "October 29, 2025",
+    "duration": "1:28:32"
+  },
+  "SOM 88 - Alex Smereczniak - Serial Entrepreneur CEO of Franzy": {
+    "call_number": "SOM 88",
+    "guest": "Alex Smereczniak",
+    "title": "Serial Entrepreneur, CEO of Franzy",
+    "date": "November 6, 2025",
+    "duration": "1:20:13"
+  },
+  "SOM 89 - Chris Champion - Serial Entrepreneur Investor Founder of Champion AI": {
+    "call_number": "SOM 89",
+    "guest": "Chris Champion",
+    "title": "Serial Entrepreneur, Investor, Founder of Champion AI",
+    "date": "November 2025",
+    "duration": "2:53:48"
+  },
+  "SOM 90 - Greg Perlman - Billionaire Co-Founder of Jackson Springs Management": {
+    "call_number": "SOM 90",
+    "guest": "Greg Perlman",
+    "title": "Billionaire, Co-Founder of Jackson Springs Management",
+    "date": "November 18, 2025",
+    "duration": "1:29:18"
+  },
+  "SOM 91 - Jimmy John - Billionaire Founder of Jimmy Johns Sandwiches": {
+    "call_number": "SOM 91",
+    "guest": "Jimmy John",
+    "title": "Billionaire, Founder of Jimmy John's Sandwiches",
+    "date": "November 18, 2025",
+    "duration": "1:37:28"
+  },
+  "SOM 92 - John Morgan - Billionaire Founder of Morgan Morgan": {
+    "call_number": "SOM 92",
+    "guest": "John Morgan",
+    "title": "Billionaire, Founder of Morgan & Morgan",
+    "date": "November 18, 2025",
+    "duration": "3:03:03"
+  },
+  "SOM 93 - Clayton Porscha - Founder Investor Strategic Advisor": {
+    "call_number": "SOM 93",
+    "guest": "Clayton Porscha",
+    "title": "Founder, Investor, Strategic Advisor",
+    "date": "November 25, 2025",
+    "duration": "2:26:29"
+  },
+  "SOM 94 - Ken McElroy - Billionaire Investor Author Mentor": {
+    "call_number": "SOM 94",
+    "guest": "Ken McElroy",
+    "title": "Billionaire Investor, Author, Mentor",
+    "date": "December 3, 2025",
+    "duration": "3:14:10"
+  },
+  "SOM 95 - Michael Rinzler - 8-Figure Industry Leader Entrepreneur Co-founder of Wicked Cool Toys": {
+    "call_number": "SOM 95",
+    "guest": "Michael Rinzler",
+    "title": "8-Figure Industry Leader, Entrepreneur, Co-founder of Wicked Cool Toys",
+    "date": "December 10, 2025",
+    "duration": "3:01:35"
+  },
+  "SOM 96 - Michael Lim - Creative Strategist Brand Scaling Expert Head of Staff at Ownercom": {
+    "call_number": "SOM 96",
+    "guest": "Michael Lim",
+    "title": "Creative Strategist, Brand Scaling Expert, Head of Staff at Owner.com",
+    "date": "December 16, 2025",
+    "duration": "2:57:05"
+  },
+  "SOM 97 - Bill Martlink - Worlds 1 eBay Seller": {
+    "call_number": "SOM 97",
+    "guest": "Bill Martlink",
+    "title": "World's #1 eBay Seller",
+    "date": "December 23, 2025",
+    "duration": "1:38:23"
+  },
+  "SOM 98 - Randall Kaplan - Serial Entrepreneur Venture Capitalist Author": {
+    "call_number": "SOM 98",
+    "guest": "Randall Kaplan",
+    "title": "Serial Entrepreneur, Venture Capitalist, Author",
+    "date": "January 8, 2026",
+    "duration": "1:34:43"
+  },
+  "SOM 99 - Jason Wersland - Founder Chief Wellness Officer of Therabody": {
+    "call_number": "SOM 99",
+    "guest": "Jason Wersland",
+    "title": "Founder & Chief Wellness Officer of Therabody",
+    "date": "January 15, 2026",
+    "duration": "2:02:40"
+  },
+  "SOM 100 - Cody Sperber - Real Estate Investor and Founder": {
+    "call_number": "SOM 100",
+    "guest": "Cody Sperber",
+    "title": "Real Estate Investor and Founder",
+    "date": "January 22, 2026",
+    "duration": "1:07:35"
+  },
+  "SOM 101 - Adam Weitsman - Founder of Upstate Shredding": {
+    "call_number": "SOM 101",
+    "guest": "Adam Weitsman",
+    "title": "Founder of Upstate Shredding",
+    "date": "January 22, 2026",
+    "duration": "59:39"
+  },
+  "SOM 102 - Ismael Valdez - Founder of NexGen Air Conditioning Heating Plumbing": {
+    "call_number": "SOM 102",
+    "guest": "Ismael Valdez",
+    "title": "Founder of NexGen Air Conditioning, Heating & Plumbing",
+    "date": "January 22, 2026",
+    "duration": "1:46:53"
+  },
+  "SOM 103 - Steven Harvalias - Fitness Industry Innovator and Founder of Superfitness Club": {
+    "call_number": "SOM 103",
+    "guest": "Steven Harvalias",
+    "title": "Fitness Industry Innovator and Founder of Superfitness Club",
+    "date": "January 29, 2026",
+    "duration": "2:12:38"
+  },
+  "SOM 104 - Sergio Alvarez - CEO and Founder of Ai Media Group": {
+    "call_number": "SOM 104",
+    "guest": "Sergio Alvarez",
+    "title": "CEO and Founder of Ai Media Group",
+    "date": "February 5, 2026",
+    "duration": "5:03:26"
+  },
+  "SOM 105 - Scott Barone - Founder and Principal of Barone Management": {
+    "call_number": "SOM 105",
+    "guest": "Scott Barone",
+    "title": "Founder and Principal of Barone Management",
+    "date": "February 12, 2026",
+    "duration": "7:20:47"
+  },
+  "SOM 106 - Michael Solomon - Founder and Former Owner of Pro-Tech Security Inc": {
+    "call_number": "SOM 106",
+    "guest": "Michael Solomon",
+    "title": "Founder and Former Owner of Pro-Tech Security Inc.",
+    "date": "February 18, 2026",
+    "duration": "4:56:43"
+  },
+  "SOM 107 - Tyler Blanchard - Viral Creator and Founder": {
+    "call_number": "SOM 107",
+    "guest": "Tyler Blanchard",
+    "title": "Viral Creator and Founder",
+    "date": "February 24, 2026",
+    "duration": "1:14:56"
+  },
+  "SOM 110 - Jeff Hoffman - Top CEO Bestselling Author Hollywood Film Producer": {
+    "call_number": "SOM 110",
+    "guest": "Jeff Hoffman",
+    "title": "Top CEO, Bestselling Author, Hollywood Film Producer",
+    "date": "March 5, 2026",
+    "duration": "1:43:40"
+  },
+  "SOM 111 - Lloyd Sugarman - Entrepreneur": {
+    "call_number": "SOM 111",
+    "guest": "Lloyd Sugarman",
+    "title": "Entrepreneur",
+    "date": "March 2026",
+    "duration": "Unknown"
+  },
+  "SOM 115 - Jeremy Hill - Founder of JB Capital Leader in Private Debt and Investment Advisory": {
+    "call_number": "SOM 115",
+    "guest": "Jeremy Hill",
+    "title": "Founder of JB Capital, Leader in Private Debt and Investment Advisory",
+    "date": "March 27, 2026",
+    "duration": "1:03:15"
+  },
+  "SOM 116 - Scott Donnell - Entrepreneur Author Leader in Family Legacy and Financial Literacy": {
+    "call_number": "SOM 116",
+    "guest": "Scott Donnell",
+    "title": "Entrepreneur, Author, Leader in Family Legacy and Financial Literacy",
+    "date": "April 1, 2026",
+    "duration": "2:20:34"
+  }
+}

@@ -33,7 +33,7 @@ export default async function LoginPage({
         <Link href="/" className="focus-visible:outline-none focus-visible:ring-0 rounded-lg no-underline block w-fit">
           <Image
             src="/logo.png"
-            alt="School of Mentors"
+            alt="School of Mentors AI"
             width={256}
             height={256}
             draggable={false}

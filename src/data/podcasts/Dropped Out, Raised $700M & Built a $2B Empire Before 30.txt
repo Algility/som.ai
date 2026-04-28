@@ -1,0 +1,557 @@
+00:00 There's a ton of responsibility with raising over a couple million dollars, but let alone $700 million. Crazy becoming, you know, the youngest
+00:07 self-made billionaire, becoming the youngest public company CEO, but you got to spend all your time and just be
+00:13 totally relentless on focusing on the only outcome of this is going to be a win. I know hindsight is 2020, but looking
+00:20 back on the journey building your company today, is there anything that you would have done differently? Man, a lot of stuff. You dropped out of
+00:26 Carnegie Melon. I want to kind of get your thoughts on going to college in today's world as a new founder. I don't think college is for everyone.
+00:31 In today's world, if you had to start over to get into the tech industry, what city are you going to? I remember being in Pittsburgh. We would
+00:38 go make a job offer to someone that lived in Detroit and they'd be like, I have no interest in moving to Pittsburgh, Pennsylvania. Like I that's
+00:44 not a city I want to be in. That's so good. You talk to someone about and they're
+00:50 like, "Oh, this is great." If you could go back and just give the younger version of you one piece of advice, so what would it be?
+00:59 What's going on everyone and welcome back to the School of Hard Knocks podcast. I'm James and I'm here with
+01:04 Jack and Josh and we have an incredible guest for you all today. But before we get into things, I have a question for
+01:11 you. Have you heard of Kylie Jenner? Well, our guest today dethroned her in
+01:16 2020 to become the youngest self-made billionaire in the entire world after dropping out of college, starting a
+01:23 company, and taking it public in 2020. Hilleion is the name of the company,
+01:28 started as electric trucking, and has now gotten into another billion-dollar opportunity. So, we're going to be
+01:34 diving into it today and what it takes to become a self-made billionaire. But Thomas, it's great to be here with you today, my friend. Thanks for having me
+01:40 and yeah, excited to share a little bit about this journey. It's been a roller coaster to say the least. Learned a ton
+01:46 through this and hopefully I can share some of that. Absolutely. So, I want to start things off. We'll get into the backstory, but
+01:52 let's go right into 2020 right now. You take the company public. What was that feeling like and what ultimately led up
+01:58 to that decision? Because we were talking about this earlier is there is a big risk with entrepreneurs taking on
+02:03 lots of capital, ringing that bell on the NASDAQ. What led to that decision and what was that feeling like going public?
+02:08 Yeah. So let's start with painting the stage a little co right middle of co the
+02:14 public markets had shut down nobody was raising capital nobody was going public and so we were looking at like man is
+02:20 this the right time is is this do we just raise a private round and stay you know in that market or should we go
+02:26 public uh it was a time of the spack right you probably remember that where a lot of companies uh you know started
+02:32 despacking we were one of the very first to do that so we did our whole road show virtually so kind crazy. Didn't meet any
+02:40 of the investors in person. It was all done through Zoom calls and uh and talking to them over the phone. And we
+02:46 raised 700 million just through that transaction alone. And then being what
+02:51 was I about 28 years old at that time uh getting to go to the New York Stock Exchange go you know you're going up to
+02:58 that platform where the bell is and you get to sign your name on the wall of the New York Stock Exchange and then you go
+03:04 out onto the platform and for the next 10 seconds you are opening the world's markets. Was it scary raising that much
+03:10 money? Because there's a a ton of responsibility with raising over, you know, a couple million dollars but let
+03:16 alone $700 million. Was it scary taking on that much capital? Yeah, I think every stage of this
+03:22 journey there's it's scary, right? I mean, the second that you decide, I'm going to take someone else's money and start using that to try to go grow your
+03:29 vision, you're taking on an inherent risk. And you're now committed to, okay, I got to go make this successful. Uh,
+03:35 obviously, the magnitude of capital we've raised is is substantial and that that comes with a big commitment of
+03:40 like, all right, we got to go make this successful. Um but you know it was also coupled with this you know we were we
+03:48 were in a great space at a great time. We were actually overs subscribed. We could have raised more than 700 million
+03:53 through that transaction. Uh but as I'm sure we're going to talk about today markets also changed. We went public as
+03:59 an electric vehicle company. Uh now we are completely out of that space because it's been decimated over the last few
+04:06 years. So you mastered the art of pivoting. We we did one of the uh a very bold bold
+04:13 pivot. Yes. So we uh you know we raised all that capital as we were going to go electrify semi-truckss. That was the
+04:20 vision, the goal and there were a handful of other companies in that space doing something similar and we saw that
+04:28 they were going bankrupt. They couldn't raise additional capital. It was an extremely tough industry to be in. We
+04:34 were also very fortunate that about a year or two prior, we had acquired a division of GE aerospace which had
+04:42 invented a new way of making electricity. Uh or as we'll talk about, it's actually a 200-year-old tech that's
+04:48 been modernized and brought forward. And so we decided, all right, well, why don't we actually go all in on power
+04:55 generation? We saw tons of momentum building in data centers, in commercial
+04:60 buildings needing more power. You've got rolling brownouts through California. You've got Ireland saying if you're a
+05:06 data center coming in, you cannot hook into the grid. There's not enough power available. So, you need to bring your
+05:12 own power. So, we did that pivot into a totally different industry, but one that I think saved the company.
+05:19 So, take me back. You started this company when you were in college. Where did you get the idea for Hilon? And how
+05:27 did you get the courage to start a startup in your dorm room? So the idea came from there was a a
+05:33 class uh taught by professor Claudia uh where it was focused on what ideas can
+05:39 you come up with that can have both a positive business case but also can be
+05:44 good for the environment. And so prior to that I had this idea of like well why are passenger cars electric but uh
+05:51 semi-truckss are not. And so I decided all right well why don't I use that as my class project and talk about
+05:56 electrifying commercial vehicles. Prior to that, I had gone through a
+06:01 couple other startups. One was focused on sales, the other was focused on concussion research. So, I already had
+06:07 the the startup bug, the itch. And so, uh, used it as, you know, this class project. And as I was diving into it, it
+06:14 was like, man, this actually really seems like a good business model. And then from there went to business plan
+06:20 competition. So this was one of the the unique ways of kind of founding a company which I would strongly encourage
+06:26 to your your listeners is we didn't start out the gate by going and raising a seed round of funding. What we did is
+06:32 we actually went to competitions like the rice business plan competition, mass challenge, the department of energy and
+06:39 we raised a bunch of non-dilutive non-equitydriven capital and that's what we used to found the company and then
+06:45 from there we went and raised a seed round. So that actually significantly reduced the amount of dilution we took
+06:51 on the front end. I I have to ask you and and the reason why is because you came from a family of
+06:56 entrepreneurs. Both mom and dad were entrepreneurs. Now you were going to Carnegie Melon,
+07:01 one of the most prestigious schools in the country for MBA, correct? Or was this grad school or was actually engineering? Yeah. So I did
+07:07 undergrad engineering and grad school engineering. But you dropped out of Carnegie Melon in the grad school. Yes.
+07:13 What was the conversation like with your parents? And I asked because this is a fellow college dropout right here. When
+07:18 he dropped out though, you know, I would say both of our families are a bit more traditional. Military families went to
+07:24 school, kind of did it that way. He got blacklisted from the family, mom, dad, everybody.
+07:30 Horrible. Wouldn't the relationship went to zero? So, were your parents in support of you ultimately dropping out of school or was
+07:37 there a little bit of like backlash? Nah, finish. Get it just to have it or kind of what was that conversation like in your household?
+07:42 So, there was definitely a push to finish, right? But then when we talked about it, it was like, "All right, we're
+07:47 getting traction." Like I didn't I didn't just drop out just with that idea on the back of a napkin, right? I'd already gone to some of the business
+07:53 plan competitions was raising capital and then and it kind of became one of these things of like, okay, well, if
+07:58 you're really going to commit to Hilleion, you got to go all in, right? You can't be doing classes on on or
+08:04 going to classes and then doing this startup on the side if you're going to start raising capital and really trying
+08:10 to go all in. I firmly believe in start companies while you're in college or try
+08:15 it because it it's like you have this perfect safety net around you, right? If if you start a company and it fails,
+08:22 okay, you're still going to graduate with your degree and you're going to go work somewhere, right? Uh it's a perfect
+08:27 time to start a company. I I I look at this in two ways because, you know, I feel it was honestly a blessing being
+08:33 that we were going to the University of Texas that, you know, you you do have that safety net that you can kind of go
+08:39 a couple years without making any money, starting to kind of get that traction so that way you have it set up to where
+08:44 you're making money by the time you get out. You don't have to go and get a job. But I feel like, and want to know your thoughts on this, do you think a lot of
+08:50 people use that safety net as, oh, I just have to have until the time I'm out to kind of have it figured out? Do you think that especially for like new
+08:56 founders stay should they put the pressure on themselves to not have school as a safety net or do you kind of
+09:02 like the idea of going to school to meet the people? I want to kind of get your thoughts on going to college in today's
+09:07 world as a new founder without having a ton of money raised and a lot of revenue already showing right now.
+09:12 Yep. So, a couple of different thoughts. One is I don't think college is for everyone. I, you know, I struggle with
+09:18 the concept of you go to college and you get a ton of debt and then you graduate
+09:23 and you're maybe going into a job that you could have gotten if you hadn't gone to college, right? I mean, not every job
+09:30 needs someone to go to college. So, uh, now granted for me, college was an amazing experience. I learned a ton. Uh,
+09:37 made everlasting relationships, uh, people who mentored me. I'm even now on the board of trustees of Carnegie Melon.
+09:43 So like from that perspective, I'm a big believer in go to college, but I do think there's an element of not everyone
+09:49 needs to. Now, if you are in college and you think you want to start a company,
+09:55 that's you're never going to have like a better time to go do it because of that safety net we were talking about. So I
+10:01 think if you if you want to try starting something and you do have the fortune of being able to go to college, try that.
+10:07 But that's not to say like, oh, I want to start a company, so I need to go to college to do that, right? If you if you
+10:13 can start something coming out of high school, like a lot of this is just about just start trying it, start learning
+10:20 about it. Yeah. One of one of the things that I love is that before you took on outside capital
+10:25 is you tested the product by going to competitions and actually validating the product. How important do you feel like
+10:32 that is for new entrepreneurs actually validate their product before actually going on to bring on outside capital?
+10:38 I think it's huge. So, to walk you through the rice business plan competition, it's a 3-day event and you
+10:44 and your team, you go there and you pitch your idea to an audience of 20, 30 people who are all like investors or
+10:52 they've started their own company. They're judges for this competition. So, over those three days, you're ultimately
+10:57 pitching to hundreds and hundreds of people. And after each session, they're grilling you with questions and they're
+11:04 giving you feedback about your business model. So after each one of these, we'd be like, "Oh man, we hadn't thought of
+11:10 this." Like we hadn't thought about how was service going to be done or we hadn't thought about um you know the
+11:15 amount of capital that we would need to raise over this period of time. So getting those questions and how
+11:20 investors are looking at your business plan allows you to kind of navigate okay well what is the best way to start this?
+11:28 And with that so you validated the the the business model, you validated the
+11:33 product. At what point did you realize I was like, look, you know, I have an initial I I have initial capital, but I
+11:40 actually need to bring on additional capital for the company to grow. Yeah. So, it it became one of these
+11:46 things of we kind of in the beginning we lived by each business plan competition. So, we would go to it, we would win some
+11:53 capital. Like the first one, I think we won about 70 grand. The next one we won 100 grand. The next one was tens of
+11:59 thousands. So, after each one, we would say, okay, well, what can we go do with this capital? and is it going to be
+12:04 enough to go win the next competition, right? Uh ultimately when we got through that phase of things, then it became
+12:11 well, we've proven enough to go raise our seed round of fund of funding, which we had a large seed round or in that in
+12:18 2015 2016 time frame. It was a large round. Rounds become much much bigger as as time goes on. But we raised about
+12:25 $3.5 million. And we did it on a convertible note, which that's another thing uh for
+12:32 us, you know, entrepreneurs to be aware of is you don't necessarily have to sign up for equity dilution right out of the
+12:38 gate. You can set up these structures like a safe or convertible note where you're saying, "Hey, I'm going to raise
+12:43 some capital, but it's not going to convert into equity until down the road. So, if I'm successful with this capital,
+12:50 you're going to get a little bit less uh equity versus if I'm unsuccessful, you're going to own a larger chunk of
+12:56 the company. So, you're kind of given that give and take with the investor. Everyone knows that startups are a
+13:02 roller coaster. You're working 12-hour plus days. You're having to put fires out left and right. For most people that
+13:09 want to start a startup, what were some of those early challenges that you had to face in in the beginning of this
+13:14 whole company? Yeah. So, it first comes down to you need people around you to help you with it, right? It for my
+13:21 journey, it couldn't be a one-man band, right? It's a you need engineers, you need just, you know, people doing sales,
+13:27 you need marketing, like it you need a a team around you. Uh, and in the beginning, I mean, it was really
+13:33 recruiting friends and people out of out of college to, hey, come do a summer internship with us or come try this out.
+13:40 And and in the beginning, I mean, you are putting in crazy crazy hours. Not that not now, but it's it was like, you
+13:47 know, you're you're pulling allnighters to then go to that business plan competition the next day. And uh and I
+13:53 mean, we had we had stories, I'll share one with you of like, you know, we started this out of my dorm room at
+13:58 Carnegie Melon. And then since we were building a hardware product, we needed a space to actually produce the thing in.
+14:05 And so we rented this like few hundred, only a couple hundred square feet out of this big factory that where they used to
+14:11 build locomotives. The place was a mess, right? There was no heat, no AC, the
+14:17 ground was dirt. Uh, and we're in there working at like 2:00 a.m. And we didn't
+14:22 know this at the time. We knew it afterwards. Uh, there was a homeless guy living in the rafters above us, uh, in
+14:28 the attic area. And it was 2 a.m. And the guy just like started screaming and going crazy. And I mean, we're all
+14:34 downstairs like, "What the heck is going on?" Right? Um but you know I share that story just from like uh you know we
+14:40 didn't we didn't start with like oh well we got 5 million in the bank let's go you know get a beautiful office and
+14:46 great place to work. No it was very much like let's take the the money we got let's be scrappy with it and see what we
+14:52 can go accomplish. Now, what I need to know is, right, raising $700 million,
+14:58 it's you look back and there were so many conversations that had to be had to to be able to get to this point, right?
+15:04 You're in an extremely capital intensive business with how expensive this stuff is that you're ultimately having to produce and make. But in those earlier
+15:11 days, right, we we a great friend of ours, his name is Carl Grant. He's one of the top VC life science guys in
+15:17 Austin. And I was asking him about, you know, hey, your best advice is somebody trying to find investors. And and he
+15:22 said, and maybe you agree, maybe you don't, but investors don't invest in ideas. They invest in people and they
+15:28 invest in businesses, right? Those proven entrepreneurs that have already built that first successful company. Maybe they've exited it. They're
+15:34 building that second one. They've got the credibility or the businesses that are already making money, right? The banks only give money to people that
+15:40 don't need the money anymore, right? Kind of similar to investors, right? In your earlier days, how did you kind of
+15:47 sell yourself to these investors and convince them to kind of buy into the heart and mind and the vision that you
+15:53 ultimately casted? What was it that enabled you to kind of get some of those massive first checks and start to raise
+15:59 millions of dollars early on as the college dropout? This is that first big business that you're building. What how
+16:04 did you win those investors over? Yeah. So, two ways. One was we found people at these business plan
+16:10 competitions, which was a huge win, right? people that were in the audience that would come up to us afterwards saying, "I love what you're doing.
+16:16 You're this seems like a smart business model. You're having success at this company." Are these people are they like venture
+16:21 capitalists? Are they in actively investing in a lot of tech companies or are they in your your industry at all?
+16:27 Yeah, all the above. And um so we had, you know, a family office that invested
+16:32 in us coming out of that. We had one of the big uh private equity firms in Boston invest in us after that. their
+16:40 one of their side funds did uh as well as we made a relationship with a uh
+16:45 strategic investor so a company in the industry who didn't invest out of the gate but they kept tracking us and then
+16:51 they eventually said yeah I want to invest in that company in a future round so making those type of relationships
+16:57 are is is extremely valuable the other way though which is I think the best way
+17:03 uh it's a tough thing you need to work on making connections but uh having mentors that can connect you with VC
+17:10 funds. So I was very fortunate had a mentor who uh used to be a partner at Austin Ventures here in Austin and he
+17:17 was able to connect me with investors that he had done deals with in the past and then they ultimately invested in the
+17:22 company. So uh to to that point if you can if you can get a warm referral
+17:28 that's who VCs are going to look at, right? Like if you just go to a VC's website and uh and you send them an
+17:33 email saying, "Hey, I got the next great idea." Chances are they're not going to really take it serious. But if if their
+17:39 friend who they've done deals with before and they've had success with before emails them and says, "Hey, I think you should look at this company."
+17:45 That's it's it's all relationship based essentially. Yeah. James, you mentioned what Carl Grant was saying about they
+17:52 invest in people. Uh a cool story that I love is that like the the former CTO of Open AI, her name is like Mera Marotti,
+17:59 she raised like a billion dollars straight off of just she she didn't she had no company. She's just like I'm
+18:05 getting ready to like build something in the AI space. because she was the CTO of OpenAI. She raised an insane amount of
+18:10 capital just based off that. And going back to the people thing, uh you had mentioned early on you were like, let's
+18:17 hire summer interns and friends and things like that. How do you view hiring like especially in a startup
+18:22 environment? Like what is what are you looking for? If I'm a startup founder and I'm looking I need to assemble a
+18:27 team to help me take this thing to the next level. I I know you said like don't
+18:32 necessarily look at corporate because they're not going to thrive in the the the start. Who who are you hiring? How do you go about hiring? I just want to
+18:38 hear your philosophy on that. So, you need to look at who do you need in the seat for the next 12 to 18
+18:43 months. So, this is something that took me a long time to learn is uh you you
+18:49 know depending on what stage the company is. You might say, "Hey, I want let's say a head of marketing." Well, the head
+18:54 of marketing you need at a 10erson company versus a 100 person company versus a thousand person company is
+18:60 totally different, right? And you need to make sure you're finding the person that's right for the stage you're in
+19:06 now. If you find the person that's right for three years from now, chances are
+19:11 they're going to struggle with that small environment having to, you know, they're probably the ones having to post on social media, which is something that
+19:17 they've maybe not ever done in their career because they've been at a higher level. So, uh, that's something where
+19:22 you need to be comfortable with the fact that your team is going to evolve. And, uh, it doesn't mean that they maybe
+19:28 aren't going to be part of the company long term. It just means that they might need to take a smaller role as the company becomes bigger and bigger. And
+19:35 so that's something where you know you got to look at well what do I need right now and is the person kind of have the
+19:41 grit and ability to roll up their sleeves to do the work that's needed at that stage of the company and be
+19:47 comfortable with the fact that maybe that person won't be in that same seat in 18 months. Something something that I
+19:53 love is what you just said is that the people that take me from you know one from zero to 100,000 from 100,000 to a
+19:59 million may not be the same people all along that journey. And there's another thing that I love is that people may
+20:06 know my name. They may know my the company's name but they don't know your story and they don't know a lot of
+20:11 people probably don't know that this wasn't your first venture that you started either. You started a couple ventures before this. What were some of
+20:18 those lessons that you learned from the previous ventures that allowed you to build the company that you have today?
+20:23 The first venture was in sales, uh, which was awesome. Like if there's one skill that an entrepreneur needs, it's
+20:28 sales, right? And so, uh, I was selling everything from it was promotional products. So, it was like branded mugs
+20:34 and lanyards and t-shirts and those sort of things and and grew it to doing, you know, close to half a million a year and
+20:40 I was doing that out of my dorm room as well, right? So uh so that taught me sales which has been valuable all
+20:46 throughout my career. The next one was a wild journey. We were doing concussion research and we were testing athletic
+20:53 helmets seeing how they performed. Started publishing our data and one of the helmet manufacturers actually uh
+21:01 came after me and said if you keep publishing your data we're gonna sue you for defamation.
+21:06 That is crazy. So that happened right at the same time when I got accepted into the business plant for Hilleion at at
+21:12 Rice. And I was like, "Okay, either I go down this concussion path and I'm probably going to spend the next 5 years
+21:17 in a courtroom trying to defend research and data or I can go down this path of
+21:22 building electric se." So that was what caused the the move over to uh to Hille. But you know, each journey you're you're
+21:30 learning and you take those those skills and whatever you learn and you bring it into the next one. And and so I think
+21:36 it's go back to like Mr. Beast's quote if he's like, "Oh, if I had to start another YouTube channel, like I could
+21:41 get a million followers instantly." Kind of a deal, right? It's because you're able to take what you learn through that
+21:47 journey and then apply it to the next thing you're doing. In today's world, if you had to start
+21:52 over to get into the tech industry, what city are you going to? Because we're in Austin right now. I was but I was just in a coffee shop with someone recently
+21:59 that I guess had built a successful tech company and he said he's moving back to San Francisco cuz he said that that's kind of where it's heading back to like
+22:06 like that that's like where the heart is and it always will be. What are your kind of thoughts on tech today and like what city you think that a young tech
+22:12 founder should be in today's world? I still love Austin. I do think so Austin has you can recruit people who
+22:20 have been in startups before and then the other thing is you can get people to move to Austin. So, I remember being in
+22:26 Pittsburgh. We would go make a job offer to someone that lived in Detroit and they'd be like, I have no interest in
+22:33 moving to Pittsburgh, Pennsylvania. Like, I that's not a city I want to be in. That's actually so good.
+22:40 This is You talk to someone about Austin and they're like, "Oh, this is great." Now, just don't bring them on a day like
+22:46 today where it's 100 something degrees outside, but take them paddle boarding, you know? Exactly. Right. And uh and so you know
+22:52 the the ability to attract talent talent to move to Austin is great. I think
+22:57 California still struggles with like there's a lot of people who would not want to move to California in terms of like money raising though in
+23:05 terms of like money raising though. Do you think San Fran is probably where the heart is still or is that in Austin as well?
+23:10 I think nothing compares to Sand Hill Road out in California. That is, you know, the place where venture
+23:16 capitalists are at and and will invest money. Uh, with that there's been a ton
+23:21 of growth on the VC side in Austin and the money's here to raise. Is that money coming in from California
+23:27 or just all all over? All over. I think you have New York coming here as well, Boston coming here as well. I'll give you another story of
+23:34 uh we were raising our series A round of financing in Pittsburgh once again and an investor flew in. We had the meeting
+23:41 and he was like, you know, I like the company, but I don't want to have to come to Pittsburgh every quarter for
+23:47 board meetings. like I don't have any other companies here, right? They want to invest in an ecosystem where they
+23:52 come in, they see five of the companies they've invested in and they fly back home. And so you need to be in a a city
+23:58 where that's happening, where that's there's that like thriving ecosystem of startups. That's so interesting. It's like they're
+24:04 they're not just concerned about coming to meet your company. Like they want they're they're that effective that it's
+24:09 like I have five, six, seven ventures that are out here. That's crazy. Wow. You you acquired a brand from GE. What's
+24:16 it like to do? What's it like to negotiate with a billion dollar company? So, G is a uh is quite a company, right?
+24:22 And they are they are tough negotiators. Uh there was boardroom discussion on our
+24:28 end of like, okay, let's try to go acquire this, but like if we're sitting here in a year, we wouldn't be surprised
+24:33 if like this hasn't happened and it's just taken a long time. Uh ultimately it did take a long it was a long journey
+24:40 north of a year to make the acquisition happen but we did it and I mean now that's become the foundation of our
+24:45 whole company and uh you know it's we were we structured it where it was cash
+24:51 and stock so G is actually one of our shareholders now in Hon and uh and then
+24:56 when we made the acquisition all the IP all the technology and the team came over plus one of the really unique
+25:04 things is some of technology is piggybacked on things that GE has spent
+25:10 billions of dollars inventing. So for example, the fuel injection technology
+25:15 in our Carno is the same fuel injection or very similar technology to what's in a jet engine. And GE has spent billions
+25:22 of dollars inventing that. And so we were able to kind of take this division that ultimately tangentally had like
+25:29 billions invested into it and stand up a new way of making electricity. When you started Highleon, you were creating
+25:35 electric. It was an electric trucking company. Yeah. You're competing against Tesla. You're competing against all these, you know, big companies,
+25:42 but you ultimately pivoted. Y how did you identify that opportunity in more of the energy tech industry and and
+25:48 what kind of was your framework for identifying those opportunities? Cuz I think that's probably one of the most
+25:53 underrated skills underrated skills people can possess in today's world is the ability to identify opportunities
+25:59 and pivot at the right times. what what was your framework for saying and and before we even say that did you piss
+26:04 some people off who had invested in the company? uh we definitely got shareholder outreach that was like I
+26:09 invested in an electric vehicle company that's not what you guys are anymore right and and so yes and and also the
+26:15 other thing to consider is being a public company having uh funds that are investing you they have mandates on what
+26:22 they can invest in right so their their corporate mandate might be you need to be investing in the EV space and then we
+26:28 go pivot and it's like well that's not a space I can invest in anymore my you know my mandate from from my fund
+26:35 doesn't allow for that So to frame up kind of how this all progressed. So
+26:40 started building electric semi-truckss. Then we we started working with GE on
+26:45 this generator technology that we viewed it as it was the way to charge the batteries on the semi-truck. And then we
+26:52 made that acquisition plan was we were going to commercialize both products, bring it to market. And then going back
+26:59 to your question, we just we started seeing the the warning signs that the EV industry was falling apart. We saw close
+27:07 competitors trying to raise funds. They weren't able to raise it. We saw competitors starting to do layoffs. We
+27:13 saw competitors going bankrupt. And and it just started becoming this like, okay, well, why are we going to be
+27:19 different than these other companies? And it got to the point that if we kept
+27:24 going with the EV industry, we were betting on the fact that the market was going to turn around. And that's never a
+27:31 comfortable position to be in, right? you you don't want it your future to be destined or you know your destiny to be
+27:37 based on well hopefully the the public markets are going to change and start you know liking this journey and so at
+27:43 that point you know we we met with CEO we we had like a lot of discussion we had we met with other CEOs of public
+27:49 companies and asked them like should we do a industry consolidation would that make sense and and even at that stage
+27:55 everyone was pretty bullish on no we like the journey we're on and we're betting on the public markets turning around uh I remember clear as day I was
+28:02 out in Las Vegas sitting down with CEO and chairman of another EV stock and you
+28:09 know I was talking about how hey I I think we're we're going to maybe move into other industries do we want to
+28:14 merge our electric vehicle business together and and they the the example the answer they gave was hey we're
+28:21 confident that this industry is going to turn around and going to start supporting electric vehicles again we're
+28:26 going to keep going down our path months weeks later whatever it was Hilion did
+28:32 the pivot out and we said, "Hey, we're going to do the hard but necessary decision of shut down that entire division. It unfortunately came with big
+28:40 layoffs through the it was like it was an extremely extremely tough time." And uh and you know, you're you're the only
+28:46 we were the only one in the industry that was saying like let's get out of it. Everyone else was just keep keep pushing forward. Fast forward a couple
+28:54 years later to today, I think all the other companies have actually gone bankrupt by now. I I'm not I can't think
+29:00 of any that are still around. So, hindsight, yeah, we made the right decision, but in the time when you're
+29:06 talking to everyone else and everyone else is still bullish and saying, "No, just keep going." Uh, you're you're
+29:11 staying up at night questioning whether you're doing the right thing or not. So, you made the pivot to focus. You're
+29:16 pretty much producing electricity is what you're doing. You're powering data centers. Can you break down your business, exactly what it is that you're
+29:23 doing to the people that may not understand it? Yeah. So we have a technology that it
+29:28 basically enables you to make your own electricity on site. So think about the building we're sitting in today.
+29:34 Somewhere out back it's got an air conditioning system or on the roof it's got an air conditioning system providing the AC for the building. Our view is the
+29:42 future is going to be these same buildings are going to have a generator outside that's producing the electricity
+29:48 to run the lights to to run the HVAC system and you're going to make it on site. Now th this concept is called
+29:54 distributed power generation. We didn't invent it. It's been around forever. Uh there's ton of research on like grid
+30:01 resiliency and everything is a lot better. The national security be if you you know have distributed generation
+30:06 better all that. But the problem has been there's never been a technology that could make electricity on site for
+30:14 as cheap as clean as efficient as big power plants were able to. That's been
+30:19 our unlock is we can provide you the benefits of a big power plant but do it right out back at your facility.
+30:25 And one of your customers is the US military. How did that come about? Yeah. So, uh we are in an active program
+30:32 with the Navy where we are actually going to be powering their autonomous unmanned vessels. And so, uh they just
+30:38 unveiled video of what the ship looks like. It's like this couple hundred foot long vessel that uh it's going to be
+30:44 full of carno generators in it. And we're the power plant. How did that conversation come about? Did they reach
+30:50 out to you? Did you have somebody that knew the people to hit up in the military? What was that like? So, it actually started back in the GE
+30:56 days. And GE is obviously a big contractor for the military. And the military, what they were looking for is
+31:03 they said, "Hey, as we move to unmanned vessels, there's no longer anyone on
+31:08 board to do oil changes to the conventional engines and do the normal maintenance." And so we need a system
+31:13 that has ultra low maintenance so that we can deploy a ship and maybe we don't have to see it for the next 6 months, a
+31:20 year, whatever it is, however long they're going to leave leave it out there. So if it's a conventional gen set
+31:25 like they've used in the past, they need people on board to just maintain the system. And so when they looked at what
+31:31 we were doing, it was like, okay, well this is something that doesn't need much maintenance or doesn't require much
+31:36 maintenance. we can deploy it and uh and you know kind of set it out and forget about it and and let it run. And so
+31:43 that's what got you know the interest going. And then we've got a bunch of other benefits like the thing is truly
+31:48 fuel agnostic. They actually make us test the generator on diesel fuel that's been 20% contaminated by salt water. So
+31:56 think of that like you got, you know, if you put salt water in your car engine, the thing's not going to work, right?
+32:01 You're going to be buying a new car. Uh the military makes you go through those types of tests though because you know
+32:06 they're they're putting vessels out there that are going to get holes in the side of the hall and there's going to be
+32:11 contamination. So it's 2025. What other industries do you see as a winner? If I'm a young founder wanting
+32:18 that's ambitious wanting to build something, what other industries are you like go all in on this?
+32:24 Yeah, this whole AI revolution I think it's going to shake up most industries
+32:30 that are out there. So if you can figure out how to to be in the AI space or how to leverage AI, right, uh I think that's
+32:36 the right space to be in. Now our approach has been we're making the power for AI for data centers. Uh but that's
+32:43 just one way to approach it. I mean if you can figure out how to use AI to um to revolutionize an industry, a business
+32:49 like that, that's where I would highly suggest people look at and figure out what can be your niche uh whether
+32:55 supporting the AI industry or using AI to disrupt a different industry.
+33:01 I'm I'm curious. You've you've made, you know, you had the previous ventures before this. You started Helion and now
+33:08 you're in the regenerative regenerative power space. If you could go back and just give the younger version of you one
+33:15 piece of advice when you're going public, you're going public and you're ringing that bell. If you could go back and give that version of yourself one
+33:21 piece of advice, what would it be? Yeah, it would be realizing how fast
+33:27 markets can change, right? cuz we go public, the market valuation's about 10
+33:32 billion. You're riding on Cloud9. Like, you know, everything's going in your your direction. You know, if you had
+33:39 asked me then, could the stock have have fallen from north of $50 a share to sub
+33:45 a dollar a share, I would have said, no, that would be crazy, right? That would, you know, that happened to the that
+33:50 entire market, that entire EV industry. Uh it it went away, right? or it, you
+33:55 know, in the electric in the semi-truck world, it pretty much went away. So that would have been something I I I wouldn't
+34:01 have appreciated or underappreciated, I guess, where the markets will change. So just because you have an idea that
+34:08 people are willing to back right now, that might not be an idea they're willing to back in 2 years. And you
+34:14 know, same thing if you go back in time, like being in the power generation space probably wouldn't have been the best
+34:20 timing or or best fit. Fast forward to today, AI industry. Well, now being in power generation is a great fit.
+34:27 How how do how do you get through that mentally by the way? Because I feel like everybody they see, you know, oh, the
+34:33 the market's down and you look like, oh, like the top CEOs on the Forbes list, they just lost hundred billion dollars
+34:39 today. How how do you deal with that? Just seeing that price go down? Like I
+34:44 I'm I'm genuinely curious how you mentally get through that because I feel like a lot of people would be biting their fingernails and and just not able
+34:51 to handle that sort of pressure. I had days where my personal net worth was
+34:57 swinging hundreds of millions of dollars, right? So, you wake up in the morning and you go to bed and you're
+35:02 worth $200 million less or $200 million more, right? Like, it was it was wild to wrap my head
+35:08 around. Now, one thing was it's it's not fully liquid or it's not
+35:14 fully real, right? I mean, if if you're the founder of a company and your net worth is tied into the stock of that
+35:20 company, you can't just go liquidate all that overnight, right? That that's not feasible. So, yeah, you're seeing these
+35:26 major fluctuations in what your shares are worth, but the amount of cash you have sitting in your balance sheet on,
+35:32 you know, in your bank account isn't changing, right? So that it's kind of this it warps with your perception
+35:38 because it's like well over here with my stock is swinging all over the place but my my like cash I'm good on on paper it's all
+35:45 over the place. Yeah. Um yeah but uh so I mean it it
+35:51 crazy becoming you know the youngest self-made billionaire becoming the youngest public company CEO but if you
+35:58 break it all down the mission the end vision was still the same. we, you know, wanted to grow highly on one of our core
+36:04 values is we're going to go change the world. None of that changed just because our stock was jumping all over the
+36:10 place. I I think what's really interesting is like when I was getting started in the entrepreneurial journey, as I said, I
+36:16 dropped out of college and I had so much pressure on me from from friends,
+36:22 family, just all these external voices and just people saying like this is a mistake, you can't do this, like it's
+36:29 not going to succeed. And like you like you're a young founder and you're public you you have a public company and now
+36:36 you have all these people voices and different pressures like all on you at once and they're seeing your successes.
+36:43 They're seeing the the losses. They're seeing just like you grow as a person. How do you how are you kind of growing
+36:50 through that and kind of just like dealing with the pressure and silence of the noise? Like is it you have a mentor in your corner that is kind of backing
+36:56 you? Is it just raw innate self-belief? like what was it that was keeping you going through those those times?
+37:02 So, one is staying levelheaded, right? Like so yeah, enjoy the highs, but realize that they're probably going to
+37:09 go away and then when you're in the lows, realize that those will probably go away as well, right? So, you got to stay even keeled. I was very fortunate
+37:16 to have a great mentor and adviser that helped me through the journey. Uh, I've got a great board of directors who like
+37:23 I I've got a great relationship with them where I can call them up, run ideas off of them, and like get their
+37:29 feedback. So, ultimately, like I view it as I'm early in my career. I'm 33 years old. I sure as hell do not know
+37:37 everything. I got tons more to go go learn. Yes, it's been an amazing journey to get to where we are, but I hope, you
+37:43 know, the next however many years of my life are even more amazing of a journey. I view it as I I'm at this point where
+37:49 like I need to be a sponge. I need to learn from others and you know interact with people and just like figure out
+37:55 okay well it's it's what you're doing honestly. It's like how can I learn from the people that are out there who've been through this before because maybe
+38:02 their story doesn't directly correlate to to what I'm doing but I can probably take something from them and uh and and
+38:09 apply it to what I'm dealing with in my daily life. So be level-headed even keel
+38:14 don't don't overexaggerate the highs. Don't get too depressed on the lows. Uh and and learn from all those around you.
+38:21 Now, your first investor gave you a piece of advice that I that I want to serve as a guiding principle for the
+38:27 three of us and for everybody watching this right now. Could you share with us what your first investor told you? Yeah. So, I'll tell you who the guy is,
+38:34 Lily. So, he's uh he's a billionaire himself. He's the family owner of Publix
+38:40 grocery store. Just an amazing guy. He ran Publix. He he grew that organization. Uh, so if anyone any of
+38:46 your viewers are in Florida, they're probably like raving Publix fans, right? Every every trip to to to Miami, there's
+38:52 Publix right there. Yeah. And uh and so he was one of he and his dad were the driving force behind that.
+38:58 And he said when he invested in Highland, he said winning is the only option. So so many
+39:05 founders get wrapped up in man am I going to fail or if I do this could we potentially fail or that like in their
+39:11 mindset is thinking about failures and he said no you got to spend all your time and just be totally relentless on
+39:18 focusing on the only outcome of this is going to be a win and so don't waste
+39:24 your time worrying about failures just focus on how you're going to make this thing successful. It has to work or it has to work.
+39:29 Yeah. I mean that's that's the only option and like that's what gives you the confidence of like no let's pivot
+39:35 out of this. Let's go try something different or uh let's like you know let's do bold decisions uh to to try to
+39:42 make this thing successful. And and so you you learned early on that with a lot of outside noise being that
+39:47 you're the youngest public CEOs that the average age of a public CEO the average age of of a billionaire is probably in
+39:53 their 50s 60s. So so you're being underestimated you're being doubted because of your age. So you learned that
+39:58 you had to master your mindset above anything else. Yeah. And I I view it as like
+40:04 the the individual puts that age stigma on themselves most of the time. Like I
+40:09 view it as like yeah, okay, I'm the youngest person in this room, but like I don't really care. I mean more of this
+40:15 is going to should be judged off of what can I bring, what am I going to contribute, and what am I going to be
+40:20 able to achieve. Doesn't matter how old you are, right? There's something I love about that. When I first got started in digital
+40:27 marketing, my first ever business, I had the the belief of I look, I'm 19 years
+40:32 old. I'm approaching these business owners that are, you know, in their 40s, 50s, 60s, and why should they trust me?
+40:38 I don't have a lot of experience. And my mentor at the time said, Josh, you have to realize that people do have a lot of
+40:44 experience, but a lot of these people have a lot of experience doing things the wrong way. Y and it doesn't matter how old you are.
+40:52 It just matters in terms of what value you can provide. and the problems that you're able to solve.
+40:57 But I think it also goes along with and I think a great person for him to know
+41:03 is Mark Mlan who's here in Austin. He uh sold his first company to Oracle. He's now the CEO of a publicly traded
+41:09 software company and uh they um just had I think like a 12 billion 14 billion
+41:15 valuation or something like that and he's in his he's riding a high right now. Yeah, there you go. But but but he's in
+41:20 his 60s and he introduced us this concept of reverse mentorship. Mhm. Where he understands that, hey, there's
+41:27 a lot that he knows that maybe some of the younger guys don't necessarily know, but he he knows and he's accepted the
+41:32 fact that a lot of the the younger guys know a lot about stuff that he doesn't know. And I think that the power is being able to kind of embrace that. And
+41:39 so, like you said, you may go in a boardroom where, you know, these guys are a lot older, but you bring a lot to
+41:44 the table that maybe they don't realize or maybe they do. when it's like then everybody can kind of win together. Yep. Yeah. And a lot of people
+41:51 underappreciate like the people who have been through this before, they want to give back to the next generation, right?
+41:56 And so they want to be your mentor. I remember like asking the guy who, you know, mentored me through much of the
+42:03 high journey like having that initial discussion of like I was going in like, man, I'm going to ask this guy to be my
+42:08 mentor. I wonder if he's going to want to invest the time. And he was actually thrilled that I was asking him to be,
+42:14 you know, my mentor, right? So, uh, if you if you have people that you think, you know, you can learn from them,
+42:21 chances are they're probably willing to impart their wisdom on you about what they've experienced, right? When we were talking earlier, we
+42:28 were talking a bit about negotiation and I asked you, you know, are you a good negotiator? And you said, well, to be able to raise over $700 million, you got
+42:35 to know a thing or two about negotiation. Talk to me about your and and Josh was asking you about what was it like
+42:41 negotiating with a billion dollar company. We got into the conversation about leverage and you talked about can
+42:46 you tell me the story about how there was a deal that was supposed to go through and the other side I wanted to get a little and what you had to and end
+42:52 up doing. What did you learn about negotiation in that time? Yeah. So if you're out raising capital,
+42:57 you got to be on your toes, right? Like things are going to change instantly and you got to be able to respond. So, we
+43:03 were in this situation where we thought the following day we were going to be closing an investment at certain terms
+43:09 and uh it turns out spoke to that investor 24 hours before closing and
+43:14 they said, "You know what? We're actually going to change the terms, change the valuation on this round and uh so we're still good to close
+43:20 tomorrow, right?" And so they like sprung it on me and I was like, "Man, this this isn't good." Like this is not
+43:26 it. So they wanted to change the terms last minute. Yes. Yep. And so for them, like they
+43:31 viewed it as they had leverage cuz we were in a position where our balance sheet was getting low. We needed capital
+43:37 to in order to be able to survive, right? So they viewed it as, okay, we got we got the ability to we're going to
+43:43 get a bigger stake in this company. As the story I was sharing with you is uh we were fortunate that we had another
+43:50 investor who wanted to to put more money into the deal. And so I remember getting
+43:55 on a flight, flying to Florida, landing at like midnight. I'm driving to the hotel. I'm thinking about like, "All
+44:01 right, I'm going to meet this investor for breakfast in the morning." And I'm going to say to him like, "My ask is,
+44:06 will you guys take over the lead round in the lead position in this round and
+44:11 do it on the old terms? And if you do, then you can put as much capital into this round as you want." Right? And uh
+44:17 and so sure enough, had that meeting, the guy was like, "Yep, I'm in. Let's do this." And uh and then you know then
+44:24 later that day I called the the who was going to be the lead investor and I said hey we've actually gone another path.
+44:30 We're we got a different lead and we're we're going you know with them. And so the moral of the story though is you got
+44:37 to have leverage and you got to have options, right? I mean if we didn't have a backup option, another investor that
+44:43 was willing to kind of step in, what are you going to do? You're just going to say, "Okay, I'll take the new terms, the
+44:48 new valuation." I love that. and and if they don't somebody else will the power of having the options like you said.
+44:54 Yeah. So I mean that's been one of the big learnings is uh you know and as
+44:60 you're doing acquisitions as well you got to understand what's happening at that other company right we were in a
+45:06 very unique position when we were acquiring that division out of GE aerospace where GE was going through a
+45:12 devestature they were breaking their companies up into three and one of their internal pushes was you know get rid of
+45:20 R&D activities reduce spend towards kind of like future investments let's let's
+45:25 make the core business as positive as possible when they went through this devestature. So that meant that the
+45:31 division that we acquired, right, there was kind of an appetite on GE end to sell it versus if at that time GE was
+45:38 like, no, we see this as the future of our company, then they weren't going to sell it for the price they sold it to us
+45:43 for, right? So you just got to understand like, well, what's what are the pain points and the leverage on the other side as well?
+45:49 I know hindsight it's 2020, but looking back on the journey building your company today, is there anything that
+45:55 you would have done differently? Man, a lot of stuff that
+46:00 Um, you know, the end answer is no, right? And and the
+46:06 reason being is because we've had an amazing journey and I think we've still got an amazing journey ahead of us and a
+46:13 lot to go do. And you know, you talked about earlier, 80% of companies fail,
+46:19 right? 80% of startups fail in a couple years. A couple years. And so, we're still here. We're still
+46:24 listed on the New York Stock Exchange American. We're still out there. we're we've got uh a lot of money still on our
+46:31 balance sheet to go make this dream and vision happen and we think we've got an awesome technology to go do it. So yes,
+46:37 can you look back in the rearview mirror and nitpick certain things? Absolutely. But ultimately, would the company be
+46:45 alive or be where it is today if you didn't make some of those really bold and strong decisions? Probably not. I
+46:50 want to ask about because I I think what's fascinating about the pivot is you acquired a company from GE for a
+46:58 massive amount of money. You know, there's a big talk in today's world about buying businesses.
+47:04 So, you love the idea of of acquisitions and and adding adding that vertical enabled you to kind of move on from that
+47:10 other division. So, I just wanted to kind of get your your thoughts on buying businesses in today's world. Yeah. And so, I know exactly what you're
+47:18 talking about. What I what I've seen a lot is people talk about buying businesses that are like in that hey I'm
+47:24 doing a couple of million of revenue and then you come in you acquire it and you talk and you look at how can I optimize it to go grow it to 10 million in
+47:30 revenue right ours was a little bit different where we were acquiring a tech that was like hey we got to then go
+47:37 actually commercialize this and bring it to market so for us that was a perfect fit we had the R&D capital needed to go
+47:44 bring it to market and and that's what we're doing right now But I think a lot of people who are maybe looking at
+47:50 acquiring a company like wouldn't have the many tens or hundreds of millions needed to go invest in that development
+47:57 of the tech, right? And so they're more looking at can I go acquire something that I can optimize it to get it to a
+48:04 point where you can probably sell it and get a pretty good return. I think what's crazy about that acquisition is when you think of GE,
+48:11 it's one of the biggest companies in the world. They're the ones buying companies, but you would have bought a company from them. Yeah. It was a little reverse, right?
+48:18 Yeah. Um Yeah. And and it was it came down to timing, right? It was if we were a couple years earlier, a couple years
+48:24 later, it wouldn't have made sense. It was, hey, this this opportunity made sense for GE and it made sense for
+48:30 Hilleion and we were able to make the deal happen. Um but that's where you got
+48:36 to seize the opportunity when it's there because it might go away in in a day or in 6 months or a year. And uh and so
+48:43 timing is everything. If I was getting ready to start a startup and I approached you almost like you
+48:49 approached your mentors, the guy from Publix, and I said, "Hey, could you mentor me? What would be two or three
+48:56 things that you would tell me on day one? Know this?" Well, so my first thing would actually
+49:02 be learn about what you need, right? And that and and most mentors are great at
+49:07 that. Like what I found is uh you know they're not most people are not the type that just come in and oh let me force
+49:13 this down your throat and this is what you need to know. Like every situation is different. So I got to if if you got a great mentor it's going to be let me
+49:20 understand what your needs are and what you're struggling with and I can help uh you know morph it in that way. One
+49:26 overarching piece of feedback though is and this goes back to like the your question of
+49:31 like acquiring companies is the startup journey. Not all companies are created equal. Some companies take a
+49:39 ton of cash to get to just being, you know, able to have revenue. Some companies take very little capital in in
+49:45 order to start growing revenue. Some companies, if you're doing like software, could, you know, get user
+49:50 viewership that like skyrockets. Other companies, like if you're doing lawn care, you're going to like one house at
+49:57 a time, you're going to grow your business, right? So, you need to, and we talked about this a little as well, like
+50:02 I think a lot of entrepreneurs have this list on their phone of like the hundred ideas of what they would go start or
+50:07 things they could go start. Take your top 10 ideas and look at like, okay, how
+50:13 much capital would it take to start this? How long would it take to get to revenue? How long would it take to get
+50:18 to cash flow positive? And, you know, how big is the company going to need to be? Right? each. So, each business has a
+50:24 different profile and then figure out which one works best for you, right? Some people are in for the I want to go
+50:30 raise hundreds of millions and and try to go grow a billion dollar company. Other people would look at and say, man,
+50:37 if I get like a million a year revenue company, I am I'm loving life, right? And so, you got to figure out what's
+50:42 best for you. Yeah. If it if I if it was I want a billion dollar company. Yep. Is there anything in particular
+50:48 that you would say and I and and like you need capital what would it be?
+50:53 So you got to have a vision of something that warrants that size of company, right? So if if you wanted to go uh be,
+51:01 you know, the billiondoll business of like I'm going to reinvent the pot on that little flower there. Investors are
+51:08 going to look at you like, yeah, no, I don't I don't think there's a billion dollar market there. If you It's not exciting at all.
+51:13 Yeah. And it's like that, you know, there's there's no way you're going to maybe, but there's no way you're going to go make a billion dollar business out
+51:19 of selling little, you know, pots for for fake flowers. So, you got to have that vision about,
+51:25 well, where am I going, right? And and I share with you my vision of Hilleion. It's I see that buildings like this,
+51:33 Walmarts, Home Depot, data centers are all going to have carnos outside of them making power. So, if you tell an
+51:39 investor that it's like, well, yeah, what uses electricity? Well, everything uses electricity. I can see this could
+51:44 be a a billion plus business, right? It's a large total total addressable
+51:50 market, right? Yep. And so you need to the size of opportunity of what your vision kind
+51:56 of creates will allow you or not allow you to go raise that amount of capital.
+52:02 With your with your past experiences in the automotive industry, where do you see that industry going? Do you see it
+52:09 being fully electric? like do you is there any companies that you're kind of on the lookout for? What's kind of like just your take for the next 5 to 10
+52:15 years on the automotive industry? I think things keep shifting towards electric, it's just at a much slower and
+52:22 slower pace than what people anticipated. Like I envision however far
+52:28 out it is, you know, whether it's a decade or five decades, I don't know what it is, but the the ideal household
+52:34 is going to be one electric car and one hybrid car in the garage. So the electric is a great commuter vehicle and
+52:41 then the hybrid is when you need to drive from Austin to Dallas, you can drive using gasoline, you don't have to
+52:46 worry about recharging the vehicle. Uh that's where I think the the future is heading. It's just the problem has been
+52:52 it's taken so much longer for adoption to take place than what people thought. But at the end of the day, it still is
+52:57 happening. Why do you think that adoption is taking longer than we expected? Yeah, I think it's it's um
+53:05 Yeah. Well, one people are resistant to change, right? That's that's uh the first thing. And you know, I've I've
+53:11 talked to people about like that example of driving to Dallas and oh man, I'm going to have to stop and and recharge.
+53:17 And it's like, yeah, okay. A lot of people just don't want to deal with that headache. That that's my biggest thing. We have
+53:22 like electric charger ports in our apartment complex and I'm like, okay, well, that'd be good for the dayto-day, but it's like if I'm driving to Dallas,
+53:27 I don't want to have to stop for 30 minutes and charge my car, right? Yeah. Yeah. And I'll be honest, like,
+53:32 you know, I was someone that was a huge proponent of the electric vehicle industry. when I would drive to Dallas, I would drive a gas powered car, not my
+53:38 Tesla that I drive on a daily basis, just cuz I didn't want to deal with that either, right? Uh so I think that's been one of the
+53:44 hurdles. Um but then I think for the new entrance in this space, the challenge has been it's
+53:50 so capital intensive like I mean how many billions I think it's north of 10 billion has Rivian raised to try to to
+53:58 bring another electric vehicle company to the market, right? Maybe maybe that's the next billion dollar company right
+54:03 there is a person who can f solve you know the battery charging problem right there you know instead of 30 minutes
+54:09 it's it's it's five minutes or three minutes you know yeah and there are people working on that right that's happening
+54:15 well Thomas we like to end these off with two questions you got yeah I'll start by asking man
+54:20 we've covered a lot a ton man this was extremely valuable and for everybody that made it to this point I know that they got a ton of
+54:26 value out of this so this was incredible but your last message to the younger generation if you could leave with them
+54:31 one more kind of guiding principle to take with them for the rest of their lives. this is the first time you know meeting hearing from Thomas Healey
+54:38 today. Um your last message to the younger generation there something it's a quote at Carnegie
+54:44 Melon that came from Andrew Carnegie. He said my heart is in the work and that to
+54:50 me that means whatever you're doing go all in on this. Make it your life. Like
+54:55 my life revolves around high in my company right and uh and I love doing
+55:00 it. I wake up every morning and love doing it. You have to be that committed if you're going to go try to start
+55:05 something and go all in on it and go back to what we said earlier. Failure is not an option, right? The only option is
+55:12 you're going to win. Love it. At the end of the day, if tomorrow was it, how would you want to be remembered?
+55:19 Yeah. My my goal is a multi-deade
+55:25 longlasting company and we totally disrupt how electricity is made.
+55:30 I love it. Beautiful answer and beautiful podcast, my friend. So, want to say to everybody right now, be sure
+55:36 to like and subscribe for amazing content because every week we're bringing you guys the biggest and most successful business owners in the entire
+55:42 world to give you guys the advice on what it takes to build a billion dollar company just like Thomas right here. We're going to put the links down in the
+55:49 description to Thomas's Instagram so that way you guys can go follow him and follow along with his journey as well as
+55:55 as well as we're also going to put the link down to become a member of the number one community for entrepreneurs in the entire world. We've built a
+56:02 community of over 6,000 members, the most powerful entrepreneur network in the world, where you guys get direct
+56:07 access to the multi-millionaires and billionaires we interview every single week on live Zoom calls that we host,
+56:12 where you ask your questions to the millionaires and billionaires we interview, and they give you the playbook, they give you the blueprint, they give you all the answers on what it
+56:18 takes to make it in today's world. So, we can't wait to see you on the inside of the School of Mentors. But with that
+56:24 being said, we'll see you in the next episode.

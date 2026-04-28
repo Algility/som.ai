@@ -1,0 +1,15 @@
+{
+  "pmVersion": "0.1.2",
+  "features": [],
+  "issues": [
+    {
+      "id": "Q1RaEGUW",
+      "type": "change",
+      "title": "Delete /landing route and all supporting files",
+      "status": "triage",
+      "priority": "medium",
+      "createdAt": "2026-04-28T05:37:12.662Z"
+    }
+  ],
+  "log": []
+}
