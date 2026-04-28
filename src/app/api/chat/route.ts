@@ -1,5 +1,5 @@
 import { anthropic } from "@ai-sdk/anthropic";
-import { streamText, convertToModelMessages } from "ai";
+import { streamText, convertToModelMessages, type UIMessage } from "ai";
 import fs from "fs";
 import path from "path";
 import { DATA_DIRS } from "@/lib/data-paths";
@@ -311,7 +311,7 @@ export async function POST(req: Request) {
   const result = streamText({
     model: anthropic(modelId),
     system: systemPrompt,
-    messages: await convertToModelMessages(messages),
+    messages: await convertToModelMessages(messages as UIMessage[]),
   });
 
   return result.toUIMessageStreamResponse();
