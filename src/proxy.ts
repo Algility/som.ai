@@ -36,7 +36,7 @@ export async function proxy(request: NextRequest) {
   if (!user && path === "/onboarding") {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  if (user && (path === "/login" || path === "/forgot-password")) {
+  if (user && (path === "/login" || path === "/signup" || path === "/forgot-password")) {
     return NextResponse.redirect(new URL("/", request.url));
   }
   const hasName = user?.user_metadata?.full_name || user?.user_metadata?.name;
