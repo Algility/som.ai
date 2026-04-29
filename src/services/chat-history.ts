@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { UIMessage } from "ai";
 import type { ChatRow } from "@/lib/supabase";
 import type { ChatHistoryItem } from "@/types/chat";
 import { getChatTitle, isUuid } from "@/lib/chat-utils";
@@ -53,7 +54,7 @@ interface UpsertChatInput {
   userId: string;
   chatId: string;
   title: string;
-  messages: unknown[];
+  messages: UIMessage[];
   transcript: string | null;
 }
 

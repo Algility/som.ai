@@ -1,5 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { UIMessage } from "ai";
 
 export function createClient(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -14,7 +15,7 @@ export type ChatRow = {
   id: string;
   client_chat_id: string | null;
   title: string;
-  messages: unknown[];
+  messages: UIMessage[];
   transcript: string | null;
   updated_at: string;
 };

@@ -27,25 +27,8 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const { data: { user } } = await supabase.auth.getUser();
-  const path = request.nextUrl.pathname;
-
-  if (!user && path === "/") {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-  if (!user && path === "/onboarding") {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-  if (user && (path === "/login" || path === "/signup" || path === "/forgot-password")) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-  const hasName = user?.user_metadata?.full_name || user?.user_metadata?.name;
-  if (user && path === "/" && !hasName) {
-    return NextResponse.redirect(new URL("/onboarding", request.url));
-  }
-  if (user && path === "/onboarding" && hasName) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
+  // Refresh the session cookie so it stays valid across navigations.
+  await supabase.auth.getUser();
 
   return response;
 }
