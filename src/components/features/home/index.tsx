@@ -9,7 +9,7 @@ import { CommandK, type CommandKItem } from "@/components/ui/command-k";
 import { useAuth } from "@/hooks/use-auth";
 import { createClient } from "@/lib/supabase";
 import { SOM_DEFAULT_MODEL_ID } from "@/lib/som-models";
-import { Search, Settings, MessageSquare, Plus, HelpCircle } from "lucide-react";
+import { Search, MessageSquare, Plus, HelpCircle } from "lucide-react";
 
 import { SidebarToggleIcon } from "@/components/features/home/sidebar-toggle-icon";
 import { Sidebar } from "@/components/features/home/sidebar";
@@ -17,6 +17,7 @@ import { SettingsView } from "@/components/features/home/settings-view";
 import { ChatView } from "@/components/features/home/chat-view";
 import { DeleteChatModal } from "@/components/features/home/delete-chat-modal";
 import { RenameChatModal } from "@/components/features/home/rename-chat-modal";
+import { WelcomeModal } from "@/components/features/home/welcome-modal";
 import { Tutorial, type TutorialHandle } from "@/components/features/tutorial";
 import type { TutorialAction } from "@/components/features/tutorial/tutorial-slides";
 
@@ -45,18 +46,20 @@ export function Home() {
   const [dbError, setDbError] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<ChatHistoryItem[]>([]);
 
-  const { user, signOut } = useAuth();
+  const { user, loading: authLoading, signOut } = useAuth();
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const rawFirstName =
+    user?.user_metadata?.first_name?.trim() ??
     user?.user_metadata?.full_name?.trim().split(/\s+/)[0] ??
     user?.user_metadata?.name?.trim().split(/\s+/)[0] ??
     user?.user_metadata?.given_name ??
-    user?.email?.split("@")[0] ?? "there";
-  const firstName = rawFirstName === "there" ? "there" : (() => {
+    user?.email?.split("@")[0] ?? null;
+  const firstName = rawFirstName ? (() => {
     const lettersOnly = rawFirstName.replace(/\d+$/, "").match(/^[a-zA-Z]+/)?.[0] ?? rawFirstName;
     return lettersOnly[0]!.toUpperCase() + lettersOnly.slice(1).toLowerCase();
-  })();
-  const fullName = (user?.user_metadata?.full_name?.trim() || user?.user_metadata?.name?.trim() || "") || (firstName !== "there" ? firstName : "");
+  })() : null;
+  const fullName = user?.user_metadata?.full_name?.trim() || user?.user_metadata?.name?.trim() || firstName || "";
   const profileDisplayName = fullName || firstName || "User";
   const initials = (() => {
     const full = user?.user_metadata?.full_name?.trim() ?? user?.user_metadata?.name?.trim();
@@ -65,13 +68,21 @@ export function Home() {
       if (parts.length >= 2) return (parts[0]![0]! + parts[parts.length - 1]![0]!).toUpperCase();
       return parts[0]!.slice(0, 2).toUpperCase();
     }
-    if (firstName && firstName !== "there") return firstName.slice(0, 2).toUpperCase();
+    if (firstName) return firstName.slice(0, 2).toUpperCase();
     return user?.email?.slice(0, 2).toUpperCase() ?? "?";
   })();
   const avatarUrl = (user?.user_metadata?.avatar_url as string) || null;
 
-  const currentHour = new Date().getHours();
-  const greeting = currentHour < 12 ? "Good morning" : currentHour < 18 ? "Good afternoon" : "Good evening";
+  const [greeting, setGreeting] = useState("Good morning");
+  useEffect(() => {
+    const h = new Date().getHours();
+    setGreeting(h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening");
+  }, []);
+
+  // Show name prompt once auth is resolved and user has no name yet
+  useEffect(() => {
+    if (!authLoading && user && !firstName) setShowWelcome(true);
+  }, [authLoading, user, firstName]);
 
   const { messages, sendMessage, status, setMessages, stop } = useChat({
     transport: new DefaultChatTransport({ api: "/api/chat" }),
@@ -181,7 +192,6 @@ export function Home() {
     { label: "New chat", group: "Actions", description: "Start a new conversation", icon: Plus, shortcut: ["N"], keywords: ["new", "chat"] },
     { label: "Chats", group: "Navigation", description: "Go to chats", icon: MessageSquare, keywords: ["chat"] },
     { label: "How to use", group: "Navigation", description: "Replay the getting-started walkthrough", icon: HelpCircle, keywords: ["tutorial", "help"] },
-    { label: "Settings", group: "Navigation", description: "Application preferences", icon: Settings, shortcut: ["O"], keywords: ["settings"] },
     { label: "Search conversations", group: "Actions", description: "Search your chat history", icon: Search, shortcut: ["⌘", "K"], keywords: ["search"] },
   ], []);
 
@@ -191,7 +201,6 @@ export function Home() {
       case "New chat": handleNewChat(); break;
       case "Chats": setView(messages.length > 0 ? "chat" : "home"); if (window.innerWidth < 1024) setSidebarOpen(false); break;
       case "How to use": tutorialRef.current?.open(); if (window.innerWidth < 1024) setSidebarOpen(false); break;
-      case "Settings": setView("settings"); if (window.innerWidth < 1024) setSidebarOpen(false); break;
     }
   }, [messages.length, handleNewChat]);
 
@@ -213,6 +222,12 @@ export function Home() {
     if (id === activeChatId) { setMessages([]); setView("home"); setSelectedTranscript(null); setActiveChatId(null); }
     setDeleteConfirmId(null);
   }, [activeChatId, setMessages, supabase]);
+
+  const handleSaveName = useCallback(async (name: string) => {
+    setShowWelcome(false);
+    if (!supabase) return;
+    await supabase.auth.updateUser({ data: { first_name: name } });
+  }, [supabase]);
 
   const handleRenameChat = useCallback((id: string, newTitle: string) => {
     const trimmed = newTitle.trim();
@@ -252,8 +267,6 @@ export function Home() {
           onRestoreChat={handleRestoreChat}
           onRequestDelete={(id) => setDeleteConfirmId(id)}
           onRequestRename={(id) => setRenameId(id)}
-          onSignOut={signOut}
-          onOpenSettings={() => { setView("settings"); if (window.innerWidth < 1024) setSidebarOpen(false); }}
           onOpenTutorial={() => tutorialRef.current?.open()}
           onOpenCommandPalette={() => setCommandPaletteOpen(true)}
         />
@@ -289,7 +302,7 @@ export function Home() {
                     <Image src="/logo.png" alt="School of Mentors AI" width={176} height={176} priority className="logo-no-drag h-28 w-28 object-contain [mix-blend-mode:multiply] select-none pointer-events-none dark:[mix-blend-mode:normal] lg:h-44 lg:w-44" draggable={false} />
                   </div>
                   <h1 className="mb-2 animate-fade-up-delay font-brand text-2xl tracking-tight text-[#ececec] sm:text-3xl lg:text-4xl">
-                    {firstName !== "there" ? (
+                    {firstName ? (
                       <>
                         {greeting},{" "}
                         <span className="relative inline-block pb-2">
@@ -334,6 +347,7 @@ export function Home() {
         </div>
       </div>
 
+      {showWelcome && <WelcomeModal onSave={handleSaveName} onSkip={() => setShowWelcome(false)} />}
       {deleteConfirmId && <DeleteChatModal onConfirm={() => handleDeleteChat(deleteConfirmId)} onCancel={() => setDeleteConfirmId(null)} />}
       {renameId && (
         <RenameChatModal

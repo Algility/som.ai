@@ -30,6 +30,11 @@ export async function proxy(request: NextRequest) {
   // Refresh the session cookie so it stays valid across navigations.
   await supabase.auth.getUser();
 
+  const path = request.nextUrl.pathname;
+  if (path === "/login" || path === "/signup" || path === "/forgot-password" || path === "/onboarding") {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
   return response;
 }
 

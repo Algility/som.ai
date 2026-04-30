@@ -5,7 +5,6 @@ import Image from "next/image";
 import type { User } from "@supabase/supabase-js";
 import type { ChatHistoryItem, ChatView } from "@/types/chat";
 import { NavItem } from "@/components/features/home/nav-item";
-import { MenuItem } from "@/components/features/home/menu-item";
 import { SidebarToggleIcon } from "@/components/features/home/sidebar-toggle-icon";
 import { LockedNavItem } from "@/components/features/home/locked-nav-item";
 import { CtaButtons } from "@/components/features/home/cta-buttons";
@@ -26,8 +25,6 @@ interface SidebarProps {
   onRestoreChat: (item: ChatHistoryItem) => void;
   onRequestDelete: (id: string) => void;
   onRequestRename: (id: string, title: string) => void;
-  onSignOut: () => void;
-  onOpenSettings: () => void;
   onOpenTutorial: () => void;
   onOpenCommandPalette: () => void;
 }
@@ -36,26 +33,16 @@ export function Sidebar({
   open, onClose, view, hasMessages, onViewChange, chatHistory, activeChatId,
   user, avatarUrl, initials, profileDisplayName,
   onNewChat, onRestoreChat, onRequestDelete, onRequestRename,
-  onSignOut, onOpenSettings, onOpenTutorial, onOpenCommandPalette,
+  onOpenTutorial, onOpenCommandPalette,
 }: SidebarProps) {
-  const [profileOpen, setProfileOpen] = useState(false);
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (profileRef.current && !profileRef.current.contains(e.target as Node)) setProfileOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
 
   const filtered = searchQuery.trim()
     ? chatHistory.filter((h) => h.title.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -148,26 +135,8 @@ export function Sidebar({
         <div className="flex-shrink-0 px-3 pb-2 pt-1"><CtaButtons /></div>
 
         <div className="h-px bg-[#403F3D] flex-shrink-0" />
-        <div className="px-2 pb-3 pt-1.5 relative overflow-visible flex-shrink-0" ref={profileRef}>
-          {profileOpen && (
-            <div className="absolute bottom-full left-2 right-2 mb-2 bg-[#2a2a2a] border border-[#383838] rounded-xl shadow-2xl z-50 py-2 min-w-0 overflow-hidden">
-              <div className="px-3 py-2.5 mb-1 border-b border-[#383838]">
-                <p className="text-xs text-[#737373] font-medium uppercase tracking-wider">Account</p>
-                <p className="text-sm text-[#a3a3a3] truncate mt-0.5">{user?.email ?? ""}</p>
-              </div>
-              <div className="px-1.5 pt-1">
-                <MenuItem label="Settings" right="⇧⌘," onClick={() => { onOpenSettings(); setProfileOpen(false); if (window.innerWidth < 1024) onClose(); }}
-                  icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" /><circle cx="12" cy="12" r="3" /></svg>} />
-                <MenuItem label="Get help" icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>} />
-              </div>
-              <div className="h-px bg-[#383838] my-1" />
-              <div className="px-1.5">
-                <MenuItem label="Log out" danger onClick={async () => { setProfileOpen(false); await onSignOut(); window.location.href = "/login"; }}
-                  icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>} />
-              </div>
-            </div>
-          )}
-          <button onClick={() => setProfileOpen(!profileOpen)} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors cursor-pointer ${profileOpen ? "bg-[#2a2a2a]" : "hover:bg-[#2a2a2a]"}`} aria-expanded={profileOpen} aria-haspopup="true">
+        <div className="px-2 pb-3 pt-1.5 flex-shrink-0">
+          <div className="flex items-center gap-3 px-3 py-2.5">
             {avatarUrl ? (
               <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 border border-[#404040] bg-[#333]">
                 <Image src={avatarUrl} alt="" width={36} height={36} className="w-full h-full object-cover" unoptimized />
@@ -179,8 +148,7 @@ export function Sidebar({
               <p className="text-sm text-[#ececec] font-medium truncate">{profileDisplayName}</p>
               <p className="text-xs text-[#737373] truncate select-none">School of Mentors AI</p>
             </div>
-            <svg className={`w-4 h-4 text-[#666] flex-shrink-0 transition-transform ${profileOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </button>
+          </div>
         </div>
       </div>
     </aside>

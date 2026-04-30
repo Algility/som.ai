@@ -43,13 +43,22 @@ export function useAuth() {
     };
     const sessionPromise = supabase.auth
       .getSession()
-      .then(({ data: { session: s }, error }) => {
+      .then(async ({ data: { session: s }, error }) => {
         if (error && isInvalidRefreshTokenError(error)) {
           clearInvalidSession();
           return;
         }
-        setSession(s);
-        setUser(s?.user ?? null);
+        if (s) {
+          setSession(s);
+          setUser(s.user);
+        } else {
+          // No session — sign in anonymously so every visitor gets a stable user_id
+          const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
+          if (!anonError && anonData.session) {
+            setSession(anonData.session);
+            setUser(anonData.session.user);
+          }
+        }
       })
       .catch((err) => {
         if (isInvalidRefreshTokenError(err)) clearInvalidSession();
